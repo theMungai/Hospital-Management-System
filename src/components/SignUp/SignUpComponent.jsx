@@ -3,13 +3,13 @@ import Form from "./Form.jsx";
 
 function SignUpLeftSection() {
     return (
-        <div className="bg-customTealBlue basis-[40%] min-h-full w-full rounded-tl-[10px] rounded-bl-[10px]">
+        <div className="bg-customTealBlue basis-[40%] min-h-full w-full rounded-tl-[10px] rounded-bl-[10px] relative">
             <h1 className="text-white text-[24px] font-bold logo flex items-center">
                 Health<span className="text-customGreen">care</span>
             </h1>
-            <img src="/images/logo.png" alt=""/>
-
-            <img src="https://cdn.dribbble.com/userupload/27385089/file/original-7c46cde0fd728fccbe9c22541d462588.png?format=webp&resize=400x300&vertical=center" alt=""/>
+            <img src="https://www.pngmart.com/files/21/Hospital-Vector-PNG-HD.png" alt=""
+                className="w-[200px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 absolute"
+            />
         </div>
     )
 }
