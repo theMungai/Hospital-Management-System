@@ -27,32 +27,4 @@ export const formSteps = [
     }
 ]
 
-export const labels = {
-    first_name: "First Name",
-    last_name: "Last Name",
-    email: "Email",
-    phone: "Phone Number",
-    password: "Password",
-    confirm_password: "Confirm Password",
-    date_of_birth: "Date of Birth",
-    gender: "Gender",
-    marital_status: "Marital Status",
-    street_address: "Street Address",
-    street_address_2: "Street Address Line 2",
-    city: "City",
-    region: "Region/State",
-    zip: "ZIP Code",
-    country: "Country",
-    blood_type: "Blood Type",
-    any_medication: "Current Medications",
-    additional_notes: "Additional Notes",
-    family_doctor_name: "Family Doctor's Name",
-    firstName: "Emergency First Name",
-    lastName: "Emergency Last Name",
-    relationship: "Relationship",
-    contact: "Contact Number",
-    insurance_provider: "Insurance Provider",
-    insurance_ID: "Insurance ID",
-    policyholder_name: "Policyholder Name",
-    group_number: "Group Number",
-}
+

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { formSteps } from "./RegistrationFormSteps.jsx";
 import { Link } from "react-router-dom";
-import {labels} from "./RegistrationFormSteps.jsx";
+import {labels} from "/src/utils/InputLabels.jsx";
+import {initialFormData} from "../../utils/formData.jsx";
 
 const selectFields = {
     gender: ["Male", "Female", "Other"],
@@ -12,9 +13,7 @@ const selectFields = {
 
 function Form() {
     const [step, setStep] = useState(0);
-    const [formData, setFormData] = useState({
-
-    });
+    const [formData, setFormData] = useState(initialFormData);
 
     const currentStep = formSteps[step];
     const totalSteps = formSteps.length;
