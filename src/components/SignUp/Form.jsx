@@ -1,36 +1,7 @@
 import React, { useState } from "react";
 import { formSteps } from "./RegistrationFormSteps.jsx";
 import { Link } from "react-router-dom";
-
-const labels = {
-    first_name: "First Name",
-    last_name: "Last Name",
-    email: "Email",
-    phone: "Phone Number",
-    password: "Password",
-    confirm_password: "Confirm Password",
-    date_of_birth: "Date of Birth",
-    gender: "Gender",
-    marital_status: "Marital Status",
-    street_address: "Street Address",
-    street_address_2: "Street Address Line 2",
-    city: "City",
-    region: "Region/State",
-    zip: "ZIP Code",
-    country: "Country",
-    blood_type: "Blood Type",
-    any_medication: "Current Medications",
-    additional_notes: "Additional Notes",
-    family_doctor_name: "Family Doctor's Name",
-    firstName: "Emergency First Name",
-    lastName: "Emergency Last Name",
-    relationship: "Relationship",
-    contact: "Contact Number",
-    insurance_provider: "Insurance Provider",
-    insurance_ID: "Insurance ID",
-    policyholder_name: "Policyholder Name",
-    group_number: "Group Number",
-};
+import {labels} from "./RegistrationFormSteps.jsx";
 
 const selectFields = {
     gender: ["Male", "Female", "Other"],
@@ -41,7 +12,9 @@ const selectFields = {
 
 function Form() {
     const [step, setStep] = useState(0);
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+
+    });
 
     const currentStep = formSteps[step];
     const totalSteps = formSteps.length;
@@ -105,7 +78,6 @@ function Form() {
                     );
                 })}
             </div>
-
             {/* Step Title and Description */}
             <h2 className="text-xl font-semibold mb-1">{currentStep.title}</h2>
             <p className="text-gray-600 text-sm mb-6">{currentStep.description}</p>
@@ -152,7 +124,7 @@ function Form() {
                                     value={value}
                                     required
                                     onChange={handleChange}
-                                    className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                    className="p-2 border border-customTealBlue rounded outline-none"
                                 />
                             </div>
                         );
@@ -161,8 +133,8 @@ function Form() {
 
                 {/* Navigation Buttons */}
                 <div className="flex justify-between mt-6">
-                    <Link to="/login">
-                        <button className="text-blue-600 underline">Back to Login</button>
+                    <Link to="/log-in">
+                        <button className="text-customTealBlue underline">Back to Login</button>
                     </Link>
 
                     <div className="flex gap-4">
@@ -170,7 +142,7 @@ function Form() {
                             <button
                                 type="button"
                                 onClick={() => setStep(step - 1)}
-                                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
+                                className="bg-customWhite text-gray-800 px-4 py-2 rounded "
                             >
                                 Back
                             </button>
