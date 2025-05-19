@@ -2,7 +2,7 @@ import React from 'react'
 
 function TestimonialBluePrint({image, heading, name, profession}){
     return(
-        <div className='font-dmsans p-6 border border-[#cdcdcd] rounded-[20px] w-[30%] text-left'>
+        <div className='font-dmsans p-6 border border-[#cdcdcd] rounded-[20px] w-[30%] text-left bg-white'>
             <img src={`images/testimony-${image}.png`} alt="Testimonial"  className='w-[70px] h-[70px] rounded-full mb-8' />
             <h2 className='text-[#333333] text-[19px] font-bold mb-3'>{heading}</h2>
             <p className='text-[16px] text-[#555555] font-normal leading-[1.8rem] mb-8'>Lorem ipsum dolor sit ametolil col consectetur adipiscing lectus a nunc mauris scelerisque sed egestas.</p>

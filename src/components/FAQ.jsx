@@ -10,7 +10,7 @@ function FAQBluePrint() {
   }
 
   return (
-    <div className='font-montserrat w-[30%] mb-6'>
+    <div className='font-montserrat w-[30%] mb-6 bg-white p-6 rounded-[10px]'>
       <div className='flex gap-x-5 cursor-pointer' onClick={handleClick}>
         <FontAwesomeIcon
           icon={isActive ? faChevronDown : faChevronRight}

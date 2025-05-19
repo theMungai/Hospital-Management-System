@@ -3,7 +3,7 @@ import Inputs from "./common/Inputs.jsx";
 
 const Contact = () => {
   return (
-    <div>
+    <div className="bg-customWhite">
       <div className="hero relative  mb-[150px] py-10 bg-[url('/images/service-hero.jpg')] bg-cover bg-center min-h-screen grid ">
         <div className="absolute top-0 inset-0 bg-black/50 z-0"></div>
       </div>
@@ -26,7 +26,7 @@ const Contact = () => {
 
             <label>
                 <span className='mb-2.5 text-[#282938] font-normal text-[19px] block '>Choose a topic</span>
-                <select  name="choose-a-topic"  id="choose-a-topic"  required  className='mb-8 p-4 text-[1rem] text-[#282938] border border-customTealBlue outline-none rounded-[6px] w-full bg-white'>
+                <select  name="choose-a-topic"  id="choose-a-topic"  required  className='mb-8 p-4 text-[1rem] text-[#282938] border border-customTealBlue outline-none rounded-[6px] w-full bg-customWhite'>
                     <option value="" disabled selected>Select a topic</option>
                     <option value="appointments">Appointments & Scheduling</option>
                     <option value="billing">Billing & Insurance Inquiries</option>
@@ -44,8 +44,8 @@ const Contact = () => {
             </label>
 
             <label>
-                <span className='mb-2.5 text-[#282938] font-normal text-[19px] block '>Phone number</span>
-                <textarea name="message" id="message" required placeholder='Type your nessage' className='min-h-[200px] mb-8 p-4 text-[1rem] text-[#282938] border border-customTealBlue outline-none rounded-[6px] w-full ' ></textarea>
+                <span className='mb-2.5 text-[#282938] font-normal text-[19px] block '>Message</span>
+                <textarea name="message" id="message" required placeholder='Type your nessage' className='min-h-[200px] mb-8 p-4 text-[1rem] text-[#282938] border border-customTealBlue outline-none rounded-[6px] w-full bg-customWhite ' ></textarea>
             </label>
             <label className='flex items-center gap-x-4 mb-8'>
                 <input  type="checkbox"  name="accept-terms"  id="accept-terms"  className="w-5 h-5 rounded-[4px] border border-customTealBlue  checked:bg-customTealBlue accent-customTealBlue checked:border-customTealBlue focus:outline-none"/>

@@ -13,7 +13,13 @@ function NavBar() {
 
     const navItem = navItems.map((item) => {
         return <li key={item.to} className='mr-8' >
-          <Link to={item.to} className='relative text-black text-[18px] focus:text-customTealBlue focus:outline-noneafter:content-[""] after:absolute after:left-0 after:bottom-[-5px] after:h-[3px] after:rounded-[7px] after:w-0 after:bg-customTealBlue focus:after:w-full after:transition-all after:duration-300'>{item.label}
+          <Link to={item.to} className='text-black text-[18px] transition-colors duration-200
+hover:text-customTealBlue focus:text-customTealBlue focus:outline-none
+relative after:content-[""] after:absolute after:left-0 after:bottom-[-5px]
+after:h-[3px] after:rounded-[7px] after:w-0 after:bg-customTealBlue
+hover:after:w-full focus:after:w-full
+aria-[current="page"]:after:w-full aria-[current="page"]:text-customTealBlue
+after:transition-[width] after:duration-300 after:ease-out'>{item.label}
           
           </Link>
         

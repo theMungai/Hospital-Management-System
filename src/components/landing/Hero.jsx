@@ -8,7 +8,7 @@ function Professionals({image}){
   return(
     <img src={`images/professional-${image}.jpg`} 
     alt="User" 
-    className="cursor-pointer w-8 h-8 rounded-full border-2 border-white -mx-[6px] object-cover"/>
+    className="transition-all duration-500 ease-in-out cursor-pointer hover:scale-150 w-8 h-8 rounded-full border-2 border-white -mx-[6px] object-cover"/>
   )
 }
 
@@ -44,13 +44,13 @@ const Hero = () => {
         <div className='relative hero-image-container basis-[48%]'>
           <DocHero />
 
-          <div className="absolute top-20 left-[60%] w-[200px] z-20 bg-white rounded-[10px] px-7 py-3 text-customTealBlue font-bold shadow-md text-[23px]"> 
+          <div className="absolute top-20 left-[60%] w-[200px] z-20 bg-white rounded-[12px] border-4 border-customWhite px-7 py-3 text-customTealBlue font-bold shadow-md text-[23px]">
             24/7 <span className='text-black font-normal'>Service</span>
           </div>
 
           {/* Our Professionals Section */}
           <div className="w-[200px] absolute bottom-0 left-0z-20">
-            <div className="bg-white rounded-[3px] px-5 py-2 shadow-md">
+            <div className="bg-white rounded-[12px] px-5 py-2 shadow-md border-4 border-customWhite">
                 <span className="text-gray-700 text-[11px] font-medium text-lg">Our Professionals</span>
 
                 <div className="flex items-center"> 
@@ -91,12 +91,12 @@ const Hero = () => {
           <div className="choose-us-actions flex items-center gap-x-6">
             <button className='outline-none bg-customTealBlue py-5 px-8 font-dmsans text-[16px] text-white rounded-[40px]'>Get started</button>
 
-            <button className='outline-none bg-transparent py-5 px-8 font-dmsans text-[16px] text-customTealBlue'>Talk to sales</button>
+            <button className='outline-none bg-transparent py-5 px-8 font-dmsans text-[16px] bg-white text-customTealBlue rounded-[40px]'>Talk to sales</button>
           </div>
         </div>
 
-        <div className="choose-us-image ">
-          <img src="/images/services-choose-us.jpg" alt="Why Choose Us" className='w-full basis-[48%]' />
+        <div className="choose-us-image basis-[48%] ">
+          <img src="/images/services-choose-us.jpg" alt="Why Choose Us" className='w-full rounded-[10px]' />
         </div>
       </div>
     </div>

@@ -2,9 +2,9 @@ import React from 'react'
 
 const FindDoctor = () => {
   return (
-    <div className="find-a-doctor-container px-[130px] mb-[150px] ">
+    <div className="find-a-doctor-container p-10 mb-[150px] bg-white rounded-[16px] ">
         <h1 className='text-[32px] text-black font-dmsans font-bold mb-8'>Find A Doctor</h1>
-        <form className="flex flex-wrap items-center gap-4 justify-between p-4 bg-white rounded-lg">
+        <form className="flex flex-wrap items-center gap-4 justify-between">
           <div className='flex gap-x-10 items-center'>
             <input type="text" placeholder="Name" required className="flex-1 min-w-[150px] w-[360px] p-4 outline-none border border-customTealBlue rounded-[8px] [8px] placeholder:text-[16px] text-[#555555] font-light"/>
 

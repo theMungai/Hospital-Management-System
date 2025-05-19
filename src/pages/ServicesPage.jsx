@@ -9,10 +9,12 @@ import SubscribeNewsLetter from '../components/common/SubscribeNewsLetter'
 
 const ServicesPage = () => {
   return (
-    <div>
+    <div className="bg-customWhite h-auto">
       <Layout>
         <ServiceHero />
-        <FindDoctor />
+        <div className="px-[130px]">
+          <FindDoctor />
+        </div>
         <Services />
         <CustomerFeedBacks />
         <FAQ />

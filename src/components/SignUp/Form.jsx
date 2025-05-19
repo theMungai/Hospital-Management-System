@@ -1,127 +1,190 @@
-import React, {useState} from 'react';
-import Inputs from "../common/Inputs.jsx";
-import country from 'country-list-js';
+import React, { useState } from "react";
+import { formSteps } from "./RegistrationFormSteps.jsx";
+import { Link } from "react-router-dom";
 
+const labels = {
+    first_name: "First Name",
+    last_name: "Last Name",
+    email: "Email",
+    phone: "Phone Number",
+    password: "Password",
+    confirm_password: "Confirm Password",
+    date_of_birth: "Date of Birth",
+    gender: "Gender",
+    marital_status: "Marital Status",
+    street_address: "Street Address",
+    street_address_2: "Street Address Line 2",
+    city: "City",
+    region: "Region/State",
+    zip: "ZIP Code",
+    country: "Country",
+    blood_type: "Blood Type",
+    any_medication: "Current Medications",
+    additional_notes: "Additional Notes",
+    family_doctor_name: "Family Doctor's Name",
+    firstName: "Emergency First Name",
+    lastName: "Emergency Last Name",
+    relationship: "Relationship",
+    contact: "Contact Number",
+    insurance_provider: "Insurance Provider",
+    insurance_ID: "Insurance ID",
+    policyholder_name: "Policyholder Name",
+    group_number: "Group Number",
+};
 
-function Select({ label, options = [], className = '', ...props })
-{
-    return (
-        <div className={`flex flex-col ${className}`}>
-            {label && <label className="mb-2.5 text-[#282938] font-normal text-[19px] block ">{label}</label>}
-            <select
-                className="p-4 text-[1rem] text-[#282938] border border-customTealBlue outline-none rounded-[6px] w-full"
-                {...props}
-            >
-                <option value="">-- Select {label} --</option>
-                {options.map((option, idx) =>
-                    typeof option === 'string' ? (
-                        <option key={idx} value={option.toLowerCase()}>
-                            {option}
-                        </option>
-                    ) : (
-                        <option key={idx} value={option.value}>
-                            {option.label}
-                        </option>
-                    )
-                )}
-            </select>
-        </div>
-    );
-}
-
-const countryList = country.names()
+const selectFields = {
+    gender: ["Male", "Female", "Other"],
+    marital_status: ["Single", "Married", "Divorced", "Widowed"],
+    blood_type: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+    country: ["United States", "Canada", "United Kingdom", "India", "Australia"],
+};
 
 function Form() {
-    const [formData, setFormData] = useState({
-        userType: "",
-        firstName: "",
-        lastName: "",
-        email: "",
-        phoneNumber: "",
-        gender:"",
-        DOB:"",
-        address:"",
-        country:"",
-        maritalStatus: "",
-        height:"",
-        weight:"",
-        emergencyFirstName:"",
-        emergencyLastName:"",
-        emergencyRelationShip:"",
-        emergencyPhone:"",
-    })
+    const [step, setStep] = useState(0);
+    const [formData, setFormData] = useState({});
 
-    function handleChange(event) {
-        const { name, value, type, checked } = event.target;
-        setFormData(prev => ({
+    const currentStep = formSteps[step];
+    const totalSteps = formSteps.length;
+    const progressPercentage = ((step + 1) / totalSteps) * 100;
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
             ...prev,
-            [name]: type === 'checkbox' ? checked : value
+            [name]: value,
         }));
-    }
+    };
 
-    function handleSubmit(event){
-        event.preventDefault()
-        console.log(formData)
-
-        fetch("http://localhost:3000/user", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-        })
-            .then((res) => res.json())
-            .then((data) => setFormData(data))
-            .catch((error) => console.log("Unable to post data", error))
-
-    }
-
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (step < formSteps.length - 1) {
+            setStep(step + 1);
+        } else {
+            // Final submission
+            fetch("http://localhost:3000/user", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    alert("Registration successful!");
+                    console.log("Submitted data:", data);
+                })
+                .catch((err) => console.error("Submission error:", err));
+        }
+    };
 
     return (
-        <div className="basis-[100%] overflow-y-scroll py-12 ">
-            <h1 className="text-[40px] text-center my-6 font-extrabold text-customTealBlue">Create Your Account</h1>
+        <div className="w-4/5 mx-auto mt-12 font-sans px-4  ">
+            {/* Progress Bar */}
+            <div className="relative h-10 mb-8">
+                <div className="absolute top-1/2 left-0 right-0 h-2 bg-gray-200 rounded-full transform -translate-y-1/2" />
+                <div
+                    className="absolute top-1/2 left-0 h-2 bg-customTealBlue rounded-full transform -translate-y-1/2 transition-all duration-300"
+                    style={{ width: `${progressPercentage}%`, zIndex: 1 }}
+                />
+                {formSteps.map((_, index) => {
+                    const isActive = index <= step;
+                    const spacing = (index / (totalSteps - 1)) * 100;
+
+                    return (
+                        <div
+                            key={index}
+                            className="absolute top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
+                            style={{ left: `${spacing}%` }}
+                        >
+                            <div
+                                className={`w-6 h-6 rounded-full text-white text-sm font-bold flex items-center justify-center ${
+                                    isActive ? "bg-customTealBlue" : "bg-gray-300"
+                                }`}
+                            >
+                                {index + 1}
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+
+            {/* Step Title and Description */}
+            <h2 className="text-xl font-semibold mb-1">{currentStep.title}</h2>
+            <p className="text-gray-600 text-sm mb-6">{currentStep.description}</p>
+
+            {/* Form */}
             <form onSubmit={handleSubmit}>
-                <div className="mb-8">
-                    <h2 className="text-xl font-semibold mb-2 ">Register as</h2>
-                    <span className=" text-gray-500 italic">(Account type)</span>
-                    <div className="flex gap-4 mt-4">
-                        <label><input required type="radio" name="userType" value="doctor" checked={formData.userType === "doctor"} onChange={handleChange} /> Doctor</label>
-                        <label><input required type="radio" name="userType" value="patient" checked={formData.userType === "patient"} onChange={handleChange} /> Patient</label>
-                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {currentStep.fields.map((field) => {
+                        const value = formData[field] || "";
+                        const label = labels[field] || field;
+
+                        // Determine input type
+                        const isDate = field === "date_of_birth";
+                        const isPassword = field.toLowerCase().includes("password");
+
+                        if (selectFields[field]) {
+                            return (
+                                <div key={field} className="flex flex-col">
+                                    <label className="mb-1 text-sm font-medium text-gray-700">{label}</label>
+                                    <select
+                                        name={field}
+                                        required
+                                        value={value}
+                                        onChange={handleChange}
+                                        className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                    >
+                                        <option value="">-- Select {label} --</option>
+                                        {selectFields[field].map((option) => (
+                                            <option key={option} value={option.toLowerCase()}>
+                                                {option}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            );
+                        }
+
+                        return (
+                            <div key={field} className="flex flex-col">
+                                <label className="mb-1 text-sm font-medium text-gray-700">{label}</label>
+                                <input
+                                    name={field}
+                                    type={isDate ? "date" : isPassword ? "password" : "text"}
+                                    value={value}
+                                    required
+                                    onChange={handleChange}
+                                    className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                />
+                            </div>
+                        );
+                    })}
                 </div>
 
-                <div className="mb-8">
-                    <h2 className="text-xl font-semibold mb-4">Personal Information</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Navigation Buttons */}
+                <div className="flex justify-between mt-6">
+                    <Link to="/login">
+                        <button className="text-blue-600 underline">Back to Login</button>
+                    </Link>
 
-                        <Inputs label="First Name" name="firstName" value={formData.firstName}  onChange={handleChange}  placeholder="Enter your first name" />
-                        <Inputs label="Last Name" name="lastName" value={formData.lastName} onChange={handleChange}  placeholder="Enter your last name" />
-                        <Inputs label="Email" name="email" value={formData.email} onChange={handleChange}  placeholder="Enter your email" type="email" />
-                        <Inputs label="Phone Number" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange}  placeholder="Enter your phone number" />
-                        <Select label="Gender" name="gender" value={formData.gender} onChange={handleChange} options={['Male', 'Female', 'Other']} />
-                        <Inputs label="Date of Birth" name="DOB" value={formData.DOB} onChange={handleChange}  type="date" />
-                        <Inputs label="Address" name="address" value={formData.address} onChange={handleChange} placeholder="123 Main Street" />
-                        <Select label="Country of Residence" name="country" value={formData.country} onChange={handleChange}  options={countryList} />
-                        <Select label="Marital Status" name="maritalStatus" value={formData.maritalStatus} onChange={handleChange} options={['Single', 'Married', 'Other']} />
-                        <Inputs label="Height (cm)" name='height' value={formData.height} onChange={handleChange}  type="number" />
-                        <Inputs label="Weight (kg)" name="weight" value={formData.weight} onChange={handleChange} type="number" />
-                    </div>
-
-                </div>
-
-                <div className="mb-8">
-                    <h2 className="text-xl font-semibold mb-4">Emergency Contact Details</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <Inputs label="First Name"  onChange={handleChange} placeholder="Enter contact's first name" />
-                        <Inputs label="Last Name" onChange={handleChange} placeholder="Enter contact's last name" />
-                        <Inputs label="Relationship" onChange={handleChange} placeholder="e.g., Spouse, Parent" />
-                        <Inputs label="Phone Number" onChange={handleChange} placeholder="Enter contact's phone number" />
+                    <div className="flex gap-4">
+                        {step > 0 && (
+                            <button
+                                type="button"
+                                onClick={() => setStep(step - 1)}
+                                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
+                            >
+                                Back
+                            </button>
+                        )}
+                        <button
+                            type="submit"
+                            className="bg-customTealBlue text-white px-4 py-2 rounded hover:bg-opacity-90"
+                        >
+                            {step < totalSteps - 1 ? "Next" : "Submit"}
+                        </button>
                     </div>
                 </div>
-
-                <button className="bg-customTealBlue py-3 px-10 mt-8 rounded-[8px] text-white text-[18px] font-semibold cursor-pointer relative left-1/2 -translate-x-1/2"> Create account</button>
             </form>
+
         </div>
     );
 }

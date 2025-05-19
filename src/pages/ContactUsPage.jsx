@@ -5,7 +5,7 @@ import SubscribeNewsLetter from '../components/common/SubscribeNewsLetter'
 
 const ContactUsPage = () => {
   return (
-    <div>
+    <div className="bg-customWhite">
       <Layout>
         <Contact/>
         <SubscribeNewsLetter />

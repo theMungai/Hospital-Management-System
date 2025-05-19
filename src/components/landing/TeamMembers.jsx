@@ -4,7 +4,7 @@ import React from 'react'
 
 function Member({image, name, profession}){
     return (
-        <div className='text-center font-dmsans p-8 border border-[#cdcdcd] rounded-[20px] w-[32%]'>
+        <div className='text-center font-dmsans p-8 border border-[#cdcdcd] rounded-[20px] w-[32%] bg-white'>
             <img src={`images/team-member-${image}.png`} alt="Team Member" className='w-[140px] h-[140px] rounded-full mb-10 mx-auto ' />
             <h2 className='text-customTealBlue text-[22px] font-bold mb-2.5 '>{name}</h2>
             <h3 className='text-[#333333] uppercase text-[16px] font-bold mb-4'>{profession}</h3>

@@ -9,7 +9,7 @@ import SubscribeNewsLetter from '../components/common/SubscribeNewsLetter'
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className="bg-customWhite">
       <Layout>
         <Hero/>
         <Services/>

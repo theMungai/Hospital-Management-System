@@ -5,7 +5,7 @@ import { faStarHalfStroke } from '@fortawesome/free-regular-svg-icons'
 
 function FeedBack({image}){
     return (
-        <div className = "p-7 rounded border border-[#cfcfcf] font-montserrat w-[30%]">
+        <div className = "px-[35px] py-[30px] rounded-[5px] border border-[#DEDEDE] font-montserrat w-[30%] bg-white ">
             <div className ="flex items-center text-[#F3CD03] mb-5">
                 <FontAwesomeIcon icon={faStar}/>
                 <FontAwesomeIcon icon={faStar}/>
