@@ -3,6 +3,8 @@ import { formSteps } from "./RegistrationFormSteps.jsx";
 import { Link } from "react-router-dom";
 import {labels} from "/src/utils/InputLabels.jsx";
 import {initialFormData} from "../../utils/formData.jsx";
+import {ChevronRightIcon, ChevronLeftIcon , } from '@heroicons/react/24/solid';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
 
 const selectFields = {
     gender: ["Male", "Female", "Other"],
@@ -48,7 +50,8 @@ function Form() {
     };
 
     return (
-        <div className="w-4/5 mx-auto mt-12 font-sans px-4  ">
+        <div className="w-4/5 mx-auto my-12 font-dmsans px-4">
+            <h1 className="text-center text-3xl text-customTealBlue font-extrabold mb-12">Create Your Account</h1>
             {/* Progress Bar */}
             <div className="relative h-10 mb-8">
                 <div className="absolute top-1/2 left-0 right-0 h-2 bg-gray-200 rounded-full transform -translate-y-1/2" />
@@ -78,11 +81,11 @@ function Form() {
                 })}
             </div>
             {/* Step Title and Description */}
-            <h2 className="text-xl font-semibold mb-1">{currentStep.title}</h2>
-            <p className="text-gray-600 text-sm mb-6">{currentStep.description}</p>
+            <h2 className="text-customTealBlue text-2xl text-center font-semibold mb-2">{currentStep.title}</h2>
+            <p className="text-gray-600 text-center text-sm mb-9">{currentStep.description}</p>
 
             {/* Form */}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {currentStep.fields.map((field) => {
                         const value = formData[field] || "";
@@ -95,13 +98,13 @@ function Form() {
                         if (selectFields[field]) {
                             return (
                                 <div key={field} className="flex flex-col">
-                                    <label className="mb-1 text-sm font-medium text-gray-700">{label}</label>
+                                    <label className="mb-2.5 text-[#282938] font-normal text-[19px] block">{label}</label>
                                     <select
                                         name={field}
                                         required
                                         value={value}
                                         onChange={handleChange}
-                                        className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                        className="bg-transparent p-4 text-[1rem] text-[#282938] border border-customTealBlue outline-none rounded-[6px] w-full"
                                     >
                                         <option value="">-- Select {label} --</option>
                                         {selectFields[field].map((option) => (
@@ -116,14 +119,14 @@ function Form() {
 
                         return (
                             <div key={field} className="flex flex-col">
-                                <label className="mb-1 text-sm font-medium text-gray-700">{label}</label>
+                                <label className="mb-2.5 text-[#282938] font-normal text-[19px] block">{label}</label>
                                 <input
                                     name={field}
                                     type={isDate ? "date" : isPassword ? "password" : "text"}
                                     value={value}
                                     required
                                     onChange={handleChange}
-                                    className="p-2 border border-customTealBlue rounded outline-none"
+                                    className="bg-transparent p-3 text-[1rem] text-[#282938] border border-customTealBlue outline-none rounded-[6px] w-full"
                                 />
                             </div>
                         );
@@ -141,16 +144,24 @@ function Form() {
                             <button
                                 type="button"
                                 onClick={() => setStep(step - 1)}
-                                className="bg-customWhite text-gray-800 px-4 py-2 rounded "
+                                className="flex items-center gap-2 bg-transparent text-customTealBlue px-4 py-2 rounded border border-customTealBlue "
                             >
-                                Back
+                                <ChevronLeftIcon className="h-5 w-5" />Previous Step
                             </button>
                         )}
                         <button
                             type="submit"
-                            className="bg-customTealBlue text-white px-4 py-2 rounded hover:bg-opacity-90"
+                            className=" flex items-center gap-2 bg-customTealBlue text-white px-4 py-2 rounded hover:bg-opacity-90"
                         >
-                            {step < totalSteps - 1 ? "Next" : "Submit"}
+                            {step < totalSteps - 1 ? (
+                                <>
+                                    Next Step <ChevronRightIcon className="h-5 w-5" />
+                                </>
+                            ) : (
+                                <>
+                                    Submit <CheckCircleIcon className="h-5 w-5" />
+                                </>
+                            )}
                         </button>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import LoginComponent from "../components/LoginComponent.jsx";
 
 const SignInPage = () => {
   return (
-    <div>
+    <div className="bg-customWhite">
       <Layout>
         <LoginComponent />
       </Layout>
