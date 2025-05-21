@@ -1,22 +1,12 @@
 import React from 'react'
 import Layout from '../components/Layout'
-import Hero from '../components/landing/Hero'
-import Services from '../components/landing/Services'
-import TeamMembers from '../components/landing/TeamMembers'
-import Testimonials from '../components/landing/Testimonials'
-import CompanyTrust from '../components/landing/CompanyTrust'
-import SubscribeNewsLetter from '../components/common/SubscribeNewsLetter'
+import LandingMain from "../components/landing/LandingMain.jsx";
 
 const LandingPage = () => {
   return (
-    <div className="bg-customWhite">
+    <div className="bg-customWhite xs:w-[95%] xs:mx-auto">
       <Layout>
-        <Hero/>
-        <Services/>
-        <TeamMembers/>
-        <Testimonials/>
-        <CompanyTrust/>
-        <SubscribeNewsLetter/>
+        <LandingMain />
       </Layout>
       
     </div>

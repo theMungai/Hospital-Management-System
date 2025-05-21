@@ -34,7 +34,7 @@ const CompanyTrust = () => {
     Array.from({ length: visibleCount }, (_, i) => logos[(startIndex + i) % logos.length]);
 
   return (
-    <div className="px-[130px] py-[80px]">
+    <div className="py-[80px]">
       <h1 className="font-bold text-[32px] text-customTealBlue text-center font-dmsans mb-11">
         Trusted by 10,000+ companies around the world
       </h1>

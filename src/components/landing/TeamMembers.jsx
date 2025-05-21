@@ -23,7 +23,7 @@ function Member({image, name, profession}){
 
 const TeamMembers = () => {
   return (
-    <div className="members-container mb-[150px] px-[130px]">
+    <div className="members-container mb-[150px]">
         <h1 className='text-customTealBlue text-[32px] mb-[20px] font-bold text-center'>Meet our team members</h1>
         <p className='leading-[1.7rem] text-[16px] text-[#555555] text-center mx-auto w-[40%] mb-[60px]'>Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar elementum tempus hac tellus libero accumsan. </p>
         <div className='flex items-center gap-7 flex-wrap'>

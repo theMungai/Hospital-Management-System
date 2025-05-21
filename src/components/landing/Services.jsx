@@ -19,7 +19,7 @@ function ServiceType({image, title }){
 
 const Services = () => {
   return (
-    <div className='font-dmsans mb-[150px] px-[130px]'>
+    <div className='font-dmsans mb-[150px]'>
       <h1 className='text-customTealBlue text-[32px] mb-[20px] font-bold text-center'>Services we provide</h1>
       <p className='leading-[1.7rem] text-[16px] text-[#555555] text-center mx-auto w-[40%] mb-[60px]'>Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar elementum tempus hac tellus libero accumsan. </p>
 

@@ -15,7 +15,7 @@ function TestimonialBluePrint({image, heading, name, profession}){
 
 const Testimonials = () => {
   return (
-    <div className='px-[130px] mb-[40px]'>
+    <div className='mb-[40px]'>
         <h1 className='text-customTealBlue text-[32px] mb-[20px] font-bold text-center'>Testimonial</h1>
         <p className='leading-[1.7rem] text-[16px] text-[#555555] text-center mx-auto w-[40%] mb-[50px]'>Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar elementum tempus hac tellus libero accumsan. </p>
 
