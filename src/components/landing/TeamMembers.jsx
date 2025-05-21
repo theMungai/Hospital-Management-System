@@ -4,7 +4,7 @@ import React from 'react'
 
 function Member({image, name, profession}){
     return (
-        <div className='text-center font-dmsans p-8 border border-[#cdcdcd] rounded-[20px] w-[32%] bg-white'>
+        <div className='text-center font-dmsans p-8 border border-[#cdcdcd] rounded-[20px] bg-white'>
             <img src={`images/team-member-${image}.png`} alt="Team Member" className='w-[140px] h-[140px] rounded-full mb-10 mx-auto ' />
             <h2 className='text-customTealBlue text-[22px] font-bold mb-2.5 '>{name}</h2>
             <h3 className='text-[#333333] uppercase text-[16px] font-bold mb-4'>{profession}</h3>
@@ -26,7 +26,7 @@ const TeamMembers = () => {
     <div className="members-container mb-[150px]">
         <h1 className='text-customTealBlue text-[32px] mb-[20px] font-bold text-center'>Meet our team members</h1>
         <p className='leading-[1.7rem] text-[16px] text-[#555555] text-center mx-auto w-[40%] mb-[60px]'>Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar elementum tempus hac tellus libero accumsan. </p>
-        <div className='flex items-center gap-7 flex-wrap'>
+        <div className='grid gap-5 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2'>
             <Member image={1} name="John Carter" profession="ceo & co-founder"/>
             <Member image={2} name="Sophie Moore" profession="dental specialist"/>
             <Member image={3} name="Matt Cannon" profession="orthopedic"/>
