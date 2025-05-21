@@ -31,8 +31,18 @@ function NavBar() {
     ));
 
     return (
-        <nav className="flex items-center justify-between font-lexend py-5 xs:py-3 sm:py-3 md:py-4 px-[120px] xs:px-3 xs:border-b border-b-gray-300 sm:px-3 md:px-3 lg:px-[20px] xl:px-[20px] 2xl:px-[80px] 3xl:px-[100px] ">
-            <Link to="/">
+        <nav
+            className="w-full flex items-center justify-between font-lexend fixed top-0 z-50 bg-customWhite border-b border-b-gray-300
+             px-[120px] py-5
+             3xl:px-[100px]
+             2xl:px-[80px]
+             xl:px-5
+             lg:px-5
+             md:px-3 md:py-4
+             sm:px-3 sm:py-3
+             xs:px-3 xs:py-3">
+
+        <Link to="/">
                 <button className="text-customTealBlue text-[24px] font-bold logo flex items-center ">
                     <img src="/images/logo.png" alt="Logo" className="w-[60px]" />
                     <span className="xs:hidden sm:hidden xl:text-[20px] ">

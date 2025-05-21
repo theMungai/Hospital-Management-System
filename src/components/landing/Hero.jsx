@@ -23,19 +23,19 @@ function ResultsInNumbers({count, title, valueType}){
 
 const Hero = () => {
   return (
-    <div className='py-8 mt-10 xs:mt-5'>
+    <div className='py-8 mt-[140px] xs:mt-20 sm:mt-20 md:mt-20 lg:mt-20'>
       <div className='w-full flex-row-reverse flex items-center justify-between mb-20 xs:flex-col sm:flex-col md:flex-col lg:flex-col'>
           <div className='relative hero-image-container basis-[48%]'>
               <DocHero />
 
-              <div className="absolute top-20 left-[60%] xs:left-[70%] xl:left-[70%] 2xl:left-[70%] w-[200px] xs:w-[120px] sm:w-[120px] md:w-[140px] xl:w-[150px] 2xl:w-[150px] z-20 bg-white rounded-[12px] border-4 border-customWhite px-7 py-3 xs:py-2 xs:px-2 sm:px-2 md:px-2 xl:px-4 2xl:px-4 text-customTealBlue font-bold shadow-md  text-[23px] xs:text-[14px] sm:text-[14px] md:text-[14px] xl:text-[18px] 2xl:text-[18px]">
+              <div className="absolute top-20 left-[60%] xs:left-[70%] xl:left-[70%] 2xl:left-[70%] w-[200px] xs:w-[120px] sm:w-[120px] md:w-[140px] lg:w-[150px]  xl:w-[180px] 2xl:w-[200px] z-20 bg-white rounded-[12px] border-4 border-customWhite px-7 py-3 xs:py-2 xs:px-2 sm:px-2 lg:px-4 md:px-2 xl:px-4 2xl:px-4 text-customTealBlue font-bold shadow-md  text-[23px] xs:text-[14px] sm:text-[14px] md:text-[14px] lg:text-[18px]  xl:text-[18px] 2xl:text-[18px]">
                   24/7 <span className='text-black font-normal'>Service</span>
               </div>
 
               {/* Our Professionals Section */}
-              <div className="w-[200px] xs:w-[120px] sm:w-[150px] md:w-[160px] xl:w-[180px] absolute bottom-0 left-0 z-20">
+              <div className="w-[200px] xs:w-[120px] sm:w-[150px] md:w-[160px] xl:w-[200px] absolute bottom-0 left-0 z-20">
                   <div className="bg-white rounded-[12px] px-5 py-2 xs:p-1 sm:px-2 sm:py-1 md:p-2  shadow-md border-4 border-customWhite">
-                      <span className="text-gray-700 font-medium text-lg xs:text-[11px] sm:text-[12px] md:text-[14px]">Our Professionals</span>
+                      <span className="text-gray-700 font-medium text-lg xs:text-[11px] sm:text-[12px] md:text-[14px] lg:text-[14px] xl:[16px]">Our Professionals</span>
 
                       <div className="flex items-center">
                           <Professionals image={1}/>
