@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-    FacebookIcon,
-    TwitterIcon,
-    InstagramIcon,
-    LinkedinIcon,
-    YoutubeIcon,
-} from './SocialIcons';
+import {FacebookIcon, TwitterIcon, InstagramIcon, LinkedinIcon, YoutubeIcon} from './SocialIcons';
 
 function FooterColumn({ title, links, icons }) {
     return (
@@ -13,9 +7,9 @@ function FooterColumn({ title, links, icons }) {
             <h3 className="text-lg text-white font-bold mb-10 xs:mb-6 sm:mb-8 md:mb-9">{title}</h3>
             <ul className="space-y-3">
                 {links.map((link, index) => (
-                    <li key={index} className="flex items-center gap-x-3">
+                    <li key={index} className=" flex items-center gap-x-3">
                         {icons?.[index] && (
-                            <span className="w-5 h-5 text-white flex-shrink-0 py-4">
+                            <span className="w-5 h-5 text-white flex-shrink-0 py-4 items-center">
                                 {icons[index]}
                             </span>
                         )}
@@ -34,13 +28,7 @@ const Footer = () => {
     const companyLinks = ['About', 'Contact us', 'Careers', 'Culture', 'Blog'];
     const supportLinks = ['Getting started', 'Help center', 'Server status', 'Report a bug', 'Chat support'];
     const socialLinks = ['Facebook', 'Twitter', 'Instagram', 'LinkedIn', 'Youtube'];
-    const socialIcons = [
-        <FacebookIcon />,
-        <TwitterIcon />,
-        <InstagramIcon />,
-        <LinkedinIcon />,
-        <YoutubeIcon />,
-    ];
+    const socialIcons = [<FacebookIcon />, <TwitterIcon />, <InstagramIcon />, <LinkedinIcon />, <YoutubeIcon />];
 
     return (
         <footer className="w-full bg-customTealBlue mt-16 px-6 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-16 md:py-20">
@@ -74,7 +62,7 @@ const Footer = () => {
                     <FooterColumn title="Product" links={productLinks} />
                     <FooterColumn title="Company" links={companyLinks} />
                     <FooterColumn title="Support" links={supportLinks} />
-                    <FooterColumn title="Follow us" links={socialLinks} icons={socialIcons} />
+                    <FooterColumn title="Follow us" links={socialLinks} icons={socialIcons}  />
                 </div>
             </div>
         </footer>
