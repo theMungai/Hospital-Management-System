@@ -24,7 +24,7 @@ function ResultsInNumbers({count, title, valueType}){
 const Hero = () => {
   return (
     <div className='py-8 mt-[140px] xs:mt-20 sm:mt-20 md:mt-20 lg:mt-20'>
-      <div className='w-full flex-row-reverse flex items-center justify-between mb-20 xs:flex-col sm:flex-col md:flex-col lg:flex-col'>
+      <div className='w-full flex-row-reverse flex items-center justify-between mb-20 xs:flex-col sm:flex-col md:flex-col'>
           <div className='relative hero-image-container basis-[48%]'>
               <DocHero />
 
@@ -58,13 +58,11 @@ const Hero = () => {
 
             <p className='text-[#333] text-[18px] mb-[105px] xs:mb-[80px] xs:text-[16px] sm:text-[16px] md:text-[18px] xs:leading-8 sm:leading-8 md:leading-8'>At our hospital, we are dedicated to providing exceptional medical care to our patients and their families. Our experienced team of medical professionals, cutting-edge technology, and compassionate approach make us a leader in the healthcare industry.</p>
 
-            <div className="hero-buttons flex gap-x-11 xs:flex-col sm:flex-col md:flex-col lg:flex-col xs:gap-y-8 sm:gap-y-8 md:gap-y-8 lg:gap-y-10">
+            <div className="items-center flex gap-x-11 xs:flex-col sm:flex-col xs:gap-y-8 sm:gap-y-8 md:gap-x-3">
                 <button className='bg-customTealBlue text-white font-lexend text-[1.2rem] rounded-[8px] py-[13px] px-[40px]'>Appointments</button>
-                <button className="relative">
-                    <div className='w-4/5 flex items-center gap-x-6  xs:transform absolute xs:left-1/2 xs:-translate-x-1/2 sm:left-1/2 sm:-translate-x-1/2 md:left-1/2 md:-translate-x-1/2 lg:left-1/2 lg:-translate-x-1/2'>
-                        <FontAwesomeIcon icon={faCirclePlay} className='text-customTealBlue text-[50px]'/>
-                        <span className='text-[20px] text-black'>Watch Video</span>
-                    </div>
+                <button className='relative w-[200px] flex items-center gap-x-6'>
+                    <FontAwesomeIcon icon={faCirclePlay} className='text-customTealBlue text-[50px]'/>
+                    <span className='text-[20px] text-black'>Watch Video</span>
                 </button>
             </div>
         </div>
