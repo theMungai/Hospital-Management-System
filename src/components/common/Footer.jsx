@@ -49,9 +49,9 @@ const Footer = () => {
                                 <img
                                     src="/images/logo.png"
                                     alt="Logo"
-                                    className="w-16"
+                                    className="w-16 xs:w-10 sm:w-10 md:w-12 lg:w-14"
                                 />
-                                <h1 className="text-white font-bold font-lexend ml-2 text-xl">
+                                <h1 className="text-white font-bold font-lexend ml-2 text-xl xs:text-[16px] sm:text-[16px] md:text-[20px]">
                                     Healthcare
                                 </h1>
                             </a>
