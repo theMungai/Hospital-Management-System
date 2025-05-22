@@ -64,7 +64,7 @@ function NavBar() {
             </div>
 
             {/* Sidebar Menu (for small screens) */}
-            <div className={`fixed top-0 left-0 z-50 w-1/4 xs:w-2/3 sm:w-1/2 md:w-1/2 h-full bg-white shadow-lg transition-transform duration-700 ease-in-out transform ${
+            <div className={`fixed top-0 left-0 z-50 w-1/4 xs:w-2/3 sm:w-1/2 md:w-1/2 h-full font-dmsans bg-white shadow-lg transition-transform duration-700 ease-in-out transform ${
                     menuOpen ? '-translate-x-0' : '-translate-x-[120%]' 
                 }`}>
 
