@@ -7,7 +7,8 @@ function CompanyLogo({ image }) {
     <img
       src={`images/brand-${image}.png`}
       alt={`${image} logo`}
-      className="w-[130px] h-[40px] object-contain mx-7 transform transition-transform duration-300 ease-in-out hover:scale-110"
+      className="w-[130px] h-[40px] xs:w[80] xs:h-[20px] sm:w[90px] sm:h-[30px]
+      md:w[100px] md:h-[35px] object-contain mx-7 xs:mx-[16px] sm:mx-5 md:mx-6 transform transition-transform duration-300 ease-in-out hover:scale-110"
     />
   );
 }
@@ -34,8 +35,8 @@ const CompanyTrust = () => {
     Array.from({ length: visibleCount }, (_, i) => logos[(startIndex + i) % logos.length]);
 
   return (
-    <div className="py-[80px]">
-      <h1 className="font-bold text-[32px] text-customTealBlue text-center font-dmsans mb-11">
+    <div className="py-[80px] xs:py-[40px] sm:py-[40px] md:py-[60px]">
+      <h1 className="font-bold text-[32px] xs:text-[24px] sm:text-[28px] md:text[28px] lg:text-[30px] text-customTealBlue text-center font-dmsans mb-11">
         Trusted by 10,000+ companies around the world
       </h1>
 
