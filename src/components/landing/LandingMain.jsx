@@ -1,6 +1,5 @@
 import React from 'react';
 import Hero from "./Hero.jsx";
-import FindDoctor from "../common/FindDoctor.jsx";
 import Services from "./Services.jsx";
 import TeamMembers from "./TeamMembers.jsx";
 import Testimonials from "./Testimonials.jsx";
@@ -16,7 +15,6 @@ const LandingMain = () => {
         <Testimonials />
         <CompanyTrust />
         <SubscribeNewsLetter />
-
     </div>
   );
 };

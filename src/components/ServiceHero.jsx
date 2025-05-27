@@ -2,33 +2,33 @@ import React from 'react'
 
 const ServiceHero = () => {
   return (
-      <div className="relative px-[130px] mb-[150px] py-10 bg-[url('/images/service-hero.jpg')] bg-cover bg-center min-h-screen grid ">
+      <div className="relative py-8 xs:py-4 sm:py-4 md:py-4  mt-[140px] xs:mt-20 sm:mt-20 md:mt-20 lg:mt-20 mb-[150px] bg-[url('/images/service-hero.jpg')] bg-cover bg-center min-h-screen grid ">
           
-          <div className="absolute top-0 inset-0 bg-black/50 z-0"></div>
+          <div className="absolute top-0 inset-0 bg-black/60 z-0"></div>
 
           
-          <div className="relative z-10 container mx-auto flex flex-col md:flex-row justify-around items-center h-full">
+          <div className="relative z-10 border-8 border-purple-800 xs:w-full sm:w-[90%] md:w-[70%] xl:w-[80%] xs:flex-col sm:flex-col md:flex-col mx-auto flex justify-around items-center h-full">
             
-            <div className="hero-text text-white max-w-xl">
-              <h1 className="mb-9 font-montserrat font-[900] text-[54px] leading-[80px]">
+            <div className="hero-text text-white max-w-xl lg:basis-[48%] xl:basis-[48%] 2xl:basis-[48%]">
+              <h1 className="mb-9 xs:text-center xs:mb-5 sm:mb-6 md:mb-7 lg:mb-8 font-montserrat font-[900] text-[54px] leading-[80px] xs:leading-[60px] sm:leading-[70px] xs:text-[30px] sm:text-[36px] md:text-[40px] lg:text-[45px]">
                 Meet the Best Hospital
               </h1>
-              <p className="font-montserrat font-[500] text-[18px] leading-[30px] mb-9">
+              <p className="font-montserrat font-[500] text-[18px] leading-[30px] mb-9 xs:text-[16px] xs:leading-[24px] xs:text-center sm:text-center  xs:px-5 sm:px-5">
               Experience world-class medical care with compassion, precision, and the latest technology — where your health is our highest priority. 
               </p>
 
-              <div className="flex gap-4">
-              <button className="px-6 py-3 bg-customTealBlue font-montserrat font-bold text-white rounded-full transition-colors duration-300 hover:bg-transparent hover:border border-customTealBlue">
+              <div className="flex gap-4 xs:justify-center sm:justify-center">
+              <button className="px-6 py-3 xs:px-4 xs:py-2 text-[0.9rem] bg-customTealBlue font-montserrat font-bold text-white rounded-full transition-colors duration-300 hover:bg-transparent hover:border border-customTealBlue">
                   Get Quote Now
                 </button>
-                <button className="px-6 py-3 bg-transparent border border-customTealBlue text-white font-montserrat font-bold rounded-full hover:bg-customTealBlue hover:text-white transition">
+                <button className="px-6 py-3 xs:px-4 xs:py-2 text-[0.9rem] bg-transparent border border-customTealBlue text-white font-montserrat font-bold rounded-full hover:bg-customTealBlue hover:text-white transition">
                   Learn More
                 </button>
               </div>
             </div>
 
             
-            <div className="book-appointment basis-[28%] bg-white p-10 rounded-[10px] shadow-lg mt-10 md:mt-0">
+            <div className="book-appointment basis-[28%] bg-white p-10 xs:p-3 sm:p-6 rounded-[10px] shadow-lg mt-10 md:mt-0 xs:w-[90%] sm:w-[95%] lg:basis-[48%] xl:basis-[48%] 2xl:basis-[48%]">
               <form>
                 
                 <h2 className="text-xl font-semibold mb-4 text-[#252B42] text-center">Book Appointment</h2>

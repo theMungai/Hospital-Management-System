@@ -9,16 +9,18 @@ import SubscribeNewsLetter from '../components/common/SubscribeNewsLetter'
 
 const ServicesPage = () => {
   return (
-    <div className="bg-customWhite h-auto">
+    <div className="bg-customWhite xs:w-full xs:mx-auto ">
       <Layout>
         <ServiceHero />
-        <div className="px-[130px]">
+        <div className="px-[130px] xs:p-2 sm:p-6 md:p-10 lg:p-[50px]">
           <FindDoctor />
+
+          <Services />
+          <CustomerFeedBacks />
+          <FAQ />
+          <SubscribeNewsLetter />
         </div>
-        <Services />
-        <CustomerFeedBacks />
-        <FAQ />
-        <SubscribeNewsLetter />
+
       </Layout>
     </div>
   )
