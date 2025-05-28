@@ -3,7 +3,7 @@ import SignUpComponent from "../components/SignUp/SignUpComponent.jsx";
 
 const SignUpPage = () => {
   return (
-    <div className="bg-customWhite">
+    <div className="bg-customWhite overflow-hidden">
         <SignUpComponent />
     </div>
   )
