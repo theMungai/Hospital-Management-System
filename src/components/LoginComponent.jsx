@@ -32,20 +32,20 @@ function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-customWhite px-4 font-dmsans">
       <div className="max-w-md w-full bg-white p-8 rounded shadow">
-        <h2 className="text-3xl text-customTealBlue font-bold text-center mb-6">Login to Your Account</h2>
+        <h2 className="text-3xl xs:text-[24px] sm:text-[28px] text-customTealBlue font-bold text-center mb-6">Login to Your Account</h2>
 
         {error && <div className="text-red-600 text-sm mb-4">{error}</div>}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="mb-2.5 text-[#282938] font-normal text-[19px] block ">
+            <label htmlFor="email" className="mb-2.5 text-[#282938] font-normal text-[19px] xs:text-sm sm:text-sm block ">
               Email
             </label>
             <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="you@example.com" className="bg-transparent p-2.5 text-[1rem] text-[#282938] border border-customTealBlue outline-none rounded-[6px] w-full" required />
           </div>
 
           <div>
-            <label htmlFor="password" className="mb-2.5 text-[#282938] font-normal text-[19px] block ">
+            <label htmlFor="password" className="mb-2.5 text-[#282938] font-normal text-[19px] xs:text-sm sm:text-sm block ">
               Password
             </label>
             <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" className="bg-transparent p-2.5 text-[1rem] text-[#282938] border border-customTealBlue outline-none rounded-[6px] w-full"
