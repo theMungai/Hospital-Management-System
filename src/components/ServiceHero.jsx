@@ -2,14 +2,14 @@ import React from 'react'
 
 const ServiceHero = () => {
   return (
-      <div className="relative py-8 xs:py-4 sm:py-4 md:py-4  mt-[140px] xs:mt-20 sm:mt-20 md:mt-20 lg:mt-20 mb-[150px] bg-[url('/images/service-hero.jpg')] bg-cover bg-center min-h-screen grid ">
+      <div className="relative py-8 xs:py-4 sm:py-4 md:py-4  mt-[140px] xs:mt-20 sm:mt-20 md:mt-20 lg:mt-20 mb-[150px] xs:mb-20 sm:mb-[100px] md:mb-[120px] bg-[url('/images/service-hero.jpg')] bg-cover bg-center min-h-screen grid ">
           
           <div className="absolute top-0 inset-0 bg-black/60 z-0"></div>
 
           
-          <div className="relative z-10 border-8 border-purple-800 xs:w-full sm:w-[90%] md:w-[70%] xl:w-[80%] xs:flex-col sm:flex-col md:flex-col mx-auto flex justify-around items-center h-full">
+          <div className="relative z-10 xs:w-full sm:w-[90%] md:w-[70%] xl:w-[80%] xs:flex-col sm:flex-col md:flex-col mx-auto flex justify-around items-center h-full">
             
-            <div className="hero-text text-white max-w-xl lg:basis-[48%] xl:basis-[48%] 2xl:basis-[48%]">
+            <div className="hero-text text-white max-w-xl lg:basis-[48%] xl:basis-[48%] ">
               <h1 className="mb-9 xs:text-center xs:mb-5 sm:mb-6 md:mb-7 lg:mb-8 font-montserrat font-[900] text-[54px] leading-[80px] xs:leading-[60px] sm:leading-[70px] xs:text-[30px] sm:text-[36px] md:text-[40px] lg:text-[45px]">
                 Meet the Best Hospital
               </h1>
@@ -28,7 +28,7 @@ const ServiceHero = () => {
             </div>
 
             
-            <div className="book-appointment basis-[28%] bg-white p-10 xs:p-3 sm:p-6 rounded-[10px] shadow-lg mt-10 md:mt-0 xs:w-[90%] sm:w-[95%] lg:basis-[48%] xl:basis-[48%] 2xl:basis-[48%]">
+            <div className="book-appointment basis-[28%] bg-white p-10 xs:p-3 sm:p-6 rounded-[10px] shadow-lg mt-10 md:mt-0 xs:w-[90%] sm:w-[95%] lg:basis-[48%] xl:basis-[48%] ">
               <form>
                 
                 <h2 className="text-xl font-semibold mb-4 text-[#252B42] text-center">Book Appointment</h2>

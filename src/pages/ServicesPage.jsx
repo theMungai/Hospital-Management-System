@@ -14,12 +14,14 @@ const ServicesPage = () => {
         <ServiceHero />
         <div className="px-[130px] xs:p-2 sm:p-6 md:p-10 lg:p-[50px]">
           <FindDoctor />
-
-          <Services />
-          <CustomerFeedBacks />
-          <FAQ />
-          <SubscribeNewsLetter />
         </div>
+        <div className="px-[130px] xs:p-2 sm:p-6 md:p-10 lg:p-[50px]">
+          <Services />
+        </div>
+        <CustomerFeedBacks />
+        <FAQ />
+        <SubscribeNewsLetter />
+
 
       </Layout>
     </div>

@@ -10,7 +10,7 @@ function FAQBluePrint() {
   }
 
   return (
-    <div className='font-montserrat w-[30%] mb-6 bg-white p-6 rounded-[10px]'>
+    <div className='font-montserrat mb-6 bg-white p-6 xs:p-3 sm:p-6 xs:mb-1 sm:mb-3 rounded-[10px]'>
       <div className='flex gap-x-5 cursor-pointer' onClick={handleClick}>
         <FontAwesomeIcon
           icon={isActive ? faChevronDown : faChevronRight}
@@ -37,11 +37,11 @@ function FAQBluePrint() {
 
 const FAQ = () => {
   return (
-    <div className='font-montserrat px-[130px]'>
-      <h1 className='mb-2.5 text-[36px] text-[#252B42] text-center font-extrabold font-montserrat'>FAQ</h1>
+    <div className='font-montserrat px-[130px] xs:p-2 sm:p-6 md:p-10 lg:p-[50px]'>
+      <h1 className='mb-2.5 text-[36px] xs:text-[26px] sm:text-[26px] md:text-[28px] lg:text-[30px]text-[#252B42] text-center font-extrabold font-montserrat'>FAQ</h1>
       <p className='mb-[80px] text-center font-normal leading-5 text-[#737373] text-[14px]'>Find quick answers to common questions. Need more help? Just contact us.</p>
 
-      <div className='flex flex-wrap justify-between gap-y-10'>
+      <div className='grid grid-cols-3 gap-5 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2'>
         <FAQBluePrint />
         <FAQBluePrint />
         <FAQBluePrint />

@@ -19,8 +19,8 @@ function ServiceType({image, title }){
 
 const Services = () => {
   return (
-    <div className='font-dmsans mb-[150px]'>
-      <h1 className='text-customTealBlue text-[32px] mb-[20px] font-bold text-center'>Services we provide</h1>
+    <div className='font-dmsans mb-[150px] xs:mb-20 sm:mb-[100px] md:mb-[120px]'>
+      <h1 className='text-customTealBlue text-[32px] xs:text-[26px] sm:text-[26px] md:text-[28px] lg:text-[30px] mb-[20px] font-bold text-center'>Services we provide</h1>
       <p className='leading-[1.7rem] text-[16px] text-[#555555] text-center mx-auto w-[40%] xs:w-full sm:w-full md:w-full  mb-[60px]'>Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar elementum tempus hac tellus libero accumsan. </p>
 
       <div className="services-container grid grid-cols-3 gap-5 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2">
