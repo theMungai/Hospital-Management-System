@@ -92,7 +92,7 @@ const Hero = () => {
           <div className="choose-us-actions flex items-center gap-x-6">
             <button className='outline-none bg-customTealBlue py-5 px-8 font-dmsans text-[16px] text-white rounded-[40px] xs:py-3 sm:py-3'>Get started</button>
 
-            <button className='outline-none bg-transparent py-5 px-8 font-dmsans text-[16px] bg-white text-customTealBlue rounded-[40px] xs:py-3 sm:py-3'>Talk to sales</button>
+            <button className='outline-none bg-transparent py-5 px-8 font-dmsans text-[16px] border border-[#e9e9e9] bg-white text-customTealBlue rounded-[40px] xs:py-3 sm:py-3'>Talk to sales</button>
           </div>
         </div>
 
