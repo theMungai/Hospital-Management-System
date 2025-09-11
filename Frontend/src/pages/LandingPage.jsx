@@ -4,7 +4,7 @@ import LandingMain from "../components/landing/LandingMain.jsx";
 
 const LandingPage = () => {
   return (
-    <div className="bg-customWhite xs:w-full xs:mx-auto">
+    <div className="bg-[#f3f3f3] xs:w-full xs:mx-auto">
       <Layout>
         <LandingMain />
       </Layout>

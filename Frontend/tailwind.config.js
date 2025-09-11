@@ -19,7 +19,7 @@ export default {
       colors: {
         customGreen: '#6EAB36',
         customTealBlue: '#007E85',
-        customWhite:'#ECECEC'
+        customWhite:'#f4f4f4'
       },
       fontFamily: {
         lato: ['Lato', 'sans-serif'],
