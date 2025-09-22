@@ -8,7 +8,7 @@ import SubscribeNewsLetter from "../common/SubscribeNewsLetter.jsx";
 
 const LandingMain = () => {
   return (
-    <div className="px-[130px] xs:p-2 sm:p-6 md:p-10 lg:p-[50px]">
+    <div className="max-w-[1280px] mx-auto xs:p-2 sm:p-6 md:p-10 lg:p-[50px]">
         <Hero />
         <Services />
         <TeamMembers />

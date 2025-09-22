@@ -32,7 +32,7 @@ function NavBar() {
 
     return (
         <nav
-            className="w-full flex items-center justify-between font-lexend fixed top-0 z-50 bg-customWhite border-b border-b-gray-300
+            className="w-full flex items-center justify-between font-lexend fixed top-0 z-50 bg-customWhite shadow-lg
              px-[120px] py-5
              3xl:px-[100px]
              2xl:px-[80px]

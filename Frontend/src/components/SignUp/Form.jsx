@@ -16,6 +16,7 @@ const selectFields = {
 function Form() {
     const [step, setStep] = useState(0);
     const [formData, setFormData] = useState(initialFormData);
+    const [loading, setLoading] = useState(false)
 
     const currentStep = formSteps[step];
     const totalSteps = formSteps.length;
@@ -50,42 +51,45 @@ function Form() {
     };
 
     return (
-        <div className="w-4/5 xs:w-full sm:w-full md:w-full lg:w-[95%] mx-auto my-12 xs:my-7 sm:my-9 font-dmsans px-4 xs:px-1 sm:px-3">
-            <h1 className="text-center text-[30px] xs:text-[24px] sm:text-[28px] text-customTealBlue font-extrabold mb-12 xs:mb-8 sm:mb-10">Create Your Account</h1>
-            {/* Progress Bar */}
-            <div className="relative h-10 mb-8 xs:mb-5 sm:mb-6 xs:w-[95%] xs:transform xs:-translate-x-1/2 xs:left-1/2">
-                <div className="absolute top-1/2 left-0 right-0 h-2 xs:h-[6px] bg-gray-200 rounded-full transform -translate-y-1/2 " />
-                <div
-                    className="absolute top-1/2 left-0 h-2 xs:h-[6px] bg-customTealBlue rounded-full transform -translate-y-1/2 transition-all duration-300"
-                    style={{ width: `${progressPercentage}%`, zIndex: 1 }}
-                />
-                {formSteps.map((_, index) => {
-                    const isActive = index <= step;
-                    const spacing = (index / (totalSteps - 1)) * 100;
+        <div className="relative w-4/5 xs:w-full sm:w-full md:w-full lg:w-[95%] mx-auto my-12 xs:my-7 sm:my-9 font-dmsans px-4 xs:px-1 sm:px-3">
+            <div className="">
+                <h1 className="text-center text-[30px] xs:text-[24px] sm:text-[28px] text-customTealBlue font-extrabold mb-12 xs:mb-8 sm:mb-10">Create Your Account</h1>
+                {/* Progress Bar */}
+                <div className="relative h-10 mb-8 xs:mb-5 sm:mb-6 xs:w-[95%] xs:transform xs:-translate-x-1/2 xs:left-1/2">
+                    <div className="absolute top-1/2 left-0 right-0 h-2 xs:h-[6px] bg-gray-200 rounded-full transform -translate-y-1/2 " />
+                    <div
+                        className="absolute top-1/2 left-0 h-2 xs:h-[6px] bg-customTealBlue rounded-full transform -translate-y-1/2 transition-all duration-300"
+                        style={{ width: `${progressPercentage}%`, zIndex: 1 }}
+                    />
+                    {formSteps.map((_, index) => {
+                        const isActive = index <= step;
+                        const spacing = (index / (totalSteps - 1)) * 100;
 
-                    return (
-                        <div
-                            key={index}
-                            className="absolute top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 "
-                            style={{ left: `${spacing}%` }}
-                        >
+                        return (
                             <div
-                                className={`w-6 h-6 xs:w-5 xs:h-5 xs:text-[12px] rounded-full text-white text-sm font-bold flex items-center justify-center ${
-                                    isActive ? "bg-customTealBlue" : "bg-gray-300"
-                                }`}
+                                key={index}
+                                className="absolute top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 "
+                                style={{ left: `${spacing}%` }}
                             >
-                                {index + 1}
+                                <div
+                                    className={`w-6 h-6 xs:w-5 xs:h-5 xs:text-[12px] rounded-full text-white text-sm font-bold flex items-center justify-center ${
+                                        isActive ? "bg-customTealBlue" : "bg-gray-300"
+                                    }`}
+                                >
+                                    {index + 1}
+                                </div>
                             </div>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
+                </div>
+                {/* Step Title and Description */}
+                <h2 className="text-customTealBlue text-[24px] xs:text-[20px] text-center font-semibold mb-2">{currentStep.title}</h2>
+                <p className="text-gray-600 text-center text-sm mb-9">{currentStep.description}</p>
             </div>
-            {/* Step Title and Description */}
-            <h2 className="text-customTealBlue text-[24px] xs:text-[20px] text-center font-semibold mb-2">{currentStep.title}</h2>
-            <p className="text-gray-600 text-center text-sm mb-9">{currentStep.description}</p>
+
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4 overflow-y-auto">
+            <form onSubmit={handleSubmit} className="space-y-4 px-3">
                 <div className="grid grid-cols-2 xs:grid-cols-1 sm:grid-cols-1 gap-4">
                     {currentStep.fields.map((field) => {
                         const value = formData[field] || "";

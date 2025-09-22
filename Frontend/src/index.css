@@ -9,3 +9,27 @@
    
    /* padding: 25px 100px; */
 }
+
+/**{*/
+/*    outline: 2px solid red;*/
+/*}*/
+
+
+form::-webkit-scrollbar {
+    width: 10px;
+}
+
+form::-webkit-scrollbar-thumb {
+    background-color: #007E85;
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+}
+
+form::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+form::-webkit-scrollbar-corner {
+    background: #f1f1f1;
+}

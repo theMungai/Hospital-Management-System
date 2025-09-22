@@ -37,7 +37,7 @@ function FAQBluePrint() {
 
 const FAQ = () => {
   return (
-    <div className='font-montserrat px-[130px] xs:p-2 sm:p-6 md:p-10 lg:p-[50px]'>
+    <div className='font-montserrat xs:p-2 sm:p-6 md:p-10 lg:p-[50px]'>
       <h1 className='mb-2.5 text-[36px] xs:text-[26px] sm:text-[26px] md:text-[28px] lg:text-[30px]text-[#252B42] text-center font-extrabold font-montserrat'>FAQ</h1>
       <p className='mb-[80px] text-center font-normal leading-5 text-[#737373] text-[14px]'>Find quick answers to common questions. Need more help? Just contact us.</p>
 
