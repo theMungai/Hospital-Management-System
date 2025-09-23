@@ -7,6 +7,7 @@ import HelpPage from './pages/HelpPage'
 import BlogsPage from './pages/BlogsPage'
 import SignUpPage from './pages/SignUpPage'
 import SignInPage from './pages/SignInPage'
+import SelectPortal from "./pages/SelectPortal.jsx";
 function App() {
 
 
@@ -19,7 +20,7 @@ function App() {
           <Route path='/contact-us' element= {<ContactUsPage/>}/>
           <Route path='/help' element= {<HelpPage/>}/>
           <Route path='/blogs' element= {<BlogsPage/>}/>
-          <Route path='/sign-up' element= {<SignUpPage/>}/>
+          <Route path='/sign-up' element= {<SelectPortal/>}/>
           <Route path='/log-in' element= {<SignInPage/>}/>
         </Routes>
       </Router>

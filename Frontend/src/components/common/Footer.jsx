@@ -39,7 +39,7 @@ function CompanyProfile() {
                     </h1>
                 </a>
                 <div className="space-y-1">
-                    <p className="text-white text-sm leading-8">
+                    <p className="text-white leading-8">
                         We are a trusted healthcare provider committed to delivering high-quality medical services and
                         compassionate care. Our mission is to support healthier lives through innovation, integrity, and
                         a patient-first approach.
@@ -103,7 +103,7 @@ const Footer = () => {
     const supportLinks = ['Getting started', 'Help center', 'Server status', 'Report a bug', 'Chat support'];
 
     return (
-        <footer className="w-full bg-customTealBlue text-white mt-16 px-6 sm:px-8 md:px-12 lg:px-16 font-dmsans">
+        <footer className="w-full bg-customTealBlue text-white px-6 sm:px-8 md:px-12 lg:px-16 font-dmsans">
             <div className="max-w-7xl mx-auto py-12 sm:py-16 md:py-20">
                 <div
                     className="grid grid-cols-6 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 max-w-[1299px] mx-auto px-5 mb-6">
