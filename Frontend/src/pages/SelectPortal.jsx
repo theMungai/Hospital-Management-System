@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {UserIcon} from "@heroicons/react/24/outline";
 
 import Layout from "../components/Layout.jsx";
+import stethoscope from "/images/stethoscope.png"
 
 function SelectPortal() {
     return (
@@ -40,7 +41,7 @@ function SelectPortal() {
                     <Link to='/Register-doctor'>
                         <div
                             className="w-full rounded-lg bg-customTealBlue p-5 text-white cursor-pointer flex items-center gap-x-5">
-                            <img src="../../public/images/stethoscope.png" className="w-6 h-6"/>
+                            <img src={stethoscope} className="w-6 h-6"/>
                             <div className="text-left">
                                 <h3 className="font-semibold mb-1.5">I’m a Doctor</h3>
                                 <p className="font-extralight text-sm">Provide medical care, manage appointments, and
@@ -52,7 +53,7 @@ function SelectPortal() {
                     <p className="my-5 text-gray-500 font-light ">Already have an account? <span
                         className="text-customTealBlue font-semibold cursor-pointer"><Link to={"/log-in"}>Log in here</Link></span></p>
                     <p className="text-gray-500 font-light">By signing up, you agree to our <Link to={'/terms-and-conditions'}><span
-                        className="underline cursor-pointer"> Patient & Doctor Terms & Conditions</span></Link>.</p>
+                        className="underline cursor-pointer"> Terms & Conditions</span></Link>.</p>
 
                 </section>
 
