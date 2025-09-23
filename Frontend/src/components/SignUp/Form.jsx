@@ -81,8 +81,7 @@ function Form() {
             }
 
             if (field === "phone") {
-                // react-phone-input-2 gives phone including country code. We can do basic validation: length etc.
-                // E.g. ensure only digits (after country code), and maybe minimum length
+                // Ensure only digits (after country code), and maybe minimum length
                 if (!/^\d+$/.test(value)) {
                     newErrors[field] = "Phone number must contain only digits";
                 }
@@ -181,7 +180,7 @@ function Form() {
                         const isConfirmPassword = field === "confirm_password";
                         const isEmail = field === "email";
                         const isNumber = field === "zip" || field === "group_number";
-                        const isPhone = field === "phone";
+                        const isPhone = field === "phone" || field === "contact";
 
                         // Placeholder suggestions
                         let placeholder = "";
@@ -195,10 +194,20 @@ function Form() {
 
                         // Choose input type
                         let inputType = "text";
-                        if (isEmail) inputType = "email";
-                        else if (isDate) inputType = "date";
-                        else if (isPassword || isConfirmPassword) inputType = showPassword && isPassword ? "text" : isPassword || isConfirmPassword ? "password" : "text";
-                        else if (isNumber) inputType = "number";
+
+                        if (isEmail) {
+                            inputType = "email";
+                        } else if (isDate) {
+                            inputType = "date";
+                        } else if (isPassword) {
+                            inputType = showPassword ? "text" : "password";
+                        }
+                        else if(isConfirmPassword){
+                            inputType = showConfirmPassword ? "text" : "password";
+                        }
+                        else if (isNumber) {
+                            inputType = "number";
+                        }
 
                         if (field in selectFields) {
                             // selectFields is from your existing code
@@ -215,7 +224,7 @@ function Form() {
                                         onChange={e => handleChange(field, e.target.value)}
                                         className="bg-transparent p-4 text-[1rem] text-[#282938] border border-customTealBlue outline-none rounded-[6px] w-full"
                                     >
-                                        <option value="">-- Select {label} --</option>
+                                        <option value=""> Select {label} </option>
                                         {selectFields[field].map((option) => (
                                             <option key={option} value={option.toLowerCase()}>
                                                 {option}
@@ -253,7 +262,7 @@ function Form() {
                             );
                         }
 
-                        // Normal input (text, email, password, number etc.)
+
                         return (
                             <div key={field} className="flex flex-col">
                                 <label

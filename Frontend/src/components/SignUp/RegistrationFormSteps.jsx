@@ -22,6 +22,6 @@ export const formSteps = [
     {
         title: "Step 5: Insurance & Billing Info",
         description: "Enter your health insurance details for billing and claim processing purposes.",
-        fields: ["insurance_provider", "insurance_ID", "policyholder_name ", "group_number"],
+        fields: ["insurance_provider", "insurance_ID", "policyholder_name", "group_number"],
     }
 ]
