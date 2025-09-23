@@ -8,8 +8,8 @@ import {getNames} from "country-list";
 
 
 import {formSteps} from "./RegistrationFormSteps.jsx";
-import {initialFormData} from "../../utils/formData.jsx";
-import {labels} from "../../utils/InputLabels.jsx"
+import {initialFormData} from "../../../utils/formData.jsx";
+import {labels} from "../../../utils/InputLabels.jsx"
 
 const allCountries = getNames()
 
@@ -329,7 +329,7 @@ function Form() {
                             )}
                         </button>
                     </div>
-                    {/* Optional: link to Login */}
+
                 </div>
             </form>
         </div>

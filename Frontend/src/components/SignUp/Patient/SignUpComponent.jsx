@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from "./Form.jsx";
-import Layout from '../Layout.jsx';
+import Layout from '../../Layout.jsx';
 
 const SignUpComponent = () => {
     return (
