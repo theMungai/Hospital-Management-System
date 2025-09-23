@@ -18,7 +18,7 @@ function SelectPortal() {
                         Up</h1>
                     <p className="text-gray-500">Connect patients with trusted doctors for appointments and care.</p>
                     <p className="text-gray-500 mb-8">Choose your role to get started:</p>
-                    <Link to='Register-patient'>
+                    <Link to='/Register-patient'>
                         <div
                             className="w-full rounded-lg bg-customTealBlue p-5 text-white cursor-pointer flex items-center gap-x-5">
                             <UserIcon className="w-8 h-8"/>
@@ -37,7 +37,7 @@ function SelectPortal() {
 
                     </section>
 
-                    <Link to='Register-doctor'>
+                    <Link to='/Register-doctor'>
                         <div
                             className="w-full rounded-lg bg-customTealBlue p-5 text-white cursor-pointer flex items-center gap-x-5">
                             <img src="../../public/images/stethoscope.png" className="w-6 h-6"/>
@@ -50,9 +50,9 @@ function SelectPortal() {
                     </Link>
 
                     <p className="my-5 text-gray-500 font-light ">Already have an account? <span
-                        className="text-customTealBlue font-semibold cursor-pointer"><a>Log in here</a></span></p>
-                    <p className="text-gray-500 font-light">By signing up, you agree to our <span
-                        className="underline cursor-pointer"> Patient & Doctor Terms & Conditions</span>.</p>
+                        className="text-customTealBlue font-semibold cursor-pointer"><Link to={"/log-in"}>Log in here</Link></span></p>
+                    <p className="text-gray-500 font-light">By signing up, you agree to our <Link to={'/terms-and-conditions'}><span
+                        className="underline cursor-pointer"> Patient & Doctor Terms & Conditions</span></Link>.</p>
 
                 </section>
 
