@@ -8,6 +8,8 @@ import BlogsPage from './pages/BlogsPage'
 import SignUpPage from './pages/SignUpPage'
 import SignInPage from './pages/SignInPage'
 import SelectPortal from "./pages/SelectPortal.jsx";
+import RegisterDoctor from "./pages/RegisterDoctor.jsx";
+import TermsAndConditions from "./pages/TermsAndConditions.jsx";
 function App() {
 
 
@@ -22,7 +24,9 @@ function App() {
           <Route path='/blogs' element= {<BlogsPage/>}/>
           <Route path='/sign-up' element= {<SelectPortal/>}/>
           <Route path='/Register-patient' element={<SignUpPage />}/>
+          <Route path='/Register-doctor' element={<RegisterDoctor />}/>
           <Route path='/log-in' element= {<SignInPage/>}/>
+          <Route path='/terms-and-conditions' element={<TermsAndConditions />}/>
         </Routes>
       </Router>
      

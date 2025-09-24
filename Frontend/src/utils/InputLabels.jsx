@@ -24,6 +24,6 @@ export const labels = {
     contact: "Contact Number",
     insurance_provider: "Insurance Provider",
     insurance_ID: "Insurance ID",
-    "policyholder_name": "Policyholder Name",
+    policyholder_name: "Policyholder Name",
     group_number: "Group Number",
 }

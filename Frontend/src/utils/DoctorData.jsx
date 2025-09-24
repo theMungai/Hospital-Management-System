@@ -1,0 +1,47 @@
+export const initialFormData = {
+    // Step 1: Personal Information
+    first_name: "",
+    middle_name: "",
+    last_name: "",
+    date_of_birth: "",
+    gender: "",
+    national_id_or_passport: "",
+    email: "",
+    phone: "",
+
+    // Step 2: Contact Information
+    street_address: "",
+    street_address_2: "",
+    city: "",
+    region: "",
+    zip: "",
+    country: "",
+
+    // Step 3: Professional Details
+    medical_license_number: "",
+    specialty: "",
+    years_of_experience: "",
+    current_workplace: "",
+    designation: "",
+
+    // Step 4: Education & Certifications
+    medical_school: "",
+    graduation_year: "",
+    postgraduate_qualifications: "",
+    board_certifications: "",
+    degree_certificate_upload: "",
+    license_certificate_upload: "",
+    additional_certifications_upload: "",
+
+    // Step 5: Account Security
+    username: "",
+    password: "",
+    confirm_password: "",
+    recovery_email: "",
+
+    // Step 6: Optional Information
+    languages_spoken: "",
+    availability: "",
+    linkedin_profile: "",
+    short_bio: "",
+};

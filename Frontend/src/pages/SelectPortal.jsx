@@ -21,7 +21,7 @@ function SelectPortal() {
                     <p className="text-gray-500 mb-8">Choose your role to get started:</p>
                     <Link to='/Register-patient'>
                         <div
-                            className="w-full rounded-lg bg-customTealBlue p-5 text-white cursor-pointer flex items-center gap-x-5">
+                            className="w-full rounded-lg bg-customTealBlue p-5 xs:p-2 sm:p-3 text-white cursor-pointer flex items-center gap-x-5">
                             <UserIcon className="w-8 h-8"/>
                             <div className="text-left">
                                 <h3 className="font-semibold mb-1.5">I’m a Patient</h3>
@@ -40,7 +40,7 @@ function SelectPortal() {
 
                     <Link to='/Register-doctor'>
                         <div
-                            className="w-full rounded-lg bg-customTealBlue p-5 text-white cursor-pointer flex items-center gap-x-5">
+                            className="w-full rounded-lg bg-customTealBlue p-5 xs:p-2 text-white cursor-pointer flex items-center gap-x-5">
                             <img src={stethoscope} className="w-6 h-6"/>
                             <div className="text-left">
                                 <h3 className="font-semibold mb-1.5">I’m a Doctor</h3>
