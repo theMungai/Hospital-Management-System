@@ -70,7 +70,18 @@ function Form() {
                 const hasLower = /[a-z]/.test(pwd);
                 const hasSpecial = /[^A-Za-z0-9]/.test(pwd);
                 if (pwd.length < minLength || !hasUpper || !hasLower || !hasSpecial) {
-                    newErrors[field] = "Password must be at least 8 characters and include upper case, lower case, and a special character";
+                    newErrors[field] = (
+                        <>
+                            <p>Password must:</p>
+                            <ul className="pl-1.5">
+                                <li>• Be at least 8 characters long</li>
+                                <li>• Contain at least one uppercase letter (A–Z)</li>
+                                <li>• Contain at least one lowercase letter (a–z)</li>
+                                <li>• Contain at least one number (0–9)</li>
+                                <li>• Contain at least one special character (!, @, #, $, %, etc.)</li>
+                            </ul>
+                        </>
+                    );
                 }
             }
 

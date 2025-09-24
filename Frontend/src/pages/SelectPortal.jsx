@@ -11,7 +11,7 @@ function SelectPortal() {
             <section
                 className="bg-[#f3f3f3] relative flex justify-center place-items-center h-full min-h-screen xs:w-full xs:mx-auto font-dmsans text-center px-2">
 
-                <div className="absolute inset-0 bg-[url('../../public/images/grid-background.png')] opacity-90"></div>
+                <div className="absolute inset-0 bg-[url('/images/grid-background.png')] opacity-90"></div>
 
                 <section
                     className="relative z-10 border border-[#e9e9e9] bg-white rounded-[8px] shadow-2xl w-full max-w-[40%] xs:max-w-[100%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[50%] p-10 xs:p-5 sm:p-7 my-[120px] ">
@@ -24,7 +24,7 @@ function SelectPortal() {
                             className="w-full rounded-lg bg-customTealBlue p-5 xs:p-2 sm:p-3 text-white cursor-pointer flex items-center gap-x-5">
                             <UserIcon className="w-8 h-8"/>
                             <div className="text-left">
-                                <h3 className="font-semibold mb-1.5">I’m a Patient</h3>
+                                <h3 className="font-semibold mb-1.5 xs:mb-[1px]">I’m a Patient</h3>
                                 <p className="font-extralight text-sm">Book appointments, consult with doctors, and
                                     manage your health records.</p>
                             </div>
@@ -43,7 +43,7 @@ function SelectPortal() {
                             className="w-full rounded-lg bg-customTealBlue p-5 xs:p-2 text-white cursor-pointer flex items-center gap-x-5">
                             <img src={stethoscope} className="w-6 h-6"/>
                             <div className="text-left">
-                                <h3 className="font-semibold mb-1.5">I’m a Doctor</h3>
+                                <h3 className="font-semibold mb-1.5 xs:mb-[1px]">I’m a Doctor</h3>
                                 <p className="font-extralight text-sm">Provide medical care, manage appointments, and
                                     connect with patients.</p>
                             </div>

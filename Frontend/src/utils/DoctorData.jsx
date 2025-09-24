@@ -22,7 +22,6 @@ export const initialFormData = {
     specialty: "",
     years_of_experience: "",
     current_workplace: "",
-    designation: "",
 
     // Step 4: Education & Certifications
     medical_school: "",
@@ -39,9 +38,43 @@ export const initialFormData = {
     confirm_password: "",
     recovery_email: "",
 
-    // Step 6: Optional Information
-    languages_spoken: "",
-    availability: "",
-    linkedin_profile: "",
-    short_bio: "",
 };
+
+
+export const specialty = [
+    "Anesthesiology",
+    "Cardiology",
+    "Dentistry",
+    "Dermatology",
+    "Emergency Medicine",
+    "Endocrinology",
+    "Family Medicine",
+    "Gastroenterology",
+    "General Surgery",
+    "Geriatrics",
+    "Gynecology",
+    "Hematology",
+    "Infectious Disease",
+    "Internal Medicine",
+    "Nephrology",
+    "Neurology",
+    "Neurosurgery",
+    "Nurse",
+    "Obstetrics",
+    "Oncology",
+    "Ophthalmology",
+    "Optical",
+    "Orthopedics",
+    "Otolaryngology (ENT)",
+    "Pathology",
+    "Pediatrics",
+    "Pharmacy",
+    "Physical Medicine & Rehabilitation",
+    "Plastic Surgery",
+    "Psychiatry",
+    "Pulmonology",
+    "Radiology",
+    "Rheumatology",
+    "Surgery",
+    "Urology"
+]
