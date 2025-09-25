@@ -1,7 +1,6 @@
 import React from 'react';
 import {ArrowLongLeftIcon} from "@heroicons/react/24/solid";
 
-
 import Layout from "../../components/Layout.jsx";
 import {Link} from "react-router-dom";
 
@@ -10,8 +9,8 @@ function FailedToRegister() {
         <Layout>
             <div className=" grid place-content-center h-screen text-center font-dmsans p-4">
                 <div
-                    className="bg-[url('/images/error.png')] bg-contain bg-no-repeat bg-center
-                               w-full max-w-[700px] aspect-square mx-auto">
+                    className=" bg-contain bg-no-repeat bg-center
+                               w-full max-w-[700px] aspect-square mx-auto" style={{ backgroundImage: "url('/images/error.png')" }}>
                 </div>
 
                 <h3 className="text-red-500 font-bold text-3xl md:text-4xl mt-6">
