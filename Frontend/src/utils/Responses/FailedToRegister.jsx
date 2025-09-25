@@ -1,6 +1,7 @@
 import React from 'react';
 import {ArrowLongLeftIcon} from "@heroicons/react/24/solid";
 
+
 import Layout from "../../components/Layout.jsx";
 import {Link} from "react-router-dom";
 

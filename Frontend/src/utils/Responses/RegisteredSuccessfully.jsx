@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle } from "react-feather";
+import { CheckCircle } from 'react-feather';
 
 import Layout from "../../components/Layout.jsx";
 
