@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import {ChevronRightIcon, ChevronLeftIcon} from "@heroicons/react/24/solid";
@@ -26,6 +27,8 @@ function Form() {
     const [errors, setErrors] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const navigate = useNavigate()
 
     const totalSteps = formSteps.length;
     const currentStep = formSteps[step];
@@ -124,12 +127,12 @@ function Form() {
             })
                 .then(res => res.json())
                 .then(data => {
-                    alert("Registration successful!");
+                    navigate('/registration-complete')
                     console.log("Submitted data:", data);
                 })
                 .catch(err => {
                     console.error("Submission error:", err);
-                    alert("There was an error submitting the form");
+                    navigate('/registration-failed')
                 });
         }
     };

@@ -11,8 +11,7 @@ import {initialFormData} from "../../../utils/DoctorData.jsx";
 import {labels} from "../../../utils/DoctorInputLabels.jsx"
 import {formSteps} from "./RegistrationSteps.jsx";
 import {specialty} from "../../../utils/DoctorData.jsx";
-import RegisteredSuccessfully from "../../../utils/Responses/RegisteredSuccessfully.jsx";
-import failedToRegister from "../../../utils/Responses/FailedToRegister.jsx";
+
 
 
 const allCountries = getNames()
@@ -34,7 +33,6 @@ function RegisterForm() {
     const [errors, setErrors] = useState({})
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-    const [status, setStatus] = useState(null)
 
     const navigate = useNavigate()
     const totalSteps = formSteps.length
@@ -138,13 +136,11 @@ function RegisterForm() {
                 .then(res => res.json())
                 .then(data => {
                     console.log("Submitted data:", data);
-                    setStatus("success")
                     navigate('/registration-complete')
 
                 })
                 .catch(err => {
                     console.log("There was an error submitting the form", err);
-                    setStatus("error")
                     navigate('/registration-failed')
                 });
         }
