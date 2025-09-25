@@ -3,7 +3,7 @@ import Inputs from "./common/Inputs.jsx";
 
 const Contact = () => {
     return (
-        <div className="bg-customWhite font-dmsans max-w-[1580px] mx-auto">
+        <div className="bg-customWhite font-dmsans max-w-[1700px] w-full mx-auto">
             <div
                 className="hero relative mb-[150px] xs:mb-20 sm:mb-[100px] md:mb-[120px] py-10 bg-[url('/images/service-hero.jpg')] bg-cover bg-center min-h-screen grid place-items-center">
                 <div className="absolute top-0 inset-0 bg-black/50 z-0"></div>
@@ -56,11 +56,6 @@ const Contact = () => {
                         <span className='mb-2.5 text-[#282938] font-normal text-[19px] block '>Message</span>
                         <textarea name="message" id="message" required placeholder='Type your nessage'
                                   className='min-h-[200px] xs:min-h-[120px] sm:min-h-[150px] mb-8 p-4 text-[1rem] text-[#282938] border border-customTealBlue outline-none rounded-[6px] w-full bg-customWhite '></textarea>
-                    </label>
-                    <label className='flex items-center gap-x-4 mb-8'>
-                        <input type="checkbox" name="accept-terms" id="accept-terms"
-                               className="w-5 h-5 rounded-[4px] border border-customTealBlue  checked:bg-customTealBlue accent-customTealBlue checked:border-customTealBlue focus:outline-none"/>
-                        <span>I accept the terms</span>
                     </label>
                     <button
                         className='py-5 xs:py-3 sm:py-4 mb-mb-[150px] xs:mb-20 sm:mb-[100px] md:mb-[120px]  px-[150px] xs:px-28 sm:px-32 md:px-36 bg-customTealBlue rounded-[8px] font-[500] font-dmsans text-[19px] text-white relative transform -translate-x-1/2 left-1/2'>Submit

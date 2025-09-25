@@ -5,19 +5,26 @@ import {ChevronRightIcon, ChevronLeftIcon} from "@heroicons/react/24/solid";
 import {CheckCircleIcon, CloudArrowUpIcon} from "@heroicons/react/24/outline";
 import validator from "validator";
 import {getNames} from "country-list";
+import {useNavigate} from "react-router-dom";
 
 import {initialFormData} from "../../../utils/DoctorData.jsx";
 import {labels} from "../../../utils/DoctorInputLabels.jsx"
 import {formSteps} from "./RegistrationSteps.jsx";
 import {specialty} from "../../../utils/DoctorData.jsx";
-import Layout from "../../Layout.jsx";
+import RegisteredSuccessfully from "../../../utils/Responses/RegisteredSuccessfully.jsx";
+import failedToRegister from "../../../utils/Responses/FailedToRegister.jsx";
+
 
 const allCountries = getNames()
 
 const selectFields = {
     specialty: specialty,
     years_of_experience: ["Less than 5 years", "5 years to 9 years", "10 years to 14 years", "15 years to 19 years", "Above 20 years"],
-    country: allCountries
+    country: allCountries,
+    gender: ["Male", "Female", "Other"],
+    level_of_education : ["Upper Secondary Education", "Vocational/Technical Training","Certificate",
+        "Diploma", "Undergraduate (Bachelor’s Degree)", "Postgraduate (Master’s Degree)", "Doctoral Degree (PhD)"]
+
 };
 
 function RegisterForm() {
@@ -27,7 +34,9 @@ function RegisterForm() {
     const [errors, setErrors] = useState({})
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    const [status, setStatus] = useState(null)
 
+    const navigate = useNavigate()
     const totalSteps = formSteps.length
     const currentStep = formSteps[step]
     const progressPercentage = ((step + 1) / totalSteps * 100)
@@ -128,12 +137,15 @@ function RegisterForm() {
             })
                 .then(res => res.json())
                 .then(data => {
-                    alert("Registration successful!");
                     console.log("Submitted data:", data);
+                    setStatus("success")
+                    navigate('/registration-complete')
+
                 })
                 .catch(err => {
-                    console.error("Submission error:", err);
-                    alert("There was an error submitting the form");
+                    console.log("There was an error submitting the form", err);
+                    setStatus("error")
+                    navigate('/registration-failed')
                 });
         }
     }
@@ -195,7 +207,7 @@ function RegisterForm() {
                             const isPassword = field === "password";
                             const isConfirmPassword = field === "confirm_password";
                             const isEmail = field === "email" || field === "recovery_email";
-                            const isNumber = field === "zip" || field === "group_number";
+                            const isNumber = field === "zip" || field === "graduation_year";
                             const isPhone = field === "phone" || field === "contact";
                             const isFile = field.endsWith("_upload");
 
@@ -207,7 +219,7 @@ function RegisterForm() {
                             else if (isConfirmPassword) placeholder = "Re-enter password";
                             else if (isDate) placeholder = "Select your date of birth";
                             else if (isPhone) placeholder = "Enter phone number";
-                            else if (isNumber) placeholder = "Enter number";
+                            else if (isNumber) placeholder = `Enter ${label}`;
                             else placeholder = `Enter ${label}`;
 
                             // Choose input type
@@ -229,7 +241,7 @@ function RegisterForm() {
                                 return (
                                     <div key={field} className="flex flex-col">
                                         <label
-                                            className="mb-2.5 text-[#282938] font-normal text-[19px] xs:text-sm sm:text-sm block">
+                                            className="mb-2.5 text-[#4D4F7C] font-normal text-[19px] xs:text-sm sm:text-sm block">
                                             {label}
                                         </label>
                                         <select
@@ -237,7 +249,7 @@ function RegisterForm() {
                                             required
                                             value={value}
                                             onChange={e => handleChange(field, e.target.value)}
-                                            className="bg-transparent p-4 text-[1rem] text-[#282938] border border-customTealBlue outline-none rounded-[6px] w-full"
+                                            className="bg-transparent p-4 text-[1rem] text-[#4D4F7C] border border-customTealBlue outline-none rounded-[6px] w-full"
                                         >
                                             <option value=""> Select {label} </option>
                                             {selectFields[field].map((option) => (
@@ -256,7 +268,7 @@ function RegisterForm() {
                                 return (
                                     <div key={field} className="flex flex-col">
                                         <label
-                                            className="mb-2.5 text-[#282938] font-normal text-[19px] xs:text-sm sm:text-sm block">
+                                            className="mb-2.5 text-[#4D4F7C] font-normal text-[19px] xs:text-sm sm:text-sm block">
                                             {label}
                                         </label>
                                         <PhoneInput
@@ -268,7 +280,7 @@ function RegisterForm() {
                                                 name: field,
                                                 required: true,
                                             }}
-                                            inputClass="!bg-transparent !text-[#282938] !text-[1rem] !border !border-customTealBlue !rounded-[6px] !w-full !py-6 !px-10 focus:!outline-none"
+                                            inputClass="!bg-transparent !text-[#4D4F7C] !text-[1rem] !border !border-customTealBlue !rounded-[6px] !w-full !py-6 !px-10 focus:!outline-none"
                                             buttonClass="!border-none !bg-transparent"
                                             containerClass="!w-full"
                                         />
@@ -281,7 +293,7 @@ function RegisterForm() {
                                 return (
                                     <div key={field} className="flex flex-col">
                                         <label
-                                            className="mb-2.5 text-[#282938] font-normal text-[19px] xs:text-sm sm:text-sm block">
+                                            className="mb-2.5 text-[#4D4F7C] font-normal text-[19px] xs:text-sm sm:text-sm block">
                                             {label}
                                         </label>
 
@@ -323,7 +335,7 @@ function RegisterForm() {
                             return (
                                 <div key={field} className="flex flex-col">
                                     <label
-                                        className="mb-2.5 text-[#282938] font-normal text-[19px] xs:text-sm sm:text-sm block">
+                                        className="mb-2.5 text-[#4D4F7C] font-normal text-[19px] xs:text-sm sm:text-sm block">
                                         {label}
                                     </label>
                                     <div className="relative">
@@ -334,7 +346,7 @@ function RegisterForm() {
                                             value={value}
                                             required
                                             onChange={e => handleChange(field, e.target.value)}
-                                            className="bg-transparent p-3 text-[1rem] text-[#282938] border border-customTealBlue outline-none rounded-[6px] w-full"
+                                            className="bg-transparent p-3 text-[1rem] text-[#4D4F7C] border border-customTealBlue outline-none rounded-[6px] w-full"
                                         />
                                         {(isPassword || isConfirmPassword) && (
                                             <button
@@ -389,6 +401,10 @@ function RegisterForm() {
 
                     </div>
                 </form>
+
+                {/*/!* Conditionally render components *!/*/}
+                {/*{status === "success" && <RegisteredSuccessfully />}*/}
+                {/*{status === "error" && <FailedToRegister/>}*/}
             </div>
     );
 }

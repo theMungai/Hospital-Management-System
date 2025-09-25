@@ -26,11 +26,10 @@ export const labels = {
     // Step 4: Education & Certifications
     medical_school: "Medical School / University",
     graduation_year: "Graduation Year",
-    postgraduate_qualifications: "Postgraduate Qualifications",
-    board_certifications: "Board Certifications / Fellowships",
+    level_of_education: "Level of Education",
     degree_certificate_upload: "Upload Degree Certificate",
     license_certificate_upload: "Upload Medical License",
-    additional_certifications_upload: "Upload Additional Certifications",
+    additional_certifications_upload: "Upload Additional Certifications/Transcripts",
 
     // Step 5: Account Security
     username: "Username",

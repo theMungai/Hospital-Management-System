@@ -26,8 +26,7 @@ export const initialFormData = {
     // Step 4: Education & Certifications
     medical_school: "",
     graduation_year: "",
-    postgraduate_qualifications: "",
-    board_certifications: "",
+    level_of_education: "",
     degree_certificate_upload: "",
     license_certificate_upload: "",
     additional_certifications_upload: "",

@@ -10,6 +10,8 @@ import SignInPage from './pages/SignInPage'
 import SelectPortal from "./pages/SelectPortal.jsx";
 import RegisterDoctor from "./pages/RegisterDoctor.jsx";
 import TermsAndConditions from "./pages/TermsAndConditions.jsx";
+import RegisteredSuccessfully from "./utils/Responses/RegisteredSuccessfully.jsx";
+import FailedToRegister from "./utils/Responses/FailedToRegister.jsx";
 function App() {
 
 
@@ -27,6 +29,8 @@ function App() {
           <Route path='/Register-doctor' element={<RegisterDoctor />}/>
           <Route path='/log-in' element= {<SignInPage/>}/>
           <Route path='/terms-and-conditions' element={<TermsAndConditions />}/>
+          <Route path={'/registration-complete'} element={<RegisteredSuccessfully/>} />
+          <Route path={'/registration-failed'} element={<FailedToRegister />} />
         </Routes>
       </Router>
      

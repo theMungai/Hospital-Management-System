@@ -17,7 +17,7 @@ export const formSteps = [
     {
         title: "Step 4: Education & Certifications",
         description: "Provide your educational background and upload necessary certifications.",
-        fields: ["medical_school", "graduation_year", "postgraduate_qualifications", "board_certifications", "degree_certificate_upload", "license_certificate_upload", "additional_certifications_upload"],
+        fields: ["medical_school", "graduation_year", "level_of_education", "degree_certificate_upload", "license_certificate_upload", "additional_certifications_upload"],
     },
     {
         title: "Step 5: Account Security",
