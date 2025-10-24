@@ -12,11 +12,13 @@ import RegisterDoctor from "./pages/RegisterDoctor.jsx";
 import TermsAndConditions from "./pages/TermsAndConditions.jsx";
 import RegisteredSuccessfully from "./utils/Responses/RegisteredSuccessfully.jsx";
 import FailedToRegister from "./utils/Responses/FailedToRegister.jsx";
+import VerifyOTP from "./utils/VerifyOTP.jsx";
 function App() {
 
 
   return (
     <>
+        {/*<VerifyOTP />*/}
       <Router>
         <Routes>
           <Route path='/' element= {<LandingPage/>}/>
