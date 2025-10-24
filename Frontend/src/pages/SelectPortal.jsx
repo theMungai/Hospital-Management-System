@@ -6,6 +6,11 @@ import Layout from "../components/Layout.jsx";
 import stethoscope from "/images/stethoscope.png"
 
 function SelectPortal() {
+
+    function handleRoleSelect(role){
+        localStorage.setItem("selectedRole", role)
+    }
+
     return (
         <Layout>
             <section
@@ -19,7 +24,8 @@ function SelectPortal() {
                         Up</h1>
                     <p className="text-gray-500">Connect patients with trusted doctors for appointments and care.</p>
                     <p className="text-gray-500 mb-8">Choose your role to get started:</p>
-                    <Link to='/Register-patient'>
+
+                    <Link to='/Register-patient' onClick={() => handleRoleSelect("patient")}>
                         <div
                             className="w-full rounded-lg bg-customTealBlue p-5 xs:p-2 sm:p-3 text-white cursor-pointer flex items-center gap-x-5">
                             <UserIcon className="w-8 h-8"/>
@@ -38,7 +44,7 @@ function SelectPortal() {
 
                     </section>
 
-                    <Link to='/Register-doctor'>
+                    <Link to='/Register-doctor' onClick={() => handleRoleSelect("doctor")}>
                         <div
                             className="w-full rounded-lg bg-customTealBlue p-5 xs:p-2 text-white cursor-pointer flex items-center gap-x-5">
                             <img src={stethoscope} className="w-6 h-6"/>

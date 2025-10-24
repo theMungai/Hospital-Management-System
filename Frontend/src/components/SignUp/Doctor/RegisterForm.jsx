@@ -1,3 +1,4 @@
+// Doctor registration
 import React, {useState} from 'react';
 import PhoneInput from 'react-phone-input-2'
 import "react-phone-input-2/lib/style.css";
@@ -129,7 +130,7 @@ function RegisterForm() {
                 formPayload.append(key, value);
             });
 
-            fetch("http://localhost:3000/user", {
+            fetch("http://localhost:3000/register-doctor", {
                 method: "POST",
                 body: formPayload
             })

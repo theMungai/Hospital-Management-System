@@ -1,4 +1,8 @@
+// Doctor data
 export const initialFormData = {
+    // Step 0: Role
+    role: localStorage.getItem("selectedRole") || "",
+
     // Step 1: Personal Information
     first_name: "",
     middle_name: "",
