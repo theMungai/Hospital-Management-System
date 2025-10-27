@@ -6,7 +6,6 @@ function VerifyOTP() {
     const [timer, setTimer] = useState(0);
     const [message, setMessage] = useState("");
 
-    // Handle resend cooldown timer
     useEffect(() => {
         let interval;
         if (timer > 0) {
@@ -15,20 +14,12 @@ function VerifyOTP() {
         return () => clearInterval(interval);
     }, [timer]);
 
-    const handleResend = async () => {
+    async function handleResend(){
         try {
-            // Prevent resending while timer is active
             if (timer > 0) return;
-
-            setTimer(30); // 30 seconds cooldown
+            setTimer(30);
             setMessage("");
 
-            // ✅ Call your backend resend API here
-            // Example:
-            // const response = await fetch("/api/resend-otp", { method: "POST" });
-            // const data = await response.json();
-
-            // For now, simulate success:
             setTimeout(() => {
                 setMessage("Verification code sent successfully!");
             }, 1000);
@@ -41,7 +32,7 @@ function VerifyOTP() {
         <div className="h-screen flex justify-center items-center bg-gray-50 p-3">
             <div className="max-w-[380px] w-full text-center font-dmsans bg-gray-50 py-6">
                 <h1 className="text-xl text-left font-medium my-8 text-customTealBlue">
-                    Healthcare Center
+                    Healthcare hospital
                 </h1>
 
                 <h1 className="text-3xl font-extrabold mb-3 text-gray-800">
@@ -51,7 +42,6 @@ function VerifyOTP() {
                 <p className="text-gray-600">Enter the verification code we sent to</p>
                 <p className="font-medium text-gray-600 mb-8">johndoe@gmail.com</p>
 
-                {/* Floating label input */}
                 <div className="relative w-full mb-6">
                     <input
                         type="text"

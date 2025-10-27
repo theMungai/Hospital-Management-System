@@ -1,4 +1,6 @@
+// patient data
 export const initialFormData = {
+    role: localStorage.getItem("selectedRole")
     first_name: "",
     last_name: "",
     email: "",
