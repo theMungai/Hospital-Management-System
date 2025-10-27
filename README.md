@@ -1,8 +1,8 @@
-# 🩺 Doctor Appointment App
+# 🩺 Hospital Management System
 
 ---
 
-**Doctor Appointment App** is a modern, fully responsive web application designed to streamline the process of scheduling medical appointments. It caters to both patients and administrators, providing an intuitive interface for browsing healthcare services, reading health blogs, contacting support, and managing user accounts.
+**Hospital Management System** is a modern, fully responsive web application designed to streamline the process of scheduling medical appointments. It caters to both patients and administrators, providing an intuitive interface for browsing healthcare services, reading health blogs, contacting support, and managing user accounts.
 
 Built using **ReactJS** with **Vite** for fast development, and styled using **Tailwind CSS** for clean, responsive UI design, the app is structured for scalability and maintainability. It includes route-based pages, reusable components, and is ready for backend integration.
 
