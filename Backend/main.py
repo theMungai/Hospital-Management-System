@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException, status, Response
 from sqlalchemy.orm import Session
+from typing import List
 
 from App.database.database import get_db, engine
 import App.models as models
@@ -70,3 +71,10 @@ def create_post(doctor : DoctorCreate, db: Session=Depends(get_db)):
     db.refresh(new_doctor)
 
     return new_doctor
+
+
+@app.get("/doctors", status_code=status.HTTP_200_OK, response_model=List[DoctorOut])
+def get_doctors(db: Session=Depends(get_db)):
+    doctors = db.query(models.Doctor).all()
+
+    return doctors
