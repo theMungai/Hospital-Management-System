@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, Boolean, TIMESTAMP, Enum, text
+from sqlalchemy.orm import relationship
 
 from ..core.enums import RoleEnum
 from ..database.database import Base
@@ -11,8 +12,12 @@ class User(Base):
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
     email = Column(String, nullable=False, unique=True)
+    phone_number = Column(String, nullable=False)
     password = Column(String, nullable=False)
     role = Column(Enum(RoleEnum), nullable=False)
     is_active = Column(Boolean, server_default="true", nullable=False)
     updated_at = Column(TIMESTAMP(timezone=True), onupdate=text('now()'))
     created_at = Column(TIMESTAMP(timezone=True), server_default=text('now()'))
+
+    # Relationship
+    doctor = relationship("Doctor", back_populates="user")

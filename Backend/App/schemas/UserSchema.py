@@ -8,9 +8,9 @@ from ..core.enums import RoleEnum
 class UserBase(BaseModel):
     first_name: str
     last_name: str
+    phone_number : str
     email: EmailStr
     role: RoleEnum
-
 
 class UserCreate(UserBase):
     password : str
