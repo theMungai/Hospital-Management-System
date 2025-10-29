@@ -8,6 +8,7 @@ class Doctor(Base):
 
     id = Column(Integer, primary_key=True, nullable=False)
     user_id = Column(Integer, ForeignKey("users.id"), unique=True)
+    username = Column(String, unique=True, nullable=False)
     date_of_birth = Column(Date, nullable=False)
     gender = Column(String, nullable=False)
     national_id_or_passport = Column(String, nullable=False)
@@ -27,7 +28,6 @@ class Doctor(Base):
     degree_certificate_upload = Column(String, nullable=False)
     license_certificate_upload = Column(String, nullable=False)
     additional_certifications_upload = Column(String, nullable=False)
-    username = Column(String, unique=True, nullable=False)
     recovery_email = Column(String, nullable=False)
 
     # Relationship

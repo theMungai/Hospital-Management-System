@@ -32,15 +32,19 @@ def create_post(doctor : DoctorCreate, db: Session=Depends(get_db)):
 
     new_user = User(**user_data)
     db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
+    db.flush()
 
     doctor_data["user_id"] = new_user.id
-
     new_doctor = Doctor(**doctor_data)
     db.add(new_doctor)
-    db.commit()
-    db.refresh(new_doctor)
+
+    try:
+        db.commit()
+        db.refresh(new_doctor)
+
+    except Exception as error:
+        db.rollback()
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Error creating doctor {str(error)}")
 
     return new_doctor
 
