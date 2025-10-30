@@ -7,7 +7,9 @@ from ..database.database import get_db
 from ..utils.hashing import hash_pwd
 from ..schemas.DoctorSchema import DoctorOut, DoctorCreate
 
-router = APIRouter()
+router = APIRouter(
+    tags=['Doctors']
+)
 
 @router.post("/doctors", status_code=status.HTTP_201_CREATED, response_model=DoctorOut)
 def create_post(doctor : DoctorCreate, db: Session=Depends(get_db)):

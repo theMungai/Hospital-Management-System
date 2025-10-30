@@ -7,7 +7,9 @@ from ..database.database import get_db
 from ..utils.hashing import hash_pwd
 from ..schemas.PatientSchema import PatientOut, PatientCreate
 
-router = APIRouter()
+router = APIRouter(
+    tags=['Patients']
+)
 
 @router.get("/patients", status_code=status.HTTP_200_OK, response_model=List[PatientOut])
 def get_patients(db: Session = Depends(get_db)):
@@ -55,7 +57,4 @@ def create_patients(patient: PatientCreate, db: Session = Depends(get_db)):
             status_code=status.HTTP_400_BAD_REQUEST,detail=f"Error creating patient: {str(error)}"
         )
 
-    return {
-        "message": "Patient created successfully",
-        "patient": new_patient
-    }
+    return new_patient

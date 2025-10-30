@@ -7,9 +7,11 @@ from ..database.database import get_db
 from ..utils.hashing import hash_pwd
 from ..schemas.UserSchema import UserOut, UserCreate
 
-router = APIRouter()
+router = APIRouter(
+    tags=['Users']
+)
 
-@router.get("/users", status_code=status.HTTP_200_OK, response_model=UserOut)
+@router.get("/users", status_code=status.HTTP_200_OK, response_model=List[UserOut])
 def get_users(db:Session = Depends(get_db)):
     users = db.query(User).all()
 
