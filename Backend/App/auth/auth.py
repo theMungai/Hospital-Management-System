@@ -23,5 +23,6 @@ def authenticate_user(user_credentials:OAuth2PasswordRequestForm=Depends() ,db: 
 
     return {
         "access_token" : access_token,
-        "token_type" : "bearer"
+        "token_type" : "bearer",
+        "user" : user
     }
