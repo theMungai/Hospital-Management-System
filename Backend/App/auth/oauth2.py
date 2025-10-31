@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
-from .. .schemas.TokenSchema import TokenData
+from .. schemas.TokenSchema import TokenData
 
 oauth_scheme = OAuth2PasswordBearer(tokenUrl="login")
 

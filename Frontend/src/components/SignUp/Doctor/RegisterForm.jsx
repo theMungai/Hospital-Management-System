@@ -125,23 +125,18 @@ function RegisterForm() {
         if (step < totalSteps - 1) {
             setStep(step + 1);
         } else {
-            const formPayload = new FormData();
-            Object.entries(formData).forEach(([key, value]) => {
-                formPayload.append(key, value);
-            });
+            const payload = { ...formData };
 
-            fetch("http://localhost:3000/register-doctor", {
+            fetch("http://127.0.0.1:8000/doctors", {
                 method: "POST",
-                body: formPayload
+                body: JSON.stringify(payload)
             })
                 .then(res => res.json())
                 .then(data => {
                     console.log("Submitted data:", data);
                     navigate('/registration-complete')
-
                 })
                 .catch(err => {
-                    console.log("There was an error submitting the form", err);
                     navigate('/registration-failed')
                 });
         }

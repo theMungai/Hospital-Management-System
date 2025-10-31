@@ -33,6 +33,7 @@ function App() {
           <Route path='/terms-and-conditions' element={<TermsAndConditions />}/>
           <Route path={'/registration-complete'} element={<RegisteredSuccessfully/>} />
           <Route path={'/registration-failed'} element={<FailedToRegister />} />
+          <Route path={'/admin-dashboard'} element={<AdminDashboard />} />
         </Routes>
       </Router>
      

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'; // Correct import for v2
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 function NavBar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -65,11 +65,20 @@ function NavBar() {
 
             {/* Sidebar Menu (for small screens) */}
             <div className={`fixed top-0 left-0 z-50 w-1/4 xs:w-2/3 sm:w-1/2 md:w-1/2 h-full font-dmsans bg-white shadow-lg transition-transform duration-700 ease-in-out transform ${
-                    menuOpen ? '-translate-x-0' : '-translate-x-[120%]' 
+                    menuOpen ? '-translate-x-0' : '-translate-x-[120%]'
                 }`}>
 
+            <Link to="/">
+                <button className="text-customTealBlue text-[24px] font-bold logo flex items-center ">
+                    <img src="/images/logo.png" alt="Logo" className="w-[60px]" />
+                    <span className="xs:hidden sm:hidden xl:text-[20px] ">
+                    Health<span className="text-customGreen">care</span>
+                </span>
+                </button>
+            </Link>
+
                 {/* Nav Items */}
-                <ul className="flex flex-col items-start p-5 mt-[50px] ">
+                <ul className="flex flex-col items-start p-5 mt-[20px] ">
                     {navItem}
                 </ul>
 

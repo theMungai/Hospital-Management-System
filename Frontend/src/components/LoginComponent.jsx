@@ -15,19 +15,44 @@ function Login() {
     setError("");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { email, password } = formData;
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  const { email, password } = formData;
 
-    if (!email || !password) {
-      setError("Both fields are required.");
+  if (!email || !password) {
+    setError("Both fields are required.");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:8000/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setError(data.detail || "Invalid credentials");
       return;
     }
 
-    // Simulate login (replace with real API call)
-    console.log("Logging in with:", formData);
-    alert("Login successful!");
-  };
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("role", data.role);
+
+    if (data.role === "doctor") {
+      navigate("/doctor-dashboard");
+    } else if (data.role === "patient") {
+      navigate("/patient-dashboard");
+    } else if (data.role === "admin") {
+      navigate("/admin-dashboard");
+    }
+
+  } catch (err) {
+    setError("Network error, try again later.");
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-customWhite px-4 font-dmsans">
