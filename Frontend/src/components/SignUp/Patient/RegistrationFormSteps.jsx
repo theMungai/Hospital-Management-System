@@ -2,7 +2,7 @@ export const formSteps = [
     {
         title: "Step 1: Personal Info",
         description: "Provide your basic personal details to create your account and verify your identity.",
-        fields: ["First Name","Last Name", "email", "phone", "password", "confirm_password", "date_of_birth", "gender", "marital_status"],
+        fields: ["first_name","last_name", "email", "phone_number", "password", "confirm_password", "date_of_birth", "gender", "marital_status"],
     },
     {
         title: "Step 2: Contact Information",
@@ -17,11 +17,16 @@ export const formSteps = [
     {
         title: "Step 4: Emergency Contact",
         description: "Provide contact information for someone we should notify in case of emergencies.",
-        fields: ["first_name", "last_name", "relationship", "contact"],
+        fields: [
+        "emergency_first_name",
+        "emergency_last_name",
+        "emergency_relationship",
+        "emergency_contact"
+    ],
     },
     {
         title: "Step 5: Insurance & Billing Info",
         description: "Enter your health insurance details for billing and claim processing purposes.",
-        fields: ["insurance_provider", "insurance_ID", "policyholder_name", "group_number"],
+        fields: ["insurance_provider", "insurance_id", "policyholder_name", "group_number"],
     }
 ]

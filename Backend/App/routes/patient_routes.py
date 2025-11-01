@@ -38,8 +38,6 @@ def create_patients(patient: PatientCreate, db: Session = Depends(get_db)):
         "is_active": True
     }
 
-    patient_data.pop("role", None)
-
     new_user = User(**user_data)
     db.add(new_user)
     db.flush()

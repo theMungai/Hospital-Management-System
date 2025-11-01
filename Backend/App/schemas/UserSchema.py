@@ -10,7 +10,7 @@ class UserBase(BaseModel):
     last_name: str
     phone_number : str
     email: EmailStr
-    role: RoleEnum
+    # role: RoleEnum
 
 class UserCreate(UserBase):
     password : str
@@ -22,3 +22,8 @@ class UserOut(UserBase):
 
     class Config:
         from_attributes = True
+
+
+class UserLogin(BaseModel):
+    email: str
+    password: str

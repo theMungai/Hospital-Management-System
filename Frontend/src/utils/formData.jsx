@@ -1,10 +1,10 @@
 // patient data
 export const initialFormData = {
-    role: localStorage.getItem("selectedRole"),
+    role: localStorage.getItem("role") || "",
     first_name: "",
     last_name: "",
     email: "",
-    phone: "",
+    phone_number: "",
     password: "",
     confirm_password: "",
     date_of_birth: "",
@@ -29,3 +29,4 @@ export const initialFormData = {
     policyholder_name: "",
     group_number: "",
 };
+

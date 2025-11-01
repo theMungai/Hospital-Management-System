@@ -121,19 +121,19 @@ function Form() {
         if (step < totalSteps - 1) {
             setStep(step + 1);
         } else {
-            // Final submission
-            fetch("http://localhost:3000/user", {
+            const payload = { ...formData };
+
+            fetch("http://127.0.0.1:8000/patients", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(formData),
+                body: JSON.stringify(payload)
             })
                 .then(res => res.json())
                 .then(data => {
-                    navigate('/registration-complete')
                     console.log("Submitted data:", data);
+                    navigate('/registration-complete')
                 })
                 .catch(err => {
-                    console.error("Submission error:", err);
                     navigate('/registration-failed')
                 });
         }

@@ -27,6 +27,7 @@ class PatientCreate(UserCreate):
     policyholder_name: str
     group_number: str
 
+
 class PatientOut(BaseModel):
     id : int
     user : UserOut

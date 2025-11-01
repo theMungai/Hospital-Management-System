@@ -8,7 +8,7 @@ import stethoscope from "/images/stethoscope.png"
 function SelectPortal() {
 
     function handleRoleSelect(role){
-        localStorage.setItem("selectedRole", role)
+        localStorage.setItem("role", role)
     }
 
     return (

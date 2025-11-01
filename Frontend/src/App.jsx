@@ -13,6 +13,9 @@ import TermsAndConditions from "./pages/TermsAndConditions.jsx";
 import RegisteredSuccessfully from "./utils/Responses/RegisteredSuccessfully.jsx";
 import FailedToRegister from "./utils/Responses/FailedToRegister.jsx";
 import VerifyOTP from "./utils/VerifyOTP.jsx";
+import AdminDashboard from "./components/Dashboards/admin-dashboard/AdminDashboard.jsx";
+import PatientDashboard from "./components/Dashboards/patient-dashboard/PatientDashboard.jsx";
+import DoctorDashboard from "./components/Dashboards/doctor-dashboard/DoctorDashboard.jsx";
 function App() {
 
 
@@ -33,7 +36,9 @@ function App() {
           <Route path='/terms-and-conditions' element={<TermsAndConditions />}/>
           <Route path={'/registration-complete'} element={<RegisteredSuccessfully/>} />
           <Route path={'/registration-failed'} element={<FailedToRegister />} />
-          <Route path={'/admin-dashboard'} element={<AdminDashboard />} />
+          <Route path={'/admin-dashboard'} element={<AdminDashboard/>} />
+          <Route path={'/patient-dashboard'} element={<PatientDashboard/>} />
+          <Route path={'/doctor-dashboard'} element={<DoctorDashboard/>} />
         </Routes>
       </Router>
      

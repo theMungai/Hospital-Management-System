@@ -125,11 +125,15 @@ function RegisterForm() {
         if (step < totalSteps - 1) {
             setStep(step + 1);
         } else {
-            const payload = { ...formData };
+            const data = new FormData();
+
+            for (const key in formData) {
+                data.append(key, formData[key]);
+            }
 
             fetch("http://127.0.0.1:8000/doctors", {
                 method: "POST",
-                body: JSON.stringify(payload)
+                body: data
             })
                 .then(res => res.json())
                 .then(data => {
@@ -238,7 +242,6 @@ function RegisterForm() {
                                         </label>
                                         <select
                                             name={field}
-                                            required
                                             value={value}
                                             onChange={e => handleChange(field, e.target.value)}
                                             className="bg-transparent p-4 text-[1rem] text-[#4D4F7C] border border-customTealBlue outline-none rounded-[6px] w-full"
@@ -282,6 +285,9 @@ function RegisterForm() {
                             }
 
                             if (isFile) {
+                                // Value is a File object, use its name for display
+                                const fileName = value instanceof File ? value.name : 'No file selected';
+
                                 return (
                                     <div key={field} className="flex flex-col">
                                         <label
@@ -312,11 +318,13 @@ function RegisterForm() {
                                         </label>
 
                                         {/* Show Selected File */}
-                                        {formData[field] && (
-                                            <span className="text-gray-500 text-sm mt-2">
-      Selected: {formData[field].name}
-    </span>
-                                        )}
+                                        <span className="text-gray-500 text-sm mt-2 flex items-center">
+                                            {value instanceof File ? (
+                                                <><CheckCircleIcon className="h-4 w-4 text-green-500 mr-1" />Selected: {fileName}</>
+                                            ) : (
+                                                fileName
+                                            )}
+                                        </span>
 
                                         {errorMsg && <span className="text-red-600 text-sm mt-1">{errorMsg}</span>}
                                     </div>
@@ -336,7 +344,6 @@ function RegisterForm() {
                                             type={inputType}
                                             placeholder={placeholder}
                                             value={value}
-                                            required
                                             onChange={e => handleChange(field, e.target.value)}
                                             className="bg-transparent p-3 text-[1rem] text-[#4D4F7C] border border-customTealBlue outline-none rounded-[6px] w-full"
                                         />
@@ -393,10 +400,6 @@ function RegisterForm() {
 
                     </div>
                 </form>
-
-                {/*/!* Conditionally render components *!/*/}
-                {/*{status === "success" && <RegisteredSuccessfully />}*/}
-                {/*{status === "error" && <FailedToRegister/>}*/}
             </div>
     );
 }
