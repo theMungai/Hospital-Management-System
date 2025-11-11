@@ -5,14 +5,15 @@
 
 :root {
    width: 100%;
-   background-color: #f4f4f4;
-   
-   /* padding: 25px 100px; */
+    background-color: rgba(0, 126, 133, 0.06);
+    padding: 0;
+    margin: 0;
 }
 
 /**{*/
 /*    outline: 2px solid red;*/
 /*}*/
+
 
 
 form::-webkit-scrollbar {

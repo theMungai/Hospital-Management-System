@@ -22,6 +22,7 @@ export default {
         customWhite:'#f4f4f4'
       },
       fontFamily: {
+        poppins : ['Poppins', 'sans-serif'],
         lato: ['Lato', 'sans-serif'],
         dmsans: ['DM Sans', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],

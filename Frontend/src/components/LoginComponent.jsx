@@ -48,7 +48,7 @@ function Login() {
     } else if (data.role === "patient") {
       navigate("/patient-dashboard");
     } else if (data.role === "admin") {
-      navigate("/admin-dashboard");
+      navigate("/admin");
     }
 
   } catch (err) {
