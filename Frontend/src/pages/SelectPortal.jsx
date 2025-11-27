@@ -19,7 +19,7 @@ function SelectPortal() {
                 <div className="absolute inset-0 bg-[url('/images/grid-background.png')] opacity-90"></div>
 
                 <section
-                    className="relative z-10 border border-[#e9e9e9] bg-white rounded-[8px] shadow-2xl w-full max-w-[40%] xs:max-w-[100%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[50%] p-10 xs:p-5 sm:p-7 my-[120px] ">
+                    className="relative z-10 border border-[#e9e9e9] bg-white rounded-[8px] shadow-2xl w-full max-w-[680px] xs:max-w-[100%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[50%] p-10 xs:p-5 sm:p-7 my-[120px] ">
                     <h1 className="text-customTealBlue text-2xl xs:text-xl sm:text-[22px] font-bold mb-5">Doctor Appointment - Sign
                         Up</h1>
                     <p className="text-gray-500">Connect patients with trusted doctors for appointments and care.</p>

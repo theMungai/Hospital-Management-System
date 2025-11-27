@@ -302,7 +302,7 @@ function Form() {
                                                 if (isPassword) setShowPassword(prev => !prev);
                                                 if (isConfirmPassword) setShowConfirmPassword(prev => !prev);
                                             }}
-                                            className="absolute inset-y-0 right-3 flex items-center"
+                                            className="absolute inset-y-0 right-3 flex items-center text-customTealBlue"
                                         >
                                             {(isPassword && showPassword) || (isConfirmPassword && showConfirmPassword)
                                                 ? "Hide"
