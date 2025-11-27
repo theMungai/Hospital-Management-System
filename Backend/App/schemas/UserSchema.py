@@ -10,7 +10,7 @@ class UserBase(BaseModel):
     last_name: str
     phone_number : str
     email: EmailStr
-    # role: RoleEnum
+    role: RoleEnum
 
 class UserCreate(UserBase):
     password : str
