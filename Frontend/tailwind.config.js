@@ -19,7 +19,8 @@ export default {
       colors: {
         customGreen: '#6EAB36',
         customTealBlue: '#007E85',
-        customWhite:'#f4f4f4'
+        customWhite:'#f4f4f4',
+        darkGray: '#4F4F4F'
       },
       fontFamily: {
         poppins : ['Poppins', 'sans-serif'],

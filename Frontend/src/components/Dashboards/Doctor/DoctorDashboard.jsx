@@ -1,8 +1,11 @@
 import React from 'react';
+import Layout from "../Admin/Layout.jsx";
 
 const DoctorDashboard = () => {
   return (
-    <div>DoctorDashboard</div>
+    <Layout>
+        <div>DoctorDashboard</div>
+    </Layout>
   );
 };
 
