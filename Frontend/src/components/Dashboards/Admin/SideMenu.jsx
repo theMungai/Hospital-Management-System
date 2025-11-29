@@ -61,9 +61,9 @@ function SideMenu({ onDashboardSelect }) {
 
     const MenuItem = ({ item, isSubItem = false }) => {
         const isActive = activeItem === item.label;
-        const baseClasses = "flex items-center p-3 rounded-lg cursor-pointer transition-colors duration-200";
+        const baseClasses = "flex items-center p-3 rounded cursor-pointer transition-colors duration-200";
         const activeClasses = isSubItem ? "bg-[#007E85]/10 text-[#007E85]" : "bg-teal-500 text-white";
-        const defaultClasses = isSubItem ? "text-gray-700 hover:bg-gray-100" : "text-gray-700 hover:customTealBlue";
+        const defaultClasses = isSubItem ? "text-gray-700 " : "text-gray-700 hover:customTealBlue";
 
         if (item.type === "dashboard") {
 
@@ -94,7 +94,7 @@ function SideMenu({ onDashboardSelect }) {
                   onClick={() => setActiveItem(item.label)}
             >
                 {item.icon}
-                <span className="ml-4 font-semibold">{item.label}</span>
+                <span className="ml-4 font-semibold hover:text-customTealBlue">{item.label}</span>
             </Link>
         );
     }
@@ -117,21 +117,29 @@ function SideMenu({ onDashboardSelect }) {
 
                 <h3 className="text-sm font-semibold text-gray-400 mb-3">Main Menu</h3>
                 <div className="space-y-1 mb-8">
-                    {mainMenuItems.map((item, index) => (
+                    {mainMenuItems.map((item, index, to) => (
                         <div key={index}>
-                            <MenuItem item={item} />
-
-                            {item.type === "dashboard" && isDashboardOpen && (
-                                <div className="space-y-1 mt-1 pl-4">
-                                    {dashboards.map((dashboard, subIndex) => (
-                                        <MenuItem
-                                            key={dashboard.key}
-                                            item={dashboard}
-                                            isSubItem={true}
-                                        />
-                                    ))}
-                                </div>
-                            )}
+                            <ul>
+                                <li className="rounded text-darkGray hover:bg-[#007E85]/10  hover:text-customTealBlue focus:bg-customTealBlue focus:text-white">
+                                    <Link to={item.to}>
+                                        <MenuItem item={item} />
+                                    </Link>
+                                </li>
+                            </ul>
+                            <ul>
+                                {item.type === "dashboard" && isDashboardOpen && (
+                                    <li className="space-y-1 mt-1 pl-4 h">
+                                        {dashboards.map((dashboard) => (
+                                            <Link key={dashboard.key} to={dashboard.to}>
+                                                <MenuItem
+                                                    item={dashboard}
+                                                    isSubItem={true}
+                                                />
+                                            </Link>
+                                        ))}
+                                    </li>
+                                )}
+                            </ul>
                         </div>
                     ))}
                 </div>
@@ -140,18 +148,30 @@ function SideMenu({ onDashboardSelect }) {
 
 
                 <h3 className="text-sm font-semibold text-gray-400 mb-3">Other Menu</h3>
-                <div className="space-y-1 mb-8 text-darkGray">
-                    {otherMenuItems.map((item, index) => (
-                        <MenuItem  key={index} item={item} />
-                    ))}
+                <div className="space-y-1 mb-8  ">
+                    <ul>
+                        {otherMenuItems.map((item, index, to) => (
+                            <li className="rounded text-darkGray hover:bg-[#007E85]/10 hover:text-customTealBlue focus:bg-customTealBlue focus:text-white">
+                                <Link to={item.to}>
+                                    <MenuItem  key={index} item={item} />
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
 
                 <div className="mt-auto">
                     <h3 className="text-sm font-semibold text-gray-400 mb-3">Settings</h3>
                     <div className="space-y-1">
-                        {settingsItems.map((item, index) => (
-                            <MenuItem key={index} item={item} />
-                        ))}
+                        <ul>
+                            {settingsItems.map((item, index, to) => (
+                                <li className="rounded text-darkGray hover:bg-[#007E85]/10 hover:text-customTealBlue focus:bg-customTealBlue focus:text-white">
+                                    <Link to={item.to}>
+                                        <MenuItem key={index} item={item} />
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
             </nav>
