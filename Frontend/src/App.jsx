@@ -16,8 +16,20 @@ import VerifyOTP from "./utils/VerifyOTP.jsx";
 import AdminDashboard from "./components/Dashboards/Admin/AdminDashboard.jsx";
 import PatientDashboard from "./components/Dashboards/Patient/PatientDashboard.jsx";
 import DoctorDashboard from "./components/Dashboards/Doctor/DoctorDashboard.jsx";
-function App() {
+import Appointments from "./components/Dashboards/Admin/Main_Menu/Appointments.jsx";
+import Doctors from "./components/Dashboards/Admin/Main_Menu/Doctors.jsx";
+import Patients from "./components/Dashboards/Admin/Main_Menu/Patients.jsx";
+import Departments from "./components/Dashboards/Admin/Other_Menu/Departments.jsx";
+import Analytics from "./components/Dashboards/Admin/Other_Menu/Analytics.jsx";
+import DoctorsLeaderboard from "./components/Dashboards/Admin/Other_Menu/DoctorsLeaderboard.jsx";
+import MedicalRecords from "./components/Dashboards/Admin/Other_Menu/MedicalRecords.jsx";
+import Payments from "./components/Dashboards/Admin/Other_Menu/Payments.jsx";
+import QualityAndSafety from "./components/Dashboards/Admin/Other_Menu/QualityAndSafety.jsx";
+import Notifications from "./components/Dashboards/Admin/Other_Menu/Notifications.jsx";
+import Account from "./components/Dashboards/Admin/Settings/Account.jsx";
 
+
+function App() {
 
   return (
     <>
@@ -39,6 +51,17 @@ function App() {
           <Route path={'/admin'} element={<AdminDashboard/>} />
           <Route path={'/patient'} element={<PatientDashboard/>} />
           <Route path={'/doctor'} element={<DoctorDashboard/>} />
+          <Route path={'/appointments'} element={<Appointments/>} />
+          <Route path={'/doctors'}  element={<Doctors/>} />
+          <Route path={'/patients'}  element={<Patients/>} />
+          <Route path={'/departments'}  element={<Departments/>} />
+          <Route path={'/analytics'}  element={<Analytics/>} />
+          <Route path={'/doctors-leaderboard'}  element={<DoctorsLeaderboard/>} />
+          <Route path={'/medical-records'}  element={<MedicalRecords/>} />
+          <Route path={'/payments'}  element={<Payments/>} />
+          <Route path={'/quality-and-safety'}  element={<QualityAndSafety/>} />
+          <Route path={'/notifications'}  element={<Notifications/>} />
+          <Route path={'/account-settings'}  element={<Account/>} />
         </Routes>
       </Router>
      
