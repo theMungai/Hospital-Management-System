@@ -1,6 +1,6 @@
 import enum
 
-class RoleEnum(enum.Enum):
+class RoleEnum(str, enum.Enum):
     doctor = "doctor"
     patient = "patient"
     admin = "admin"

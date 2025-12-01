@@ -15,44 +15,46 @@ function Login() {
     setError("");
   };
 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
-  const { email, password } = formData;
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const { email, password } = formData;
 
-  if (!email || !password) {
-    setError("Both fields are required.");
-    return;
-  }
+        if (!email || !password) {
+            setError("Both fields are required.");
+            return;
+        }
 
+        try {
+            const res = await fetch("http://localhost:8000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
 
-  try {
-    const res = await fetch("http://localhost:8000/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+            const data = await res.json();
 
-    const data = await res.json();
+            if (!res.ok) {
+                setError(data.detail || "Invalid credentials");
+                return;
+            }
 
-    if (!res.ok) {
-      setError(data.detail || "Invalid credentials");
-      return;
-    }
+            // ⭐ SAVE user info
+            localStorage.setItem("user_id", data.user.id);
+            localStorage.setItem("role", data.user.role);
 
-    localStorage.setItem("role", data.role);
+            // ⭐ REDIRECT
+            if (data.user.role === "doctor") {
+                navigate("/doctor-dashboard");
+            } else if (data.user.role === "patient") {
+                navigate("/patient-dashboard");
+            } else if (data.user.role === "admin") {
+                navigate("/admin");
+            }
 
-    if (data.role === "doctor") {
-      navigate("/doctor-dashboard");
-    } else if (data.role === "patient") {
-      navigate("/patient-dashboard");
-    } else if (data.role === "admin") {
-      navigate("/admin");
-    }
-
-  } catch (err) {
-    setError("Network error, try again later.");
-  }
-};
+        } catch (err) {
+            setError("Network error, try again later.");
+        }
+    };
 
   function togglePasswordVisibility(){
       setShowPassword(prev => !prev)

@@ -2,12 +2,13 @@ import React from 'react';
 import TopBar from "./TopBar.jsx";
 import SideMenu from "./SideMenu.jsx";
 
+
 function Layout({ children }) {
     return (
         <>
             <div className="flex w-full h-screen gap-x-1 ">
                 <SideMenu />
-                <div className="basis-[84%]">
+                <div className="basis-[100%]">
                     <TopBar />
                     {children}
                 </div>

@@ -18,6 +18,16 @@ def get_users(db:Session = Depends(get_db)):
     return users
 
 
+@router.get("/users/{id}", status_code=status.HTTP_200_OK, response_model=UserOut)
+def get_user_by_id(id: int, db:Session=Depends(get_db)):
+    user = db.query(User).filter(User.id == id).first()
+
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with id {id} not found.")
+
+    return user
+
+
 @router.post("/users", status_code=status.HTTP_201_CREATED, response_model=UserOut)
 def create_user(user: UserCreate,db: Session=Depends(get_db)):
     existing_user = db.query(User).filter(User.email == user.email).first()
