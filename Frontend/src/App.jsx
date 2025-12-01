@@ -3,7 +3,6 @@ import { BrowserRouter as Router,Routes, Route  } from 'react-router-dom'
 import LandingPage from './pages/LandingPage'
 import ServicesPage from './pages/ServicesPage'
 import ContactUsPage from './pages/ContactUsPage'
-import HelpPage from './pages/HelpPage'
 import BlogsPage from './pages/BlogsPage'
 import SignUpPage from './pages/SignUpPage'
 import SignInPage from './pages/SignInPage'
@@ -13,7 +12,7 @@ import TermsAndConditions from "./pages/TermsAndConditions.jsx";
 import RegisteredSuccessfully from "./utils/Responses/RegisteredSuccessfully.jsx";
 import FailedToRegister from "./utils/Responses/FailedToRegister.jsx";
 import VerifyOTP from "./utils/VerifyOTP.jsx";
-import AdminDashboard from "./components/Dashboards/Admin/AdminDashboard.jsx";
+import AdminDashboard from "./components/Dashboards/Admin/Dashboard/AdminDashboard.jsx";
 import PatientDashboard from "./components/Dashboards/Patient/PatientDashboard.jsx";
 import DoctorDashboard from "./components/Dashboards/Doctor/DoctorDashboard.jsx";
 import Appointments from "./components/Dashboards/Admin/Main_Menu/Appointments.jsx";
@@ -27,6 +26,8 @@ import Payments from "./components/Dashboards/Admin/Other_Menu/Payments.jsx";
 import QualityAndSafety from "./components/Dashboards/Admin/Other_Menu/QualityAndSafety.jsx";
 import Notifications from "./components/Dashboards/Admin/Other_Menu/Notifications.jsx";
 import Account from "./components/Dashboards/Admin/Settings/Account.jsx";
+import HelpCenter from "./components/common/HelpCenter.jsx";
+import HelpPage from "./pages/HelpPage.jsx";
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
           <Route path={'/quality-and-safety'}  element={<QualityAndSafety/>} />
           <Route path={'/notifications'}  element={<Notifications/>} />
           <Route path={'/account-settings'}  element={<Account/>} />
+          <Route path={'/help-center'}  element={<HelpCenter/>} />
         </Routes>
       </Router>
      

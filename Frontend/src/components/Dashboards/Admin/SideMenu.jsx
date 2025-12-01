@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom'
 import toggleSidebarBtn from '../../../../public/icons/toggle_sidebar.png'
 
-import { LayoutDashboard, Stethoscope, UserRound, CalendarClock, FolderTree, ChartSpline, MedalIcon, CreditCard, FileTextIcon, ShieldCheck, Bell, LucideUserRoundCog, LogOut, ChevronDownIcon, ChevronUpIcon} from "lucide-react";
+import { LayoutDashboard, Stethoscope, UserRound, CalendarClock, FolderTree, ChartSpline, MedalIcon, CreditCard, FileTextIcon, ShieldCheck, Bell, LucideUserRoundCog, LogOut, ChevronDownIcon, ChevronUpIcon, CircleQuestionMark} from "lucide-react";
 
 function SideMenu({ onDashboardSelect }) {
     const [isDashboardOpen, setIsDashboardOpen] = useState(true);
@@ -23,7 +23,9 @@ function SideMenu({ onDashboardSelect }) {
         Payments: <CreditCard className="w-5 h-5" />,
         'Quality & Safety': <ShieldCheck className="w-5 h-5" />,
         Notifications: <Bell className="w-5 h-5" />,
+        'Help Center': <CircleQuestionMark className="w-5 h-5"/>,
         Account: <LucideUserRoundCog className="w-5 h-5" />,
+
         Logout: <LogOut className="w-5 h-5" />,
     }
 
@@ -52,6 +54,7 @@ function SideMenu({ onDashboardSelect }) {
 
     const settingsItems = [
         { label: "Account", to: "/account-settings", icon: menuIcons.Account },
+        { label: "Help Center", to: "/help-center", icon: menuIcons['Help Center']},
         { label: "Logout", to: "/logout", icon: menuIcons.Logout },
     ];
 

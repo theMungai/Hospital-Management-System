@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate} from "react-router-dom";
 import { CircleQuestionMarkIcon, ChevronDownIcon, Settings, Bell, LogOut, UserRound, UserCog, Search } from 'lucide-react'
 
 const API_BASE_URL = 'http://localhost:8000';
@@ -10,6 +11,7 @@ function TopBar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const profileRef = useRef(null);
+    const navigate = useNavigate()
 
     // Get user initials
     const getInitials = () => {
@@ -109,12 +111,7 @@ function TopBar() {
                 {getInitials()}
               </span>
                         )}
-                        {/*<input*/}
-                        {/*    type="file"*/}
-                        {/*    className="hidden"*/}
-                        {/*    accept="image/*"*/}
-                        {/*    onChange={handleImageUpload}*/}
-                        {/*/>*/}
+
                     </label>
 
                     <div className="flex flex-col">
@@ -153,17 +150,17 @@ function TopBar() {
                         <DropdownItem
                             icon={UserRound}
                             text="Account Settings"
-                            onClick={() => setIsDropdownOpen(false)}
+                            onClick={() => { navigate("/account-settings"); setIsDropdownOpen(false); }}
                         />
                         <DropdownItem
                             icon={Bell}
                             text="Notifications"
-                            onClick={() => setIsDropdownOpen(false)}
+                            onClick={() => { navigate("/notifications"); setIsDropdownOpen(false); }}
                         />
                         <DropdownItem
                             icon={CircleQuestionMarkIcon}
                             text="Help Center"
-                            onClick={() => setIsDropdownOpen(false)}
+                            onClick={() => { navigate("/help-center"); setIsDropdownOpen(false); }}
                         />
 
                         <div className="my-2 border-t border-gray-100"></div>
