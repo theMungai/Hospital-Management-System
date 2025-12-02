@@ -1,8 +1,9 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
+from ..database.config import settings
 
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:ScriptedJava404!@localhost/Hospital_management_system"
+SQLALCHEMY_DATABASE_URL = settings.SQLALCHEMY_DATABASE_URL
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
