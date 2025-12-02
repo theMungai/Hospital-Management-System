@@ -19,3 +19,4 @@ class Appointment(Base):
 
     patient = relationship("Patient", back_populates="appointments")
     doctor = relationship("Doctor", back_populates="appointments")
+    notes = relationship("AppointmentNote", back_populates="appointment")
