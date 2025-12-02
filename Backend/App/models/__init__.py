@@ -7,6 +7,7 @@ from .Invoice import Invoice
 from .MedicalRecord import MedicalRecord
 from .Patient import Patient
 from .Payment import Payment
+from .AppointmentNote import AppointmentNote
 
 
 from ..database.database import Base

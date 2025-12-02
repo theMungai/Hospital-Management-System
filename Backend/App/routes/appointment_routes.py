@@ -13,6 +13,7 @@ def get_appointments(db: Session = Depends(get_db)):
     appointments = db.query(Appointment).all()
     return appointments
 
+
 @router.post("/appointments", response_model=AppointmentSchema.AppointmentCreate, status_code=status.HTTP_201_CREATED)
 def create_appointments(appointment: AppointmentSchema.AppointmentCreate,db: Session = Depends(get_db)):
     new_appointment = Appointment(**appointment.dict())
