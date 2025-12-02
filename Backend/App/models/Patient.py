@@ -31,3 +31,4 @@ class Patient(Base):
     group_number = Column(String, nullable=False)
 
     user = relationship("User", back_populates="patient")
+    appointments = relationship("Appointment", back_populates="patient")

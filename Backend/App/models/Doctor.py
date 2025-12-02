@@ -32,3 +32,4 @@ class Doctor(Base):
 
     # Relationship
     user = relationship("User", back_populates="doctor")
+    appointments = relationship("Appointment", back_populates="doctor")
