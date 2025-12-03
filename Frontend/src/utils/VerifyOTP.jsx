@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function VerifyOTP() {
     const [otp, setOtp] = useState("");
     const [focused, setFocused] = useState(false);
     const [timer, setTimer] = useState(0);
     const [message, setMessage] = useState("");
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         let interval;
@@ -14,39 +17,89 @@ function VerifyOTP() {
         return () => clearInterval(interval);
     }, [timer]);
 
-    async function handleResend(){
+    async function handleResend() {
+        const email = localStorage.getItem("email");
+        if (!email) return;
+
         try {
             if (timer > 0) return;
             setTimer(30);
             setMessage("");
 
-            setTimeout(() => {
-                setMessage("Verification code sent successfully!");
-            }, 1000);
+            await fetch("http://localhost:8000/send-otp", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
+            });
+
+            setMessage("Verification code sent successfully!");
         } catch (error) {
             setMessage("Failed to resend code. Try again later.");
         }
-    };
+    }
+
+    async function handleVerify() {
+        if (otp.length !== 6) {
+            setError("Please enter a 6-digit OTP");
+            return;
+        }
+
+        const token = localStorage.getItem("token");
+        if (!token) {
+            setError("Not authenticated");
+            return;
+        }
+
+        try {
+            const res = await fetch("http://localhost:8000/verify-otp", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ otp }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                setError(data.detail || "Invalid OTP");
+                return;
+            }
+
+            // Replace old token with verified token
+            localStorage.setItem("token", data.access_token);
+
+            // redirect based on role
+            if (data.role === "admin") navigate("/admin");
+            else if (data.role === "doctor") navigate("/doctor-dashboard");
+            else navigate("/patient-dashboard");
+
+        } catch (e) {
+            setError("OTP verification failed");
+        }
+    }
 
     return (
         <div className="h-screen flex justify-center items-center bg-gray-50 p-3">
             <div className="max-w-[380px] w-full text-center font-dmsans bg-gray-50 py-6">
-                <h1 className="text-xl text-left font-medium my-8 text-customTealBlue">
+                <h1 className="text-4xl text-center font-bold  mb-20 text-customTealBlue">
                     Healthcare hospital
                 </h1>
 
-                <h1 className="text-3xl font-extrabold mb-3 text-gray-800">
+                <h1 className="text-2xl font-extrabold mb-3 text-gray-800">
                     Check your inbox
                 </h1>
 
                 <p className="text-gray-600">Enter the verification code we sent to</p>
-                <p className="font-medium text-gray-600 mb-8">johndoe@gmail.com</p>
+                <p className="font-medium text-gray-600 mb-8">
+                    {localStorage.getItem("email")}
+                </p>
 
                 <div className="relative w-full mb-6">
                     <input
                         type="text"
                         inputMode="numeric"
-                        pattern="[0-9]*"
                         value={otp}
                         onChange={(e) => {
                             const value = e.target.value.replace(/\D/g, "");
@@ -55,33 +108,35 @@ function VerifyOTP() {
                         onFocus={() => setFocused(true)}
                         onBlur={() => setFocused(false)}
                         placeholder="Code"
-                        className={`peer w-full border border-gray-400 bg-transparent py-3 px-5 rounded-[25px] tracking-widest text-customTealBlue focus:outline-none focus:border-customTealBlue transition-colors placeholder:text-gray-400 placeholder:text-sm
-              [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none
-              [appearance:textfield]`}
+                        className="peer w-full border border-gray-400 bg-transparent py-3.5 px-5 rounded-[25px] tracking-widest text-customTealBlue focus:outline-none focus:border-customTealBlue transition-colors"
                     />
+
                     <label
-                        className={`absolute left-5 top-3 px-1 bg-gray-50 text-gray-500 transition-all duration-200 ease-in-out
-              ${focused || otp
-                            ? "-translate-y-6 text-sm text-customTealBlue"
-                            : "text-base translate-y-0"
+                        className={`absolute left-5 top-3 px-1 bg-gray-50 text-gray-500 transition-all duration-200 ${
+                            focused || otp
+                                ? "-translate-y-6 text-sm text-customTealBlue"
+                                : "text-base translate-y-0"
                         }`}
                     >
                         Code
                     </label>
                 </div>
 
-                {/* Verify Button */}
+                {error && <p className="text-red-600 mb-4">{error}</p>}
+                {message && <p className="text-green-600 mb-4">{message}</p>}
+
                 <button
-                    className="w-full bg-customTealBlue text-white py-3 rounded-[25px] hover:bg-[#007f85] transition font-medium"
+                    onClick={handleVerify}
+                    className="w-full bg-customTealBlue text-white py-3.5 rounded-[25px] hover:bg-[#007f85] transition font-medium"
                 >
                     Verify
                 </button>
 
-                {/* Resend Section */}
                 <div className="mt-5 text-sm text-gray-600">
                     {timer > 0 ? (
                         <p>
-                            You can resend in <span className="text-customTealBlue">{timer}s</span>
+                            You can resend in{" "}
+                            <span className="text-customTealBlue">{timer}s</span>
                         </p>
                     ) : (
                         <button
@@ -92,11 +147,6 @@ function VerifyOTP() {
                         </button>
                     )}
                 </div>
-
-                {/* Feedback message */}
-                {message && (
-                    <p className="mt-3 text-sm text-green-600">{message}</p>
-                )}
             </div>
         </div>
     );

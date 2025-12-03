@@ -16,6 +16,7 @@ class User(Base):
     password = Column(String, nullable=False)
     role = Column(Enum(RoleEnum), nullable=False)
     is_active = Column(Boolean, server_default="true", nullable=False)
+    verified = Column(Boolean, default=False, nullable=False)
     updated_at = Column(TIMESTAMP(timezone=True), onupdate=text('now()'))
     created_at = Column(TIMESTAMP(timezone=True), server_default=text('now()'))
 

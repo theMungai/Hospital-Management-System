@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from App.routes import user_routes, doctor_routes, patient_routes, appointment_routes, appointment_note_routes
-from App.auth import auth
+from App.auth import auth, oauth2
 
 
 def create_app():
@@ -21,6 +21,7 @@ def create_app():
     app.include_router(patient_routes.router)
     app.include_router(appointment_routes.router)
     app.include_router(appointment_note_routes.router)
+    app.include_router(oauth2.router)
     app.include_router(auth.router)
 
     return app

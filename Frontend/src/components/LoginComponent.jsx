@@ -38,25 +38,32 @@ function Login() {
                 return;
             }
 
-            // ⭐ SAVE user info
+            // SAVE login token (needed for OTP verification)
+            localStorage.setItem("token", data.access_token);
+
+            // SAVE user info
             localStorage.setItem("user_id", data.user.id);
             localStorage.setItem("role", data.user.role);
+            localStorage.setItem("email", email);
 
-            // ⭐ REDIRECT
-            if (data.user.role === "doctor") {
-                navigate("/doctor-dashboard");
-            } else if (data.user.role === "patient") {
-                navigate("/patient-dashboard");
-            } else if (data.user.role === "admin") {
-                navigate("/admin");
-            }
+            // SEND OTP
+            await fetch("http://localhost:8000/send-otp", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
+            });
+
+            // redirect to OTP page
+            navigate("/verify-otp");
 
         } catch (err) {
             setError("Network error, try again later.");
         }
     };
 
-  function togglePasswordVisibility(){
+
+
+    function togglePasswordVisibility(){
       setShowPassword(prev => !prev)
   }
 

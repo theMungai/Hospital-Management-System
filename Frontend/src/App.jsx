@@ -46,6 +46,7 @@ function App() {
           <Route path='/Register-patient' element={<SignUpPage />}/>
           <Route path='/Register-doctor' element={<RegisterDoctor />}/>
           <Route path='/log-in' element= {<SignInPage/>}/>
+            <Route path={'/verify-otp'}  element={<VerifyOTP/>} />
           <Route path='/terms-and-conditions' element={<TermsAndConditions />}/>
           <Route path={'/registration-complete'} element={<RegisteredSuccessfully/>} />
           <Route path={'/registration-failed'} element={<FailedToRegister />} />
