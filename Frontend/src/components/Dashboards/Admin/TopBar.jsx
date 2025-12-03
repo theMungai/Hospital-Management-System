@@ -60,6 +60,16 @@ function TopBar() {
         reader.readAsDataURL(file);
     };
 
+    function handleLogout(){
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_id");
+        localStorage.removeItem("role");
+        localStorage.removeItem("email");
+
+        navigate("/log-in");
+    }
+
+
     const toggleDropdown = () => setIsDropdownOpen(prev => !prev);
 
     const DropdownItem = ({ icon: Icon, text, onClick, className = '' }) => (
@@ -168,7 +178,7 @@ function TopBar() {
                         <DropdownItem
                             icon={LogOut}
                             text="Sign Out"
-                            onClick={() => setIsDropdownOpen(false)}
+                            onClick={() => {setIsDropdownOpen(false); handleLogout()}}
                             className="text-red-600 hover:bg-red-50 hover:text-red-700"
                         />
                     </div>
