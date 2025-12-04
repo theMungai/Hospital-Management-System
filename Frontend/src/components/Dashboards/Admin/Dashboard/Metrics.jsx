@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { ChevronRight, TrendingUp, Users, Calendar, CreditCard, Stethoscope } from "lucide-react"
 import {Link} from "react-router-dom";
 
@@ -35,27 +35,71 @@ function MetricCard({icon: Icon, title, count, percentStatus, to}){
 }
 
 function Metrics() {
+    const [appointmentsCount, setAppointmentsCount] = useState(0)
+    const [doctorsCount, setDoctorsCount] = useState(0)
+    const [patientsCount, setPatientsCount] = useState(0)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+
+    const fetchData = async (endpoint) => {
+        try {
+            const response = await fetch(`http://localhost:8000/${endpoint}`)
+            if(!response.ok){
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            const data = await response.json()
+
+            return data.length
+        } catch (err){
+            console.error(`Error fetching ${endpoint}:`, err)
+            return 0
+        }
+    }
+
+    useEffect(() => {
+        const loadCounts = async () => {
+            setLoading(true);
+            setError(null)
+            try {
+                const [appts, docs, pats] = await Promise.all([
+                    fetchData("appointments"),
+                    fetchData("doctors"),
+                    fetchData("patients")
+                ])
+                setAppointmentsCount(appts)
+                setDoctorsCount(docs)
+                setPatientsCount(pats)
+            }catch (e){
+                setError("Failed to fetch dashboard data.")
+            }finally {
+                setLoading(false)
+            }
+        }
+
+        loadCounts()
+    }, []);
+
 
     const dashboardMetrics = [
         {
             to: "/appointments",
             icon: Calendar,
             title: "Appointments",
-            count: 34,
+            count: appointmentsCount,
             percentStatus: "+8.1%"
         },
         {
             to: "/doctors",
             icon: Stethoscope,
             title: "Doctors",
-            count: 5,
+            count: doctorsCount,
             percentStatus: "-2.0%"
         },
         {
             to: "/patients",
             icon: Users,
             title: "Patients",
-            count: 128,
+            count: patientsCount,
             percentStatus: "+1.5%"
         },
         {
@@ -66,6 +110,14 @@ function Metrics() {
             percentStatus: "+15.9%"
         }
     ]
+
+    if (loading) {
+        return <div className="text-gray-500">Loading metrics...</div>;
+    }
+
+    if (error) {
+        return <div className="text-red-500">{error}</div>;
+    }
     return (
         <div className="my-8 ">
             <div className="w-full grid grid-cols-6 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
