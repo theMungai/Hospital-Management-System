@@ -120,7 +120,7 @@ function Metrics() {
     }
     return (
         <div className="my-8 ">
-            <div className="w-full grid grid-cols-6 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="w-full grid grid-cols-4 xs:grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-2 ">
                 {dashboardMetrics.map((metric, index) => (
                     <MetricCard
                         key={index}
