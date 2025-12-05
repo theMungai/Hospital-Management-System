@@ -1,6 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate} from "react-router-dom";
-import { CircleQuestionMarkIcon, ChevronDownIcon, Settings, Bell, LogOut, UserRound, UserCog, Search } from 'lucide-react'
+import {
+    CircleQuestionMarkIcon,
+    ChevronDownIcon,
+    Settings,
+    Bell,
+    LogOut,
+    UserRound,
+    UserCog,
+    Search,
+    Menu
+} from 'lucide-react'
 
 const API_BASE_URL = 'http://localhost:8000';
 const userId = localStorage.getItem("user_id");
@@ -9,6 +19,7 @@ function TopBar() {
     const [user, setUser] = useState({ first_name: "", last_name: "", role: "", email: "" });
     const [profileImage, setProfileImage] = useState(localStorage.getItem("profile_image") || null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const profileRef = useRef(null);
     const navigate = useNavigate()
@@ -85,13 +96,20 @@ function TopBar() {
     return (
         <div className='w-full bg-white flex justify-between items-center px-8 py-6 font-poppins'>
             {/* Search */}
-            <div className="flex items-center justify-between bg-[#007E85]/[0.06] py-2.5 px-3 rounded-full">
-                <input
-                    placeholder="What are you looking for?"
-                    className="bg-transparent w-[350px] font-dmsans text-gray-700 font-100 mx-6 placeholder:font-dmsans placeholder:font-[100] placeholder:text-[#838383]/75 outline-0"
-                />
-                <div className="bg-customTealBlue p-1 rounded-full cursor-pointer">
-                    <Search className="w-5 h-5 text-white" />
+            <div className="flex items-center gap-x-6">
+                <div className="xs:block sm:block md:block lg:block hidden">
+                    <button onClick={() => setMenuOpen(!menuOpen)} className="text-customTealBlue">
+                        <Menu className="bg-customTealBlue/[0.1] text-customTealBlue w-5 h-5" />
+                    </button>
+                </div>
+                <div className="flex items-center justify-between bg-[#007E85]/[0.06] py-2.5 px-3 rounded-full">
+                    <input
+                        placeholder="What are you looking for?"
+                        className="bg-transparent w-[350px] font-dmsans text-gray-700 font-100 mx-6 placeholder:font-dmsans placeholder:font-[100] placeholder:text-[#838383]/75 outline-0"
+                    />
+                    <div className="bg-customTealBlue p-1 rounded-full cursor-pointer">
+                        <Search className="w-5 h-5 text-white" />
+                    </div>
                 </div>
             </div>
 

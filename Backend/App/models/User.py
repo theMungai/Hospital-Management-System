@@ -15,6 +15,7 @@ class User(Base):
     phone_number = Column(String, nullable=False)
     password = Column(String, nullable=False)
     role = Column(Enum(RoleEnum), nullable=False)
+    profile_image = Column(String, nullable=False)
     is_active = Column(Boolean, server_default="true", nullable=False)
     verified = Column(Boolean, default=False, nullable=False)
     updated_at = Column(TIMESTAMP(timezone=True), onupdate=text('now()'))
