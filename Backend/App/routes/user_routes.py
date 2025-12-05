@@ -38,7 +38,7 @@ def create_user(
         phone_number: str = Form(...),
         password: str = Form(...),
         role: RoleEnum = Form(...),
-        profile_image: UploadFile = File(...),
+        profile_image: UploadFile = File(None),
         db: Session = Depends(get_db)
 
 ):

@@ -13,7 +13,7 @@ class UserBase(BaseModel):
 
 
 class UserCreate(UserBase):
-    profile_image: str = Field(..., description="Image filename or URL")
+    profile_image: str = Field(None, description="Image filename or URL")
     password : str
 
 
