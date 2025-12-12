@@ -46,7 +46,6 @@ function SideMenu({ onDashboardSelect }) {
         { label: "Departments", to: "/departments", icon: menuIcons.Departments },
         { label: "Analytics", to: "/analytics", icon: menuIcons.Analytics },
         { label: "Doctors Leaderboard", to: "/doctors-leaderboard", icon: menuIcons['Doctors Leaderboard'] },
-        { label: "Medical Records", to: "/medical-records", icon: menuIcons['Medical Records'] },
         { label: "Payments", to: "/payments", icon: menuIcons.Payments },
         { label: "Quality & Safety", to: "/quality-and-safety", icon: menuIcons['Quality & Safety'] },
         { label: "Notifications", to: "/notifications", icon: menuIcons.Notifications },

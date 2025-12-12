@@ -41,6 +41,10 @@ def save_file_securely(upload_file: UploadFile) -> str:
     return file_path
 
 
+def get_top_practitioners(db):
+    pass
+
+
 @router.post("/doctors", status_code=status.HTTP_201_CREATED)
 def create_doctor(
         # User fields

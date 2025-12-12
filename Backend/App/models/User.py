@@ -24,3 +24,4 @@ class User(Base):
     # Relationship
     doctor = relationship("Doctor", back_populates="user")
     patient = relationship("Patient", back_populates="user")
+    notifications = relationship("Notification", back_populates='recipient')

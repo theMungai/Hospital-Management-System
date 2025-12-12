@@ -4,7 +4,8 @@ from sqlalchemy.orm import relationship
 from ..database.database import Base
 
 
-class Notifications(Base):
+class Notification(Base):
+    __tablename__ = "notifications"
 
     id = Column(Integer, primary_key=True)
 

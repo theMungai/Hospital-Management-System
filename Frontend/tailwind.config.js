@@ -20,7 +20,8 @@ export default {
         customGreen: '#6EAB36',
         customTealBlue: '#007E85',
         customWhite:'#f4f4f4',
-        darkGray: '#4F4F4F'
+        darkGray: '#4F4F4F',
+        lightGray: "#A0A0A0"
       },
       fontFamily: {
         poppins : ['Poppins', 'sans-serif'],

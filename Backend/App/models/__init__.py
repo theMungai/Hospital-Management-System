@@ -8,6 +8,7 @@ from .MedicalRecord import MedicalRecord
 from .Patient import Patient
 from .Payment import Payment
 from .AppointmentNote import AppointmentNote
+from .Notification import Notification
 
 
 from ..database.database import Base
