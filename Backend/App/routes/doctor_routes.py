@@ -1,5 +1,6 @@
 from fastapi import Depends, status, HTTPException, APIRouter, File, Form, UploadFile
 from sqlalchemy.orm import Session
+from sqlalchemy import func, desc
 from typing import List
 from pydantic import EmailStr
 from datetime import date
@@ -7,7 +8,7 @@ import os
 import uuid
 from typing import BinaryIO
 
-from ..models import User, Doctor
+from ..models import User, Doctor, Appointment
 from ..database.database import get_db
 from ..utils.hashing import hash_pwd
 from ..schemas.DoctorSchema import DoctorOut, DoctorCreate
@@ -42,7 +43,48 @@ def save_file_securely(upload_file: UploadFile) -> str:
 
 
 def get_top_practitioners(db):
-    pass
+    appointment_count_alias = func.count().label("appointment_count")
+
+    query = db.query(
+        User.first_name,
+        User.last_name,
+        User.profile_image,
+        Doctor.id,
+        Doctor.specialty,
+        appointment_count_alias
+    )
+
+    query = query.join(User, Doctor.user_id == User.id)
+    query = query.join(Appointment, Doctor.id == Appointment.doctor_id)
+
+    query = query.group_by(
+        User.first_name,
+        User.last_name,
+        User.profile_image,
+        Doctor.id,
+        Doctor.specialty
+    )
+
+
+    query = query.order_by(desc(appointment_count_alias)).limit(5)
+
+    results = query.all()
+
+    top_doctors_list = []
+
+    for row in results:
+        top_doctors_list.append({
+            "id": row.id,
+            "first_name": row.first_name,
+            "last_name": row.last_name,
+            "profile_image": row.profile_image,
+            "specialty": row.specialty,
+            "appointment_count": row.appointment_count
+        })
+
+    
+    return top_doctors_list
+
 
 
 @router.post("/doctors", status_code=status.HTTP_201_CREATED)
@@ -157,3 +199,14 @@ def create_doctor(
 def get_doctors(db: Session = Depends(get_db)):
     doctors = db.query(Doctor).all()
     return doctors
+
+
+@router.get("/doctors/top-practitioners")
+def read_top_practitioners(db: Session = Depends(get_db)):
+    try:
+        top_doctors = get_top_practitioners(db)
+        return top_doctors
+    
+    except Exception as error:
+        print(f"Database error: {error}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Internal server error while fetching top practitioners")
