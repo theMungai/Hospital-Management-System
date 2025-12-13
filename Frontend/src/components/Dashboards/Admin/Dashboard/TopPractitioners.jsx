@@ -20,10 +20,10 @@ function PractitionerItem({ practitioner, isLast, index }) {
 
     const alternatingBgClass = index % 2 === 0 
         ? 'bg-white' 
-        : 'bg-customTealBlue/[0.06]'; 
+        : 'bg-customTealBlue/[0.04]'; 
 
     return (
-        <div className={`p-4 ${alternatingBgClass} ${isLast ? 'rounded-md' : ''}`}>
+        <div className={`p-4 hover:bg-customTealBlue/[0.08] cursor-pointer ${alternatingBgClass} ${isLast ? 'rounded-md' : ''}`}>
             <div className="flex justify-between items-start">
 
                 <section className="flex gap-3 items-start flex-grow">

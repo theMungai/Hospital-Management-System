@@ -154,7 +154,7 @@ function TopBar() {
 
                     {/* Dropdown */}
                     <div
-                        className={`drop-down absolute top-full right-0 mt-3 w-72 bg-white rounded-3xl border border-gray-100 z-50 p-2 transform origin-top-right transition-all duration-500 ease-in-out
+                        className={`drop-down absolute top-full right-0 mt-3 w-72 bg-white shadow-xl rounded-3xl border border-gray-100 z-50 p-2 transform origin-top-right transition-all duration-500 ease-in-out
               ${isDropdownOpen ? "opacity-100 translate-y-0 max-h-[500px]" : "opacity-0 -translate-y-4 max-h-0 pointer-events-none"}`}
                     >
                         {/* Header */}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom'
 import toggleSidebarBtn from '../../../../public/icons/toggle_sidebar.png'
 
-import { LayoutDashboard, Stethoscope, UserRound, CalendarClock, FolderTree, ChartSpline, MedalIcon, CreditCard, FileTextIcon, ShieldCheck, Bell, LucideUserRoundCog, LogOut, ChevronDownIcon, ChevronUpIcon, CircleQuestionMark} from "lucide-react";
+import { LayoutDashboard, Stethoscope, UserRound, CalendarClock, FolderTree, ChartSpline, CreditCard, FileTextIcon, ShieldCheck, Bell, LucideUserRoundCog, LogOut, ChevronDownIcon, ChevronUpIcon, CircleQuestionMark} from "lucide-react";
 
 function SideMenu({ onDashboardSelect }) {
     const [isDashboardOpen, setIsDashboardOpen] = useState(true);
@@ -18,7 +18,6 @@ function SideMenu({ onDashboardSelect }) {
         Appointments: <CalendarClock className="w-5 h-5" />,
         Departments: <FolderTree className="w-5 h-5" />,
         Analytics: <ChartSpline className="w-5 h-5" />,
-        'Doctors Leaderboard': <MedalIcon className="w-5 h-5" />,
         'Medical Records': <FileTextIcon className="w-5 h-5" />,
         Payments: <CreditCard className="w-5 h-5" />,
         'Quality & Safety': <ShieldCheck className="w-5 h-5" />,
@@ -45,7 +44,6 @@ function SideMenu({ onDashboardSelect }) {
     const otherMenuItems = [
         { label: "Departments", to: "/departments", icon: menuIcons.Departments },
         { label: "Analytics", to: "/analytics", icon: menuIcons.Analytics },
-        { label: "Doctors Leaderboard", to: "/doctors-leaderboard", icon: menuIcons['Doctors Leaderboard'] },
         { label: "Payments", to: "/payments", icon: menuIcons.Payments },
         { label: "Quality & Safety", to: "/quality-and-safety", icon: menuIcons['Quality & Safety'] },
         { label: "Notifications", to: "/notifications", icon: menuIcons.Notifications },
