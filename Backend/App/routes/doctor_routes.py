@@ -43,7 +43,7 @@ def save_file_securely(upload_file: UploadFile) -> str:
 
 
 def get_top_practitioners(db):
-    appointment_count_alias = func.count().label("appointment_count")
+    appointment_count_alias = func.count(Appointment.id).label("appointment_count")
 
     query = db.query(
         User.first_name,
@@ -55,7 +55,7 @@ def get_top_practitioners(db):
     )
 
     query = query.join(User, Doctor.user_id == User.id)
-    query = query.join(Appointment, Doctor.id == Appointment.doctor_id)
+    query = query.outerjoin(Appointment, Doctor.id == Appointment.doctor_id)
 
     query = query.group_by(
         User.first_name,
