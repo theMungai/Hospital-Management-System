@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function getInitials (firstName, lastName){
     if (!firstName || !lastName) return "";
@@ -7,7 +6,7 @@ function getInitials (firstName, lastName){
 };
 
 
-function PractitionerItem({ practitioner, isLast }) {
+function PractitionerItem({ practitioner, isLast, index }) { 
     const {
         first_name,
         last_name,
@@ -18,35 +17,47 @@ function PractitionerItem({ practitioner, isLast }) {
 
     const initials = getInitials(first_name, last_name);
 
+
+    const alternatingBgClass = index % 2 === 0 
+        ? 'bg-white' 
+        : 'bg-customTealBlue/[0.06]'; 
+
     return (
-        <div className={`flex justify-between items-center ${isLast ? '' : 'mb-12'}`}>
-            <section className="flex gap-x-9 items-center">
-                {profile_image ? (
-                    <img
-                        src={profile_image}
-                        alt={`${first_name} ${last_name}`}
-                        className="w-16 h-16 rounded-full object-cover"
-                    />
-                ) : (
-                    <div className="w-16 h-16 rounded-full bg-customTealBlue flex items-center justify-center text-white font-bold text-xl">
-                        {initials}
-                    </div>
-                )}
+        <div className={`p-4 ${alternatingBgClass} ${isLast ? 'rounded-md' : ''}`}>
+            <div className="flex justify-between items-start">
 
-                <div>
-                    <h3 className="text-darkGray font-bold text-[20px] mb-4">
-                        {first_name} {last_name}
-                    </h3>
-                    <div className="bg-customGreen/[0.8] rounded-[8px] px-4 py-2 text-white ">
-                        <p>{specialty}</p>
+                <section className="flex gap-3 items-start flex-grow">
+
+                    {profile_image ? (
+                        <img
+                            src={profile_image}
+                            alt={`${first_name} ${last_name}`}
+                            className="w-14 h-14 rounded-full object-cover flex-shrink-0"
+                        />
+                    ) : (
+                        <div className="w-14 h-14 rounded-full bg-customTealBlue flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                            {initials}
+                        </div>
+                    )}
+
+                    <div className="py-0.5">
+                        <h3 className="text-darkGray font-extrabold text-lg mb-0.5 leading-snug">
+                            {first_name} {last_name}
+                        </h3>
+                        <div className="inline-block bg-customGreen/[0.1] text-customGreen/[0.9] text-xs font-medium px-2 py-0.5 rounded-full">
+                            {specialty}
+                        </div>
                     </div>
+                </section>
+
+                <div className="flex flex-col items-end pt-1">
+                    <span className="text-2xl font-black text-customTealBlue leading-none">
+                        {appointment_count}
+                    </span>
+                    <p className="text-xs text-gray-500 font-semibold mt-1 whitespace-nowrap">
+                        Appointments
+                    </p>
                 </div>
-            </section>
-
-            <div>
-                <p className="text-customTealBlue font-light">
-                    <span className="font-extrabold">{appointment_count}</span> appointments
-                </p>
             </div>
         </div>
     );
@@ -59,7 +70,6 @@ function TopPractitioners() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchTopPractitioners = async () => {
@@ -144,13 +154,7 @@ function TopPractitioners() {
     return (
         <div className="bg-white rounded-[6px] px-4 py-8 border-[0.1px] border-[#4F4F4F]/[0.1]">
             <section className="flex justify-between items-center mb-8">
-                <h1 className="text-darkGray font-bold text-[24px]">Top Practitioners</h1>
-                <button
-                    className="text-lightGray/[0.74] text-[18px]"
-                    onClick={() => navigate("/doctors-leaderboard")}
-                >
-                    View all
-                </button>
+                <h1 className="text-darkGray font-bold text-[22px]">Top Practitioners</h1>
             </section>
 
             <section>
