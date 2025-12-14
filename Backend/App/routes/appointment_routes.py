@@ -19,7 +19,9 @@ def get_custom_appointment(db):
         Doctor.specialty,
         Appointment.reason_for_visit,
         Appointment.appointment_date,
-        Appointment.appointment_status
+        Appointment.appointment_status,
+        Appointment.duration_minutes,
+        Appointment.appointment_type
     )
 
     query = query.join(User, Doctor.user_id == User.id)
@@ -34,7 +36,9 @@ def get_custom_appointment(db):
         Doctor.specialty,
         Appointment.reason_for_visit,
         Appointment.appointment_date,
-        Appointment.appointment_status
+        Appointment.appointment_status,
+        Appointment.duration_minutes,
+        Appointment.appointment_type
     )
 
 
@@ -51,7 +55,9 @@ def get_custom_appointment(db):
             "specialty": row.specialty,
             "reason_for_visit": row.reason_for_visit,
             "appointment_date": row.appointment_date,
-            "appointment_status": row.appointment_status
+            "appointment_status": row.appointment_status,
+            "duration_minutes": row.duration_minutes,
+            "appointment_type": row.appointment_type
         })
 
     

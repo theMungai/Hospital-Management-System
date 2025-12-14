@@ -3,7 +3,7 @@ import Layout from "../Layout.jsx";
 import Welcome from "./Welcome.jsx";
 import Metrics from "./Metrics.jsx";
 import PatientsAnalytics from "./PatientsAnalytics.jsx";
-import Appointments from "./Appointments.jsx";
+import AppointmentsDashboard from "./AppointmentsDashboard.jsx";
 import RecentPatients from "./RecentPatients.jsx";
 import TopPractitioners from "./TopPractitioners.jsx";
 import DashboardNotifications from "./DashboardNotifications.jsx";
@@ -22,7 +22,7 @@ const AdminDashboard = () => {
                 <div className="mt-6 flex xs:flex-col sm:flex-col md:flex-col flex-row gap-6">
                     <div className="w-2/3 xs:w-full sm:w-full md:w-full space-y-6">
                         <PatientsAnalytics />
-                        <Appointments />
+                        <AppointmentsDashboard />
                         <RecentPatients />
                         <Doctors />
                     </div>

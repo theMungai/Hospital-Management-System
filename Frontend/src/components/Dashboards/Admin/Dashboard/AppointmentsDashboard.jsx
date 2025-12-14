@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useAppointments } from '../../../../hooks/useAppointments';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -79,35 +79,9 @@ function AppointmentRow({ appointment, index }) {
 }
 
 
-function Appointments() {
-    const [appointments, setAppointments] = useState([]); 
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
+function AppointmentsDashboard() {
+    const { appointments, loading, error } = useAppointments(true)
     const navigate = useNavigate();
-
-    useEffect(() => {
-        async function fetchAppointments() {
-            try {
-                const response = await fetch('/appointments');
-                const data = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(data?.detail || 'Failed to fetch appointments');
-                }
-
-                setAppointments(data);
-            } catch (err) {
-                console.error("Error fetching appointments:", err.message);
-                setError("Failed to load appointments data.");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchAppointments();
-    }, []);
-
 
     if (loading) {
         return <div className="p-4 text-center text-gray-500">Loading appointments...</div>;
@@ -163,4 +137,4 @@ function Appointments() {
     );
 }
 
-export default Appointments;
+export default AppointmentsDashboard;
