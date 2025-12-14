@@ -154,7 +154,7 @@ function TopPractitioners() {
     return (
         <div className="bg-white rounded-[6px] px-4 py-8 border-[0.1px] border-[#4F4F4F]/[0.1]">
             <section className="flex justify-between items-center mb-8">
-                <h1 className="text-darkGray font-bold text-[22px]">Top Practitioners</h1>
+                <h1 className="text-darkGray font-bold text-[20px]">Top Practitioners</h1>
             </section>
 
             <section>
