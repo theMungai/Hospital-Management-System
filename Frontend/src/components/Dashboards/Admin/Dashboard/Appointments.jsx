@@ -27,13 +27,13 @@ function AppointmentRow({ appointment, index }) {
         : 'bg-customTealBlue/[0.04]'; 
     
     const statusClassMap = {
-        Scheduled: 'bg-yellow-100 text-yellow-800',
-        Completed: 'bg-green-100 text-green-800',
-        Pending: 'bg-blue-100 text-blue-800',
-        Canceled: 'bg-red-100 text-red-800',
+        Scheduled: 'bg-[#FFA500]/[0.10] text-[#FFA500]/[0.56] border border-[#FFA500]/[0.56]',
+        Completed: 'bg-[#6EAB36]/[0.10] text-[#6EAB36]/[0.56] border border-[#6EAB36]/[0.56]',
+        Pending: 'bg-[#0099FF]/[0.10] text-[#0099FF]/[0.56] border border-[#0099FF]/[0.56]',
+        Canceled: 'bg-[#FF3C00]/[0.10] text-[#FF3C00]/[0.56] border border-[#FF3C00]/[0.56]',
     };
     
-    const statusBadgeClass = statusClassMap[status] || 'bg-gray-100 text-gray-800';
+    const statusBadgeClass = statusClassMap[appointment_status] || 'bg-gray-100 text-gray-800';
 
     const formattedDate = new Date(appointment_date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
 
@@ -70,7 +70,7 @@ function AppointmentRow({ appointment, index }) {
             </div>
 
             <div className="w-1/5 text-right">
-                <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${statusBadgeClass}`}>
+                <span className={`inline-block px-3 py-1 text-base font-semibold rounded-lg ${statusBadgeClass}`}>
                     {appointment_status}
                 </span>
             </div>
