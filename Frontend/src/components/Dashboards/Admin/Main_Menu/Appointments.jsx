@@ -9,10 +9,13 @@ function getInitials (firstName, lastName){
 function AppointmentRow({ appointment, index }) {
 
     const {
-        first_name,
-        last_name,
-        profile_image,
-        specialty,
+        doctor_first_name,
+        doctor_last_name,
+        doctor_profile_image,
+        specialty, 
+        patient_first_name,
+        patient_last_name,
+        patient_profile_image, 
         reason_for_visit,
         appointment_date,
         appointment_status,
@@ -20,11 +23,13 @@ function AppointmentRow({ appointment, index }) {
         appointment_type
     } = appointment;
     
-    const initials = getInitials(first_name, last_name);
 
-    const alternatingBgClass = index % 2 === 0 
-        ? 'bg-white' 
-        : 'bg-customTealBlue/[0.04]'; 
+    const doctorInitials = getInitials(doctor_first_name, doctor_last_name)
+    const patientInitials = getInitials(patient_first_name, patient_last_name)
+
+
+    const subtitle = specialty || 'No Specialty'; 
+
     
     const statusClassMap = {
         Scheduled: 'bg-[#FFA500]/[0.10] text-[#FFA500]/[0.56] border border-[#FFA500]/[0.56]',
@@ -32,32 +37,54 @@ function AppointmentRow({ appointment, index }) {
         Pending: 'bg-[#0099FF]/[0.10] text-[#0099FF]/[0.56] border border-[#0099FF]/[0.56]',
         Canceled: 'bg-[#FF3C00]/[0.10] text-[#FF3C00]/[0.56] border border-[#FF3C00]/[0.56]',
     };
+
     
+
     const statusBadgeClass = statusClassMap[appointment_status] || 'bg-gray-100 text-gray-800';
 
     const formattedDate = new Date(appointment_date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
 
     return (
         <div 
-            className={`flex items-center p-3 text-sm border-b border-gray-100 hover:bg-customTealBlue/[0.08] cursor-pointer ${alternatingBgClass}`}
-        >
+        className={`flex items-center p-3 text-sm border-b border-gray-100 hover:bg-customTealBlue/[0.08] cursor-pointer ${
+            index % 2 === 0 ? 'bg-white' : 'bg-customTealBlue/[0.04]'
+        }`}
+    >
             <div className="flex items-center flex-1 min-w-[150px] pr-2"> 
-                {profile_image ? (
+                {doctor_profile_image ? (
                     <img
-                        src={profile_image}
-                        alt={`${first_name}`}
+                        src={doctor_profile_image}
+                        alt={`${doctor_first_name}`}
                         className="w-8 h-8 rounded-full object-cover mr-2"
                     />
                 ) : (
                     <div className="w-8 h-8 rounded-full bg-customTealBlue flex items-center justify-center text-white font-bold text-xs mr-2">
-                        {initials}
+                        {doctorInitials}
                     </div>
                 )}
                 <div>
-                    <p className="font-semibold text-base text-darkGray mb-1">{first_name} {last_name}</p>
-                    <p className="text-sm text-gray-500 italic">{specialty}</p>
+                    <p className="text-base font-semibold text-darkGray ">Dr. {doctor_first_name} {doctor_last_name}</p>
+                    <p className="text-sm text-lightGray italic ">{subtitle}</p>
                 </div>
             </div>
+
+            <div className="flex items-center flex-1 min-w-[150px] pr-2"> 
+                {patient_profile_image ? (
+                    <img
+                        src={patient_profile_image}
+                        alt={`${patient_first_name}`}
+                        className="w-8 h-8 rounded-full object-cover mr-2"
+                    />
+                ) : (
+                    <div className="w-8 h-8 rounded-full bg-customTealBlue flex items-center justify-center text-white font-bold text-xs mr-2">
+                        {patientInitials}
+                    </div>
+                )}
+                <div>
+                    <p className="text-sm text-gray-500 italic"> {patient_first_name} {patient_last_name}</p>
+                </div>
+            </div>
+
             <div className="flex-1 min-w-[200px] text-gray-700 truncate pr-2">
                 {reason_for_visit}
             </div>
@@ -74,7 +101,7 @@ function AppointmentRow({ appointment, index }) {
                 {appointment_type}
             </div>
 
-            <div className="w-[15%]">
+            <div className="w-[15%] text-right">
                 <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-lg ${statusBadgeClass}`}>
                     {appointment_status}
                 </span>
@@ -82,7 +109,6 @@ function AppointmentRow({ appointment, index }) {
         </div>
     );
 }
-
 
 function Appointments() {
     const { appointments, loading, error } = useAppointments()
@@ -109,7 +135,8 @@ function Appointments() {
             
             <div className="flex items-center bg-gray-50">
                 <div className={`${tableHeaderClass} flex-1 min-w-[150px]`}>Assigned Doctor</div>
-                <div className={`${tableHeaderClass} flex-1 min-w-[200px]`}>Reason</div>
+                <div className={`${tableHeaderClass} flex-1 min-w-[150px]`}>Patient</div>
+                <div className={`${tableHeaderClass} flex-1 min-w-[200px]`}>Reason for Visit</div>
                 <div className={`${tableHeaderClass} w-[10%]`}>Date</div>
                 <div className={`${tableHeaderClass} w-[15%]`}>Duration</div>
                 <div className={`${tableHeaderClass} w-[15%]`}>Type</div>
