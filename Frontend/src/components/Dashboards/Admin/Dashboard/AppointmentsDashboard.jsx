@@ -69,7 +69,7 @@ function AppointmentRow({ appointment, index }) {
                 {formattedDate}
             </div>
 
-            <div className="w-1/5 text-right">
+            <div className="w-1/5 text-left">
                 <span className={`inline-block px-3 py-1 text-base font-semibold rounded-lg ${statusBadgeClass}`}>
                     {appointment_status}
                 </span>
@@ -120,7 +120,7 @@ function AppointmentsDashboard() {
                 <div className={`${tableHeaderClass} w-1/4 min-w-[150px]`}>Assigned Doctor</div>
                 <div className={`${tableHeaderClass} w-2/5 min-w-[200px]`}>Reason</div>
                 <div className={`${tableHeaderClass} w-[15%]`}>Date</div>
-                <div className={`${tableHeaderClass} w-1/5 text-right`}>Status</div>
+                <div className={`${tableHeaderClass} w-1/5`}>Status</div>
             </div>
 
             <div className="divide-y divide-gray-100">

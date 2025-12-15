@@ -10,9 +10,9 @@
     margin: 0;
 }
 
-/**{*/
-/*    outline: 2px solid red;*/
-/*}*/
+/* *{
+    outline: 2px solid red;
+} */
 
 
 .recharts-wrapper:focus,

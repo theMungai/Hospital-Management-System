@@ -74,7 +74,7 @@ function AppointmentRow({ appointment, index }) {
                 {appointment_type}
             </div>
 
-            <div className="w-[15%] text-right">
+            <div className="w-[15%]">
                 <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-lg ${statusBadgeClass}`}>
                     {appointment_status}
                 </span>
@@ -100,10 +100,10 @@ function Appointments() {
 
     return (
         <Layout>
-            <div className="bg-white rounded-[6px] font-poppins  border-[0.1px] border-[#4F4F4F]/[0.1] overflow-hidden">
+            <div className="px-8 py-9 overflow-y-auto  rounded-[6px] font-poppins overflow-hidden">
             
-            <section className="flex justify-between items-center px-4 py-3">
-                <h1 className="text-darkGray font-bold text-[20px]">Appointments</h1>
+            <section className="">
+                <h2 className="text-customTealBlue font-bold mb-7 text-lg">Appointments</h2>
                 
             </section>
             
@@ -113,7 +113,7 @@ function Appointments() {
                 <div className={`${tableHeaderClass} w-[10%]`}>Date</div>
                 <div className={`${tableHeaderClass} w-[15%]`}>Duration</div>
                 <div className={`${tableHeaderClass} w-[15%]`}>Type</div>
-                <div className={`${tableHeaderClass} w-[15%] text-right`}>Status</div>
+                <div className={`${tableHeaderClass} w-[15%] `}>Status</div>
             </div>
 
             <div className="divide-y divide-gray-100">
