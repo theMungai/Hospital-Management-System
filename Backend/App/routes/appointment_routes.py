@@ -8,7 +8,7 @@ from ..database.database import get_db
 
 router = APIRouter(tags=["Appointments"])
 
-def get_custom_appointment(db: Session):
+def get_custom_appointment(db):
     
     DoctorUser = aliased(User)
     PatientUser = aliased(User)

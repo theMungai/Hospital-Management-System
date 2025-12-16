@@ -11,16 +11,16 @@ function getInitials (firstName, lastName){
 function AppointmentRow({ appointment, index }) {
 
     const {
-        first_name,
-        last_name,
-        profile_image,
+        doctor_first_name,
+        doctor_last_name,
+        doctor_profile_image,
         specialty,
         reason_for_visit,
         appointment_date,
         appointment_status,
     } = appointment;
     
-    const initials = getInitials(first_name, last_name);
+    const initials = getInitials(doctor_first_name, doctor_last_name);
 
     const alternatingBgClass = index % 2 === 0 
         ? 'bg-white' 
@@ -44,10 +44,10 @@ function AppointmentRow({ appointment, index }) {
         >
             
             <div className="flex items-center w-1/4 min-w-[150px] pr-2">
-                {profile_image ? (
+                {doctor_profile_image ? (
                     <img
-                        src={profile_image}
-                        alt={`${first_name}`}
+                        src={doctor_profile_image}
+                        alt={`${doctor_first_name}`}
                         className="w-8 h-8 rounded-full object-cover mr-2"
                     />
                 ) : (
@@ -56,7 +56,7 @@ function AppointmentRow({ appointment, index }) {
                     </div>
                 )}
                 <div>
-                    <p className="font-semibold text-base text-darkGray mb-1">{first_name} {last_name}</p>
+                    <p className="font-semibold text-base text-darkGray mb-1">{doctor_first_name} {doctor_last_name}</p>
                     <p className="text-sm text-gray-500 italic">{specialty}</p>
                 </div>
             </div>
