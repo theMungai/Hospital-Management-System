@@ -17,7 +17,7 @@ export function useAppointments(fetchAll = true){
     useEffect(() => {
         async function fetchAppointments(){
             try {
-                const response = await fetch('/appointments');
+                const response = await fetch('/api/appointments');
                 const data = await response.json()
 
                 if (!response.ok){
