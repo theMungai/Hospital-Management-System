@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { 
     EllipsisVertical, 
     CalendarRange, 
     UserRoundPen, 
-    CheckCircle2, 
     Ban, 
-    Clock9, 
     BellRing,
-    FileText
+    ChevronRight,
+    RefreshCw,
+    CheckCircle2,
+    Clock
 } from "lucide-react";
 
 import { useAppointments } from "../../../../hooks/useAppointments.js";
@@ -21,8 +21,7 @@ function getInitials(firstName, lastName) {
 
 function AppointmentRow({ appointment, index }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    
-
+    const [isStatusMenuOpen, setIsStatusMenuOpen] = useState(false);
     const dropdownRef = useRef(null);
 
     const {
@@ -44,26 +43,40 @@ function AppointmentRow({ appointment, index }) {
     const doctorInitials = getInitials(doctor_first_name, doctor_last_name);
     const patientInitials = getInitials(patient_first_name, patient_last_name);
 
+    // Close dropdown when clicking outside
     useEffect(() => {
         const handleClickOutside = (e) => {
             if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
                 setIsDropdownOpen(false);
+                setIsStatusMenuOpen(false);
             }
         };
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    const DropdownItem = ({ icon: Icon, text, onClick, className = '' }) => (
+
+    function toggleStatusDropDown(){
+        setIsStatusMenuOpen(prev => !prev)
+    }
+
+    const DropdownItem = ({ icon: Icon, text, onClick, hasSubmenu, className = '' }) => (
         <button
             onClick={(e) => {
                 e.stopPropagation();
-                onClick();
+                if (onClick) onClick();
             }}
-            className={`flex items-center w-full px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors ${className}`}
+            
+            className={`flex items-center justify-between w-full px-4 py-2.5 text-sm text-gray-700 hover:bg-[#007E85]/[0.06] hover:text-customTealBlue transition-colors ${className}`}
         >
-            <Icon className="w-4 h-4 mr-3 text-gray-500" />
-            {text}
+            <div className="flex items-center">
+                <Icon className="w-4 h-4 mr-3" />
+                {text}
+            </div>
+            {hasSubmenu && <ChevronRight 
+                onClick={toggleStatusDropDown}
+                className={`w-4 h-4 text-gray-500 ml-1 transition-transform ${isStatusMenuOpen ? 'rotate-90' : 'rotate-0'}`}
+            />}
         </button>
     );
 
@@ -78,8 +91,7 @@ function AppointmentRow({ appointment, index }) {
     const formattedDate = new Date(appointment_date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
 
     return (
-        <div className={`flex items-center p-3 text-sm border-b border-gray-100 hover:bg-customTealBlue/[0.02] relative ${index % 2 === 0 ? 'bg-white' : 'bg-customTealBlue/[0.04]'}`}>
-            {/* Doctor Column */}
+        <div className={`flex items-center p-3 text-sm hover:bg-customTealBlue/[0.02] relative ${index % 2 === 0 ? 'bg-white' : 'bg-customTealBlue/[0.04]'}`}>
             <div className="flex items-center flex-1 min-w-[150px] pr-2">
                 {doctor_profile_image ? (
                     <img src={doctor_profile_image} alt="" className="w-8 h-8 rounded-full object-cover mr-2" />
@@ -98,10 +110,11 @@ function AppointmentRow({ appointment, index }) {
                 ) : (
                     <div className="w-8 h-8 rounded-full bg-gray-400 flex items-center justify-center text-white font-bold text-xs mr-2">{patientInitials}</div>
                 )}
-                <p className="text-sm text-gray-600 font-medium">{patient_first_name} {patient_last_name}</p>
+                <p className="text-sm text-gray-600 font-medium">{patient_first_name || 'No'} {patient_last_name || 'Patient'}</p>
             </div>
 
             <div className="flex-1 min-w-[200px] text-gray-700 truncate pr-2">{reason_for_visit}</div>
+
             <div className="w-[10%] text-gray-600 font-medium whitespace-nowrap">{formattedDate}</div>
             <div className="w-[15%] text-gray-600 font-medium">{duration_minutes} min</div>
             <div className="w-[15%] text-gray-600 font-medium">{appointment_type}</div>
@@ -115,30 +128,44 @@ function AppointmentRow({ appointment, index }) {
             <div className="relative" ref={dropdownRef}>
                 <button 
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className={`hover:bg-lightGray/[0.2] p-2 rounded-full transition-colors ${isDropdownOpen ? 'bg-gray-200' : ''}`}
+                    className={`hover:bg-gray-200 p-2 rounded-full transition-colors ${isDropdownOpen ? 'bg-gray-200' : ''}`}
                 >
                     <EllipsisVertical className="w-5 h-5 text-gray-600" />
                 </button>
+                
 
                 {isDropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-56 bg-white shadow-xl rounded-xl border border-gray-100 z-50 py-2 transform origin-top-right">
-                        <p className="px-4 py-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Manage Appointment</p>
+                    <div className="absolute right-0 mt-2 w-60 bg-white shadow-2xl rounded-xl border border-gray-100 py-2 z-70 transform transition-all duration-500 ease-in-out origin-top-right">
+                        <p className="px-4 py-2 text-[10px] font-bold text-gray-400 tracking-widest">Manage appointment</p>
                         
-                        <DropdownItem icon={CheckCircle2} text="Check-In Patient" onClick={() => console.log("Check-in", id)} />
-                        <DropdownItem icon={CalendarRange} text="Reschedule" onClick={() => console.log("Reschedule", id)} />
                         <DropdownItem icon={UserRoundPen} text="Reassign Doctor" onClick={() => console.log("Reassign", id)} />
+                        <DropdownItem icon={CalendarRange} text="Reschedule" onClick={() => console.log("Reschedule", id)} />
+                        
+
+                        <div className="relative">
+                            <DropdownItem 
+                                icon={RefreshCw} 
+                                text="Update Status" 
+                                hasSubmenu={true}
+                                onClick={() => setIsStatusMenuOpen(!isStatusMenuOpen)}
+                            />
+
+                            {isStatusMenuOpen && (
+                                <div className="absolute right-full top-0 mr-1 min-w-64 bg-white text-gray-600  shadow-xl rounded-xl border border-gray-100 py-2">
+                                    <button onClick={() => console.log("Complete", id)} className="flex items-center w-full px-4 py-2 text-sm hover:bg-lightGray/[0.1]">
+                                        <CheckCircle2 className="w-4 h-4 mr-3 " /> Mark Completed
+                                    </button>
+                                    <button onClick={() => console.log("Pending", id)} className="flex items-center w-full px-4 py-2 text-sm hover:bg-lightGray/[0.1] ">
+                                        <Clock className="w-4 h-4 mr-3 " /> Mark Pending
+                                    </button>
+                                    <button onClick={() => console.log("Cancel", id)} className="flex items-center w-full px-4 py-2 text-sm hover:bg-lightGray/[0.1] ">
+                                        <Ban className="w-4 h-4 mr-3 " /> Cancel Appointment
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+
                         <DropdownItem icon={BellRing} text="Send Reminder" onClick={() => console.log("Notify", id)} />
-                        
-                        <div className="my-1 border-t border-gray-100"></div>
-                        
-                        <DropdownItem icon={FileText} text="View Full Details" onClick={() => console.log("Details", id)} />
-                        <DropdownItem icon={Clock9} text="Mark as No-Show" onClick={() => console.log("No-Show", id)} />
-                        <DropdownItem 
-                            icon={Ban} 
-                            text="Cancel Appointment" 
-                            onClick={() => console.log("Cancel", id)} 
-                            className="text-red-600 hover:bg-red-50 hover:text-red-700" 
-                        />
                     </div>
                 )}
             </div>
@@ -149,31 +176,42 @@ function AppointmentRow({ appointment, index }) {
 function Appointments() {
     const { appointments, loading, error } = useAppointments();
 
-    if (loading) return <div className="p-4 text-center text-gray-500">Loading appointments...</div>;
-    if (error) return <div className="p-4 text-center text-red-600">{error}</div>;
+    if (loading) return <div className="p-10 text-center text-gray-500 font-poppins">Loading appointments...</div>;
+    if (error) return <div className="p-10 text-center text-red-600 font-poppins">{error}</div>;
 
-    const tableHeaderClass = "text-xs font-semibold text-gray-500 p-3 border-b border-gray-200";
+    const tableHeaderClass = "text-xs font-bold text-gray-400 p-3 border-b border-gray-100 tracking-wider";
 
     return (
         <Layout>
-            <div className="px-8 py-9 rounded-[6px] font-poppins">
-                <h2 className="text-customTealBlue font-bold mb-7 text-lg">Appointments</h2>
-                
-                <div className="flex items-center bg-gray-50">
-                    <div className={`${tableHeaderClass} flex-1 min-w-[150px]`}>Assigned Doctor</div>
-                    <div className={`${tableHeaderClass} flex-1 min-w-[150px]`}>Patient</div>
-                    <div className={`${tableHeaderClass} flex-1 min-w-[200px]`}>Reason for Visit</div>
-                    <div className={`${tableHeaderClass} w-[10%]`}>Date</div>
-                    <div className={`${tableHeaderClass} w-[15%]`}>Duration</div>
-                    <div className={`${tableHeaderClass} w-[15%]`}>Type</div>
-                    <div className={`${tableHeaderClass} w-[15%]`}>Status</div>
-                    <div className={`${tableHeaderClass} w-10`}></div> {/* Actions spacer */}
+            <div className="px-8 py-9 font-poppins">
+                <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-customTealBlue font-bold text-xl">Appointments</h2>
+                    <button className="bg-customTealBlue text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-[#006a70] transition-colors">
+                        + New Appointment
+                    </button>
                 </div>
+                
+                <div className="bg-white">
+                    <div className="flex items-center bg-gray-50/50">
+                        <div className={`${tableHeaderClass} flex-1 min-w-[150px]`}>Assigned Doctor</div>
+                        <div className={`${tableHeaderClass} flex-1 min-w-[150px]`}>Patient</div>
+                        <div className={`${tableHeaderClass} flex-1 min-w-[200px]`}>Reason for Visit</div>
+                        <div className={`${tableHeaderClass} w-[10%]`}>Date</div>
+                        <div className={`${tableHeaderClass} w-[15%]`}>Duration</div>
+                        <div className={`${tableHeaderClass} w-[15%]`}>Type</div>
+                        <div className={`${tableHeaderClass} w-[15%]`}>Status</div>
+                        <div className="w-10 bg-gray-50/50 border-b border-gray-100"></div>
+                    </div>
 
-                <div className="divide-y divide-gray-100">
-                    {appointments.map((appointment, idx) => (
-                        <AppointmentRow key={appointment.id} appointment={appointment} index={idx} />
-                    ))}
+                    <div className="divide-y divide-gray-100">
+                        {appointments.length > 0 ? (
+                            appointments.map((appointment, idx) => (
+                                <AppointmentRow key={appointment.id} appointment={appointment} index={idx} />
+                            ))
+                        ) : (
+                            <div className="p-20 text-center text-gray-400 italic">No appointments found.</div>
+                        )}
+                    </div>
                 </div>
             </div>
         </Layout>
