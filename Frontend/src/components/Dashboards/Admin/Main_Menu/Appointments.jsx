@@ -2,13 +2,14 @@ import { useState, useEffect, useRef } from "react";
 import { 
     EllipsisVertical, 
     CalendarRange, 
-    UserRoundPen, 
+    UserRoundPen,
+    UserRoundPlus, 
     Ban, 
     BellRing,
     ChevronRight,
     RefreshCw,
     CheckCircle2,
-    Clock
+    Clock,
 } from "lucide-react";
 
 import { useAppointments } from "../../../../hooks/useAppointments.js";
@@ -138,8 +139,8 @@ function AppointmentRow({ appointment, index }) {
                     <div className="absolute right-0 mt-2 w-60 bg-white shadow-2xl rounded-xl border border-gray-100 py-2 z-70 transform transition-all duration-500 ease-in-out origin-top-right">
                         <p className="px-4 py-2 text-[10px] font-bold text-gray-400 tracking-widest">Manage appointment</p>
                         
-                        <DropdownItem icon={UserRoundPen} text="Reassign Doctor" onClick={() => console.log("Reassign", id)} />
-                        <DropdownItem icon={CalendarRange} text="Reschedule" onClick={() => console.log("Reschedule", id)} />
+                        <DropdownItem icon={UserRoundPlus} text="Reassign Doctor" onClick={() => console.log("Reassign", id)} />
+                        <DropdownItem icon={UserRoundPen} text="Edit details" onClick={() => console.log("Edit", id)} />
                         
 
                         <div className="relative">
