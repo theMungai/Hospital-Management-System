@@ -5,15 +5,13 @@ import SideMenu from "./SideMenu.jsx";
 
 function Layout({ children }) {
     return (
-        <>
-            <div className="flex w-full h-screen gap-x-1 ">
-                <SideMenu />
-                <div className="basis-[100%]">
-                    <TopBar />
-                    {children}
-                </div>
+        <div className="flex w-full h-screen overflow-hidden">
+            <SideMenu /> 
+            <div className="flex-1 h-full overflow-y-auto">
+                <TopBar />
+                {children}
             </div>
-        </>
+        </div>
     );
 }
 

@@ -118,7 +118,7 @@ function SideMenu({ onDashboardSelect }) {
         );
     }
 
-    const sidebarClasses = `relative bg-white px-4 py-9 overflow-y-auto h-full font-poppins shadow-lg flex flex-col transition-all duration-300 ${isSidebarCollapsed ? 'w-[75px] basis-[75px] flex-shrink-0' : 'basis-[15%] min-w-[250px]'}`;
+    const sidebarClasses = `relative bg-white z-50 px-4 py-9 overflow-y-auto h-full font-poppins shadow-lg flex flex-col transition-all duration-300 ${isSidebarCollapsed ? 'w-[75px] basis-[75px] flex-shrink-0' : 'basis-[15%] min-w-[250px]'}`;
 
     return (
         <div className={sidebarClasses}>
