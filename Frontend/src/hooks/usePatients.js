@@ -18,7 +18,7 @@ export function usePatients(fetchAll = true){
         async function fetchPatients() {
             try{
                 const response = await fetch("/patients")
-                const data = response.json()
+                const data = await response.json()
 
                 if(!response.ok){
                     throw new Error(data?.detail || "Failed to fetch patients")
