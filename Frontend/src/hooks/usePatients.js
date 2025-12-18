@@ -28,7 +28,7 @@ export function usePatients(fetchAll = true){
 
             } catch(err){
                 console.log("Error fetching patients:", err.message)
-                setError("Failed to load patients data")
+                setError("Failed to load patients data.")
             } finally {
                 setLoading(false)
             }

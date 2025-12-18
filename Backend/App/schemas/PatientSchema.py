@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from pydantic import BaseModel
 
 from ..schemas.UserSchema import UserCreate, UserOut
@@ -29,14 +29,21 @@ class PatientCreate(UserCreate):
 
 
 class PatientOut(BaseModel):
-    id : int
-    user : UserOut
+    id: int
+    patient_first_name: str
+    patient_last_name: str
+    patient_profile_image: str | None = None
+    patient_email: str
+    patient_phone_number: str
+    patient_date_joined: datetime
     date_of_birth: date
+    gender: str
+    marital_status: str
+    street_address: str
     city: str
-    emergency_first_name: str
-    emergency_last_name: str
-    emergency_relationship: str
-    emergency_contact: str
+    country: str
+    blood_type: str
+    Disease: str
 
     class Config:
         from_attributes = True

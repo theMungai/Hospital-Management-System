@@ -30,7 +30,7 @@ def get_patient_details(db):
         Patient.city,
         Patient.country,
         Patient.blood_type,
-        Patient.any_medication,
+        Patient.Disease,
         Patient.family_doctor_name,
         Patient.emergency_first_name,
         Patient.emergency_last_name,
@@ -65,7 +65,7 @@ def get_patient_details(db):
             "city": row.city,
             "country": row.country,
             "blood_type": row.blood_type,
-            "disease": row.disease,
+            "Disease": row.Disease,
             "family_doctor_name": row.family_doctor_name,
             "emergency_first_name": row.emergency_first_name,
             "emergency_last_name": row.emergency_last_name,
@@ -89,6 +89,8 @@ def get_patients(db: Session = Depends(get_db)):
     except Exception as error:
         print(f"Database error: {error}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Internal server error while fetching patients")
+
+
 
 
 @router.post("/patients", status_code=status.HTTP_201_CREATED, response_model=PatientOut)
