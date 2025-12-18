@@ -65,7 +65,7 @@ def get_patient_details(db):
             "city": row.city,
             "country": row.country,
             "blood_type": row.blood_type,
-            "any_medication": row.any_medication,
+            "disease": row.disease,
             "family_doctor_name": row.family_doctor_name,
             "emergency_first_name": row.emergency_first_name,
             "emergency_last_name": row.emergency_last_name,

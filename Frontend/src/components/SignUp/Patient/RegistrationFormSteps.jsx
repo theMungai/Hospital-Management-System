@@ -12,7 +12,7 @@ export const formSteps = [
     {
         title: "Step 3: Medical Information",
         description: "Share your essential health details to help us provide better medical care and services.",
-        fields: ["blood_type", "any_medication", "additional_notes", "family_doctor_name"],
+        fields: ["blood_type", "disease", "additional_notes", "family_doctor_name"],
     },
     {
         title: "Step 4: Emergency Contact",

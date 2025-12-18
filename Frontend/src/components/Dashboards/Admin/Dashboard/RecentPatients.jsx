@@ -2,8 +2,15 @@ import { usePatients } from "../../../../hooks/usePatients";
 import { useNavigate } from "react-router-dom";
 
 
-function PatientRow(){
+function getInitials (firstName, lastName){
+    if (!firstName || !lastName) return "";
+    return firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
+};
 
+function PatientRow({ patient, index }){
+    const {
+
+    }
 }
 
 function RecentPatients() {

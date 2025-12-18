@@ -15,7 +15,7 @@ class Patient(Base):
     city = Column(String, nullable=False)
     country = Column(String, nullable=False)
     blood_type = Column(String, nullable=False)
-    any_medication = Column(String, nullable=False)
+    Disease = Column(String, nullable=False)
     additional_notes = Column(String, nullable=False)
     family_doctor_name = Column(String, nullable=False)
     emergency_first_name = Column(String, nullable=False)
