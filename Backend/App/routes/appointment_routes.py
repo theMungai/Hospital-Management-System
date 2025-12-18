@@ -70,7 +70,7 @@ def get_appointments(db: Session = Depends(get_db)):
     
     except Exception as error:
         print(f"Database error: {error}")
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Internal server error while appointments.")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Internal server error while fetching appointments.")
 
 
 @router.post("/appointments", response_model=AppointmentSchema.AppointmentCreate, status_code=status.HTTP_201_CREATED)

@@ -7,7 +7,7 @@ export const formSteps = [
     {
         title: "Step 2: Contact Information",
         description: "Enter your complete residential address for official communications and service delivery.",
-        fields: ["street_address", "street_address_2","city", "region","zip","country"],
+        fields: ["street_address", "city", "country"],
     },
     {
         title: "Step 3: Medical Information",
@@ -27,6 +27,6 @@ export const formSteps = [
     {
         title: "Step 5: Insurance & Billing Info",
         description: "Enter your health insurance details for billing and claim processing purposes.",
-        fields: ["insurance_provider", "insurance_id", "policyholder_name", "group_number"],
+        fields: ["insurance_provider", "insurance_id"],
     }
 ]
