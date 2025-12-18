@@ -62,7 +62,7 @@ def get_custom_appointment(db):
 
     return appointments_list
 
-@router.get("/api/appointments")
+@router.get("/appointments")
 def get_appointments(db: Session = Depends(get_db)):
     try:
         appointments = get_custom_appointment(db)
@@ -73,7 +73,7 @@ def get_appointments(db: Session = Depends(get_db)):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Internal server error while appointments.")
 
 
-@router.post("/api/appointments", response_model=AppointmentSchema.AppointmentCreate, status_code=status.HTTP_201_CREATED)
+@router.post("/appointments", response_model=AppointmentSchema.AppointmentCreate, status_code=status.HTTP_201_CREATED)
 def create_appointments(appointment: AppointmentSchema.AppointmentCreate,db: Session = Depends(get_db)):
     new_appointment = Appointment(**appointment.dict())
 
