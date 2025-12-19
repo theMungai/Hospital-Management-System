@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 
 /**
- * Custom hook to fetch appointment data.
+ * Custom hook to fetch patient data.
  * @param {boolean} fetchAll 
  * @returns {{patients: Array, loading: boolean, error: string | null}}
  */
