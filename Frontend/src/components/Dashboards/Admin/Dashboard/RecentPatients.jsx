@@ -61,7 +61,7 @@ function PatientRow({ patient, index }) {
                 {Disease}
             </div>
 
-            <div className="w-[30%] text-gray-500 truncate italic">
+            <div className="w-[30%] text-gray-500 truncate">
                 {patient_email}
             </div>
         </div>
@@ -72,14 +72,8 @@ function RecentPatients() {
     const navigate = useNavigate()
 
 
-    if (loading){
-        return <div></div>
-    }
-
-
-    if (error){
-        return <div>{error}</div>
-    }
+    if (loading) return <div className="p-10 text-center text-gray-500 font-poppins">Loading patients...</div>;
+    if (error) return <div className="p-10 text-center text-red-600 font-poppins">{error}</div>;
 
 
     const limitedPatients = patients.slice(0, 5)
@@ -114,7 +108,7 @@ function RecentPatients() {
                 <div className={`${tableHeaderClass} w-[25%] min-w-[150px]`}>Patient Name</div>
                 <div className={`${tableHeaderClass} w-[15%] min-w-[120px]`}>Date Joined</div>
                 <div className={`${tableHeaderClass} w-[10%]`}>Gender</div>
-                <div className={`${tableHeaderClass} w-[20%]`}>Disease</div>
+                <div className={`${tableHeaderClass} w-[20%]`}>Diagnosis</div>
                 <div className={`${tableHeaderClass} w-[30%]`}>Email</div>
             </div>
 
