@@ -101,12 +101,37 @@ def get_doctor_details(db):
         Doctor.date_of_birth,
         Doctor.gender,
         Doctor.specialty,
-        Doctor.national_id_or_passport,
+        Doctor.medical_license_number,
         Doctor.street_address,
         Doctor.city,
         Doctor.country
-
     )
+
+    query = query.outerjoin(DoctorUser, Doctor.user_id == DoctorUser.id)
+
+    results = query.all()
+
+    doctors_list = []
+
+    for row in results:
+        doctors_list.append({
+            "id": row.id,
+            "doctor_first_name": row.doctor_first_name,
+            "doctor_last_name": row.doctor_last_name,
+            "doctor_profile_image": row.doctor_profile_image,
+            "doctor_email": row.doctor_email,
+            "doctor_phone_number": row.doctor_phone_number,
+            "doctor_date_joined": row.doctor_date_joined,
+            "date_of_birth": row.date_of_birth,
+            "gender": row.gender,
+            "specialty": row.specialty,
+            "medical_license_number": row.medical_license_number,
+            "street_address": row.street_address,
+            "city": row.city,
+            "country": row.country
+        })
+
+    return doctors_list
 
 
 
@@ -220,8 +245,13 @@ def create_doctor(
 
 @router.get("/doctors", status_code=status.HTTP_200_OK, response_model=List[DoctorOut])
 def get_doctors(db: Session = Depends(get_db)):
-    doctors = db.query(Doctor).all()
-    return doctors
+    try:
+        doctors = get_doctor_details(db)
+        return doctors
+    
+    except Exception as error:
+        print(f"Database error: {error}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Internal server error while fetching doctors")
 
 
 @router.get("/doctors/top-practitioners")

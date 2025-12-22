@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from pydantic import EmailStr, BaseModel
 
 from ..schemas.UserSchema import UserCreate, UserOut
@@ -29,13 +29,20 @@ class DoctorCreate(UserCreate):
 
 
 class DoctorOut(BaseModel):
-    id : int
-    user : UserOut
+    id: int
+    doctor_first_name: str
+    doctor_last_name: str
+    doctor_profile_image: str | None = None
+    doctor_email: str
+    doctor_phone_number: str
+    doctor_date_joined: datetime
+    date_of_birth: date
+    gender: str
+    street_address: str
+    city: str
+    country: str
     medical_license_number: str
     specialty: str
-    years_of_experience: str
-    current_workplace: str
-    medical_school: str
 
     class Config:
         from_attributes = True
