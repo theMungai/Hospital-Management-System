@@ -51,12 +51,26 @@ function DoctorRow({ doctor, index }){
                 {doctor_phone_number}
             </div>
 
-            <div className="w-1/5 text-right">
-                <span className={`px-2 py-1 rounded-full text-[11px] font-bold tracking-wider ${
-                    availability_status === 'Available' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
-                }`}>
-                    {availability_status || 'Unavailable'}
-                </span>
+            <div className="w-1/5 flex justify-end items-center">
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full transition-all">
+                    <div className="relative flex h-2 w-2">
+                        {availability_status === 'Available' && (
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-customGreen opacity-75"></span>
+                        )}
+                        <span 
+                            className={`relative inline-flex rounded-full h-2 w-2 ${
+                                availability_status === 'Available' ? 'bg-customGreen' : 'bg-lightGray'
+                            }`}
+                        ></span>
+                    </div>
+                    
+
+                    <span className={`text-[11px] font-bold tracking-wider ${
+                        availability_status === 'Available' ? 'text-customGreen' : 'text-lightGray'
+                    }`}>
+                        {availability_status || 'Unavailable'}
+                    </span>
+                </div>
             </div>
         </div>
     );
@@ -98,7 +112,7 @@ function DoctorsDashboard() {
                 <div className={`${tableHeaderClass} w-1/5`}>Specialty</div>
                 <div className={`${tableHeaderClass} w-[35%]`}>Contact Email</div>
                 <div className={`${tableHeaderClass} w-[35%]`}>Phone Number</div>
-                <div className={`${tableHeaderClass} w-1/5 text-right`}>Status</div>
+                <div className={`${tableHeaderClass} w-[10%]`}>Status</div>
             </div>
 
             <div className="divide-y divide-gray-50">

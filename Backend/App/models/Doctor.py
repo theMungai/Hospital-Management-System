@@ -25,7 +25,7 @@ class Doctor(Base):
     degree_certificate_upload = Column(String, nullable=False)
     license_certificate_upload = Column(String, nullable=False)
     additional_certifications_upload = Column(String, nullable=False)
-    availability_status = Column(String(60), default="Available")
+    availability_status = Column(String(60), server_default="Available")
 
     # Relationship
     user = relationship("User", back_populates="doctor")
