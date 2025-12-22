@@ -104,12 +104,8 @@ def get_doctor_details(db):
         Doctor.medical_license_number,
         Doctor.street_address,
         Doctor.city,
-<<<<<<< HEAD
         Doctor.country,
         Doctor.availability_status
-=======
-        Doctor.country
->>>>>>> 10b2d70ffc1779b3559adf5c8e28ce4dbf365cc0
     )
 
     query = query.outerjoin(DoctorUser, Doctor.user_id == DoctorUser.id)
@@ -133,12 +129,8 @@ def get_doctor_details(db):
             "medical_license_number": row.medical_license_number,
             "street_address": row.street_address,
             "city": row.city,
-<<<<<<< HEAD
             "country": row.country,
             "availability_status": row.availability_status
-=======
-            "country": row.country
->>>>>>> 10b2d70ffc1779b3559adf5c8e28ce4dbf365cc0
         })
 
     return doctors_list

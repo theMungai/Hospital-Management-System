@@ -66,8 +66,15 @@ function DoctorsDashboard() {
     const { doctors, loading, error } = useDoctors(true)
     const navigate = useNavigate()
 
-    if (loading) return <div className="p-10 text-center text-gray-500 font-poppins">Loading doctors...</div>;
-    if (error) return <div className="p-10 text-center text-red-600 font-poppins">{error}</div>;
+    if (loading) {
+        return (
+            <div className="bg-white rounded-[6px] px-4 py-8 border-[0.1px] border-[#4F4F4F]/[0.1] text-center text-darkGray">
+                Loading top doctors... 
+            </div>
+        );
+    }
+
+    if (error) return <div className="bg-white rounded-[6px] px-4 py-8 border-[0.1px] border-[#4F4F4F]/[0.1] text-center text-red-600 font-poppins">{error}</div>;
 
     const limitedDoctors = doctors.slice(0, 5)
 

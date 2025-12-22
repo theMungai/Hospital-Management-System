@@ -112,12 +112,15 @@ function Metrics() {
     ]
 
     if (loading) {
-        return <div className="text-gray-500">Loading metrics...</div>;
+        return (
+            <div className="bg-white rounded-[6px] px-4 py-8 border-[0.1px] border-[#4F4F4F]/[0.1] text-center text-darkGray">
+                Loading metrics... 
+            </div>
+        );
     }
 
-    if (error) {
-        return <div className="text-red-500">{error}</div>;
-    }
+    if (error) return <div className="bg-white rounded-[6px] px-4 py-8 border-[0.1px] border-[#4F4F4F]/[0.1] text-center text-red-600 font-poppins">{error}</div>;
+
     return (
         <div className="my-8 ">
             <div className="w-full grid grid-cols-4 xs:grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-2 ">

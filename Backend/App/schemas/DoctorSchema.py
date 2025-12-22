@@ -43,10 +43,7 @@ class DoctorOut(BaseModel):
     country: str
     medical_license_number: str
     specialty: str
-<<<<<<< HEAD
     availability_status: str | None = "Available"
-=======
->>>>>>> 10b2d70ffc1779b3559adf5c8e28ce4dbf365cc0
 
     class Config:
         from_attributes = True
