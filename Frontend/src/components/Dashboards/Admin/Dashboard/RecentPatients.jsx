@@ -19,10 +19,7 @@ function PatientRow({ patient, index }) {
     } = patient;
 
     const initials = getInitials(patient_first_name, patient_last_name);
-    
-    const alternatingBgClass = index % 2 === 0 
-        ? 'bg-customTealBlue/[0.05]' 
-        : 'bg-white'; 
+     
         
     const formattedDate = patient_date_joined 
         ? new Date(patient_date_joined).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })
@@ -30,7 +27,7 @@ function PatientRow({ patient, index }) {
 
     return (
         <div 
-            className={`flex items-center p-3 text-base border-b border-gray-100 hover:bg-customTealBlue/[0.08] transition-colors cursor-pointer ${alternatingBgClass}`}
+            className={`bg-white flex items-center p-3 text-base border-b border-gray-100 hover:bg-customTealBlue/[0.03] transition-colors cursor-pointer`}
         >
             <div className="flex items-center w-1/4 min-w-[150px] pr-2">
                 {patient_profile_image ? (

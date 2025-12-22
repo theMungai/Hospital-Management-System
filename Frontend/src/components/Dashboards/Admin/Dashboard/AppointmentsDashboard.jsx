@@ -22,10 +22,6 @@ function AppointmentRow({ appointment, index }) {
     
     const initials = getInitials(doctor_first_name, doctor_last_name);
 
-    const alternatingBgClass = index % 2 === 0 
-        ? 'bg-white' 
-        : 'bg-customTealBlue/[0.04]'; 
-    
     const statusClassMap = {
         Scheduled: 'bg-[#FFA500]/[0.10] text-[#FFA500]/[0.56] border border-[#FFA500]/[0.56]',
         Completed: 'bg-[#6EAB36]/[0.10] text-[#6EAB36]/[0.56] border border-[#6EAB36]/[0.56]',
@@ -40,7 +36,7 @@ function AppointmentRow({ appointment, index }) {
     return (
 
         <div 
-            className={`flex items-center p-3 text-sm border-b border-gray-100 hover:bg-customTealBlue/[0.08] cursor-pointer ${alternatingBgClass}`}
+            className={`bg-white flex items-center p-3 text-base border-b border-gray-100 hover:bg-customTealBlue/[0.03] transition-colors cursor-pointer`}
         >
             
             <div className="flex items-center w-1/4 min-w-[150px] pr-2">

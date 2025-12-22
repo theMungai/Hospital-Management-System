@@ -7,7 +7,7 @@ import AppointmentsDashboard from "./AppointmentsDashboard.jsx";
 import RecentPatients from "./RecentPatients.jsx";
 import TopPractitioners from "./TopPractitioners.jsx";
 import DashboardNotifications from "./DashboardNotifications.jsx";
-import Doctors from "./Doctors.jsx";
+import DoctorsDashboard from "./DoctorsDashboard.jsx";
 
 
 const AdminDashboard = () => {
@@ -24,7 +24,7 @@ const AdminDashboard = () => {
                         <PatientsAnalytics />
                         <AppointmentsDashboard />
                         <RecentPatients />
-                        <Doctors />
+                        <DoctorsDashboard />
                     </div>
 
                     <div className="w-1/3 xs:w-full sm:w-full md:w-full space-y-6">

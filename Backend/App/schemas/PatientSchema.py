@@ -38,11 +38,11 @@ class PatientOut(BaseModel):
     patient_date_joined: datetime
     date_of_birth: date
     gender: str
-    marital_status: str
+    # marital_status: str
     street_address: str
     city: str
     country: str
-    blood_type: str
+    # blood_type: str
     Disease: str
 
     class Config:

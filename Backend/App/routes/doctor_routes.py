@@ -95,7 +95,17 @@ def get_doctor_details(db):
         DoctorUser.profile_image.label("doctor_profile_image"),
         DoctorUser.email.label("doctor_email"),
         DoctorUser.phone_number.label("doctor_phone_number"),
-        DoctorUser.created_at.label("doctor_date_joined")
+        DoctorUser.created_at.label("doctor_date_joined"),
+
+        Doctor.id.label("id"),
+        Doctor.date_of_birth,
+        Doctor.gender,
+        Doctor.specialty,
+        Doctor.national_id_or_passport,
+        Doctor.street_address,
+        Doctor.city,
+        Doctor.country
+
     )
 
 

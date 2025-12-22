@@ -25,19 +25,19 @@ def get_patient_details(db):
         Patient.id.label("id"),
         Patient.date_of_birth,
         Patient.gender,
-        Patient.marital_status,
+        # Patient.marital_status,
         Patient.street_address,
         Patient.city,
         Patient.country,
-        Patient.blood_type,
+        # Patient.blood_type,
         Patient.Disease,
-        Patient.family_doctor_name,
-        Patient.emergency_first_name,
-        Patient.emergency_last_name,
-        Patient.emergency_relationship,
-        Patient.emergency_contact,
-        Patient.insurance_provider,
-        Patient.insurance_id
+        # Patient.family_doctor_name,
+        # Patient.emergency_first_name,
+        # Patient.emergency_last_name,
+        # Patient.emergency_relationship,
+        # Patient.emergency_contact,
+        # Patient.insurance_provider,
+        # Patient.insurance_id
     )
 
 
@@ -60,19 +60,19 @@ def get_patient_details(db):
             "patient_date_joined": row.patient_date_joined,
             "date_of_birth": row.date_of_birth,
             "gender": row.gender,
-            "marital_status": row.marital_status,
+            # "marital_status": row.marital_status,
             "street_address": row.street_address,
             "city": row.city,
             "country": row.country,
-            "blood_type": row.blood_type,
+            # "blood_type": row.blood_type,
             "Disease": row.Disease,
-            "family_doctor_name": row.family_doctor_name,
-            "emergency_first_name": row.emergency_first_name,
-            "emergency_last_name": row.emergency_last_name,
-            "emergency_relationship": row.emergency_relationship,
-            "emergency_contact": row.emergency_contact,
-            "insurance_provider": row.insurance_provider,
-            "insurance_id": row.insurance_id
+            # "family_doctor_name": row.family_doctor_name,
+            # "emergency_first_name": row.emergency_first_name,
+            # "emergency_last_name": row.emergency_last_name,
+            # "emergency_relationship": row.emergency_relationship,
+            # "emergency_contact": row.emergency_contact,
+            # "insurance_provider": row.insurance_provider,
+            # "insurance_id": row.insurance_id
         })
 
 
