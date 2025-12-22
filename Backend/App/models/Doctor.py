@@ -13,10 +13,7 @@ class Doctor(Base):
     gender = Column(String, nullable=False)
     national_id_or_passport = Column(String, nullable=False)
     street_address = Column(String, nullable=False)
-    street_address_2 = Column(String, nullable=False)
     city = Column(String, nullable=False)
-    region = Column(String, nullable=False)
-    zip = Column(String, nullable=False)
     country = Column(String, nullable=False)
     medical_license_number = Column(String, nullable=False)
     specialty = Column(String, nullable=False)
@@ -28,7 +25,6 @@ class Doctor(Base):
     degree_certificate_upload = Column(String, nullable=False)
     license_certificate_upload = Column(String, nullable=False)
     additional_certifications_upload = Column(String, nullable=False)
-    recovery_email = Column(String, nullable=False)
 
     # Relationship
     user = relationship("User", back_populates="doctor")

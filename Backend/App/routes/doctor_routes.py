@@ -1,5 +1,5 @@
 from fastapi import Depends, status, HTTPException, APIRouter, File, Form, UploadFile
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, aliased
 from sqlalchemy import func, desc
 from typing import List
 from pydantic import EmailStr
@@ -84,6 +84,19 @@ def get_top_practitioners(db):
 
     
     return top_doctors_list
+
+
+def get_doctor_details(db):
+    DoctorUser = aliased(User)
+    
+    query = db.query(
+        DoctorUser.first_name.label("doctor_first_name"),
+        DoctorUser.last_name.label("doctor_last_name"),
+        DoctorUser.profile_image.label("doctor_profile_image"),
+        DoctorUser.email.label("doctor_email"),
+        DoctorUser.phone_number.label("doctor_phone_number"),
+        DoctorUser.created_at.label("doctor_date_joined")
+    )
 
 
 

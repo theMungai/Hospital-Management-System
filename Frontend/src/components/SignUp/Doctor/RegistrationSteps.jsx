@@ -7,7 +7,7 @@ export const formSteps = [
     {
         title: "Step 2: Contact Information",
         description: "Enter your residential and communication details for official correspondence.",
-        fields: ["street_address", "street_address_2", "city", "region", "zip", "country"],
+        fields: ["street_address", "city", "country"],
     },
     {
         title: "Step 3: Professional Details",
@@ -22,6 +22,6 @@ export const formSteps = [
     {
         title: "Step 5: Account Security",
         description: "Set up your account login credentials to securely access the system.",
-        fields: ["username", "password", "confirm_password", "recovery_email"],
+        fields: ["username", "password", "confirm_password"],
     }
 ];
