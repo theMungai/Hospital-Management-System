@@ -29,7 +29,7 @@ const data = [
 function PatientsAnalytics(props) {
     return (
         // Standardized Tailwind classes for dashboard cards: p-6, rounded-xl, shadow-md
-        <div className="bg-white rounded-[6px] px-4 py-2 border-[0.1px] border-[#4F4F4F]/[0.1]">
+        <div className="bg-white rounded-[6px] px-4 py-2">
             <h2 className="text-lg font-semibold mb-4">Patients Visits</h2>
 
             {/* Wrapper to define chart height */}

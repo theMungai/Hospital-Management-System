@@ -27,7 +27,7 @@ function PatientRow({ patient, index }) {
 
     return (
         <div 
-            className={`bg-white flex items-center p-3 text-base border-b border-gray-100 hover:bg-customTealBlue/[0.03] transition-colors cursor-pointer`}
+            className={`bg-white flex items-center p-3 text-sm border-b border-gray-100 hover:bg-customTealBlue/[0.03] transition-colors cursor-pointer`}
         >
             <div className="flex items-center w-1/4 min-w-[150px] pr-2">
                 {patient_profile_image ? (
@@ -86,13 +86,13 @@ function RecentPatients() {
 
 
 
-    const tableHeaderClass = "text-base text-gray-500 p-3 border-b border-gray-200";
+    const tableHeaderClass = "text-xs font-bold tracking-wider text-gray-400 p-3 border-b border-gray-100";
 
     return (
-        <div className="bg-white rounded-[6px]  border-[0.1px] border-[#4F4F4F]/[0.1] overflow-hidden">
+        <div className="bg-white rounded-[6px] overflow-hidden">
             
             <section className="flex justify-between items-center px-4 py-3">
-                <h1 className="text-darkGray font-bold text-[20px]">Recent Patients</h1>
+                <h1 className="text-lightGray font-medium text-[18px]">Recent Patients</h1>
                 <button
                     className='text-customTealBlue font-medium text-sm hover:underline'
                     onClick={() => navigate('/patients')}
@@ -101,7 +101,7 @@ function RecentPatients() {
                 </button>
             </section>
             
-            <div className="flex items-center bg-white">
+            <div className="flex items-center bg-gray-50">
                 <div className={`${tableHeaderClass} w-[25%] min-w-[150px]`}>Patient Name</div>
                 <div className={`${tableHeaderClass} w-[15%] min-w-[120px]`}>Date Joined</div>
                 <div className={`${tableHeaderClass} w-[10%]`}>Gender</div>

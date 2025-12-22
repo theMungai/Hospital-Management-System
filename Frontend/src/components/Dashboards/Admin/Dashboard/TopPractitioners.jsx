@@ -20,10 +20,10 @@ function PractitionerItem({ practitioner, isLast, index }) {
 
     const alternatingBgClass = index % 2 === 0 
         ? 'bg-white' 
-        : 'bg-customTealBlue/[0.04]'; 
+        : 'bg-customTealBlue/[0.02]'; 
 
     return (
-        <div className={`p-4 hover:bg-customTealBlue/[0.08] cursor-pointer ${alternatingBgClass} ${isLast ? 'rounded-md' : ''}`}>
+        <div className={`p-4 hover:bg-customTealBlue/[0.04] cursor-pointer ${alternatingBgClass} ${isLast ? 'rounded-md' : ''}`}>
             <div className="flex justify-between items-start">
 
                 <section className="flex gap-3 items-start flex-grow">
@@ -152,8 +152,8 @@ function TopPractitioners() {
 
 
     return (
-        <div className="bg-white rounded-[6px] px-4 py-8 border-[0.1px] border-[#4F4F4F]/[0.1]">
-            <section className="flex justify-between items-center mb-8">
+        <div className="bg-white rounded-[10px] overflow-hidden font-poppins">
+            <section className="flex justify-between items-center mb-8 px-4 py-4">
                 <h1 className="text-darkGray font-bold text-[20px]">Top Practitioners</h1>
             </section>
 
