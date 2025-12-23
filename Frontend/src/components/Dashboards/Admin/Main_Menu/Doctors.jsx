@@ -111,7 +111,7 @@ function DoctorRow({ doctor, index}){
             </div>
 
 
-            <div className='relative ml-2'>
+            <div className='relative ml-2' ref={dropdownRef}>
                 <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="hover:bg-gray-200 p-1.5 rounded-full transition-colors">
                     <EllipsisVertical className='w-4 h-4 text-gray-400'/>
                 </button>
@@ -164,7 +164,7 @@ function Doctors() {
                     <div className="flex items-center bg-gray-50/50 border-b border-gray-100">
                     <div className={`${tableHeaderClass} flex-1 min-w-[180px]`}>Doctor</div>
                     <div className={`${tableHeaderClass} w-[15%]`}>Specialty</div>
-                    <div className={`${tableHeaderClass} w-[10%]`}>License</div>
+                    <div className={`${tableHeaderClass} w-[10%]`}>Medical License Number</div>
                     <div className={`${tableHeaderClass} w-[10%]`}>Joined</div>
                     <div className={`${tableHeaderClass} w-[8%]`}>Gender</div>
                     <div className={`${tableHeaderClass} flex-1 min-w-[200px]`}>Address</div>

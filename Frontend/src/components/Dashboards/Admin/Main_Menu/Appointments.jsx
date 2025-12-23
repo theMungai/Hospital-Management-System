@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import { 
     EllipsisVertical, 
-    CalendarRange, 
     UserRoundPen,
     UserRoundPlus, 
     Ban, 
@@ -24,6 +25,7 @@ function AppointmentRow({ appointment, index }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isStatusMenuOpen, setIsStatusMenuOpen] = useState(false);
     const dropdownRef = useRef(null);
+    const rowRef = useRef(null);
 
     const {
         id,
@@ -43,6 +45,84 @@ function AppointmentRow({ appointment, index }) {
 
     const doctorInitials = getInitials(doctor_first_name, doctor_last_name);
     const patientInitials = getInitials(patient_first_name, patient_last_name);
+
+    // GSAP animation for row entry
+    useGSAP(() => {
+        if (rowRef.current) {
+            // Reset initial state
+            gsap.set(rowRef.current, { y: -20, opacity: 0 });
+            
+            // Animate row with staggered delay based on index
+            gsap.to(rowRef.current, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                delay: 0.2 + (index * 0.08), // 200ms + staggered 80ms per row
+                ease: "back.out(1.2)",
+            });
+
+            // Animate content within the row with further staggering
+            const doctorImg = rowRef.current.querySelector('.doctor-img');
+            const doctorName = rowRef.current.querySelector('.doctor-name');
+            const doctorSpecialty = rowRef.current.querySelector('.doctor-specialty');
+            const patientImg = rowRef.current.querySelector('.patient-img');
+            const patientName = rowRef.current.querySelector('.patient-name');
+            const reason = rowRef.current.querySelector('.reason');
+            const date = rowRef.current.querySelector('.date');
+            const duration = rowRef.current.querySelector('.duration');
+            const type = rowRef.current.querySelector('.type');
+            const status = rowRef.current.querySelector('.status');
+            const actions = rowRef.current.querySelector('.actions');
+
+            // Set initial states
+            gsap.set([doctorImg, patientImg], { scale: 0 });
+            gsap.set([doctorName, doctorSpecialty, patientName, reason, date, duration, type, status, actions], { 
+                x: -20, 
+                opacity: 0 
+            });
+
+            // Staggered animations
+            const rowDelay = 0.2 + (index * 0.08);
+            
+            gsap.to(doctorImg, {
+                scale: 1,
+                duration: 0.4,
+                delay: rowDelay + 0.1,
+                ease: "back.out(1.5)"
+            });
+
+            gsap.to(patientImg, {
+                scale: 1,
+                duration: 0.4,
+                delay: rowDelay + 0.15,
+                ease: "back.out(1.5)"
+            });
+
+            // Animate text elements with staggered delays
+            const textElements = [doctorName, doctorSpecialty, patientName, reason, date, duration, type, status, actions];
+            textElements.forEach((el, i) => {
+                if (el) {
+                    gsap.to(el, {
+                        x: 0,
+                        opacity: 1,
+                        duration: 0.5,
+                        delay: rowDelay + 0.2 + (i * 0.05), // 200ms + 50ms per element
+                        ease: "power2.out"
+                    });
+                }
+            });
+
+            // Special animation for actions button
+            if (actions) {
+                gsap.to(actions, {
+                    rotation: 0,
+                    duration: 0.4,
+                    delay: rowDelay + 0.6,
+                    ease: "back.out(1.5)"
+                });
+            }
+        }
+    }, [index]);
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -92,36 +172,65 @@ function AppointmentRow({ appointment, index }) {
     const formattedDate = new Date(appointment_date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
 
     return (
-        <div className={`flex items-center p-3 text-sm hover:bg-customTealBlue/[0.02] relative ${index % 2 === 0 ? 'bg-white' : 'bg-customTealBlue/[0.04]'}`}>
+        <div 
+            ref={rowRef}
+            className={`flex items-center p-3 text-sm hover:bg-customTealBlue/[0.02] relative ${index % 2 === 0 ? 'bg-white' : 'bg-customTealBlue/[0.04]'}`}
+        >
             <div className="flex items-center flex-1 min-w-[150px] pr-2">
                 {doctor_profile_image ? (
-                    <img src={doctor_profile_image} alt="" className="w-8 h-8 rounded-full object-cover mr-2" />
+                    <img 
+                        src={doctor_profile_image} 
+                        alt="" 
+                        className="w-8 h-8 rounded-full object-cover mr-2 doctor-img"
+                    />
                 ) : (
-                    <div className="w-8 h-8 rounded-full bg-customTealBlue flex items-center justify-center text-white font-bold text-xs mr-2">{doctorInitials}</div>
+                    <div className="w-8 h-8 rounded-full bg-customTealBlue flex items-center justify-center text-white font-bold text-xs mr-2 doctor-img">
+                        {doctorInitials}
+                    </div>
                 )}
-                <div>
-                    <p className="text-base font-semibold text-darkGray">Dr. {doctor_first_name} {doctor_last_name}</p>
-                    <p className="text-sm text-lightGray italic">{specialty || 'No Specialty'}</p>
+                <div className="overflow-hidden">
+                    <p className="text-base font-semibold text-darkGray doctor-name">
+                        Dr. {doctor_first_name} {doctor_last_name}
+                    </p>
+                    <p className="text-sm text-lightGray italic doctor-specialty">
+                        {specialty || 'No Specialty'}
+                    </p>
                 </div>
             </div>
 
             <div className="flex items-center flex-1 min-w-[150px] pr-2">
                 {patient_profile_image ? (
-                    <img src={patient_profile_image} alt="" className="w-8 h-8 rounded-full object-cover mr-2" />
+                    <img 
+                        src={patient_profile_image} 
+                        alt="" 
+                        className="w-8 h-8 rounded-full object-cover mr-2 patient-img"
+                    />
                 ) : (
-                    <div className="w-8 h-8 rounded-full bg-gray-400 flex items-center justify-center text-white font-bold text-xs mr-2">{patientInitials}</div>
+                    <div className="w-8 h-8 rounded-full bg-gray-400 flex items-center justify-center text-white font-bold text-xs mr-2 patient-img">
+                        {patientInitials}
+                    </div>
                 )}
-                <p className="text-sm text-gray-600 font-medium">{patient_first_name || 'No'} {patient_last_name || 'Patient'}</p>
+                <p className="text-sm text-gray-600 font-medium patient-name">
+                    {patient_first_name || 'No'} {patient_last_name || 'Patient'}
+                </p>
             </div>
 
-            <div className="flex-1 min-w-[200px] text-gray-700 truncate pr-2">{reason_for_visit}</div>
+            <div className="flex-1 min-w-[200px] text-gray-700 truncate pr-2 reason">
+                {reason_for_visit}
+            </div>
 
-            <div className="w-[10%] text-gray-600 font-medium whitespace-nowrap">{formattedDate}</div>
-            <div className="w-[15%] text-gray-600 font-medium">{duration_minutes} min</div>
-            <div className="w-[15%] text-gray-600 font-medium">{appointment_type}</div>
+            <div className="w-[10%] text-gray-600 font-medium whitespace-nowrap date">
+                {formattedDate}
+            </div>
+            <div className="w-[15%] text-gray-600 font-medium duration">
+                {duration_minutes} min
+            </div>
+            <div className="w-[15%] text-gray-600 font-medium type">
+                {appointment_type}
+            </div>
 
             <div className="w-[15%]">
-                <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-lg ${statusBadgeClass}`}>
+                <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-lg ${statusBadgeClass} status`}>
                     {appointment_status}
                 </span>
             </div>
@@ -129,14 +238,14 @@ function AppointmentRow({ appointment, index }) {
             <div className="relative" ref={dropdownRef}>
                 <button 
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className={`hover:bg-gray-200 p-2 rounded-full transition-colors ${isDropdownOpen ? 'bg-gray-200' : ''}`}
+                    className={`relative hover:bg-gray-200 p-2 rounded-full transition-colors actions ${isDropdownOpen ? 'bg-gray-200' : ''}`}
                 >
                     <EllipsisVertical className="w-5 h-5 text-gray-600" />
                 </button>
                 
 
                 {isDropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-60 bg-white shadow-2xl rounded-xl border border-gray-100 py-2 z-70 transform transition-all duration-500 ease-in-out origin-top-right">
+                    <div className="absolute right-0 mt-2 w-60 bg-white shadow-2xl rounded-xl border border-gray-100 py-2">
                         <p className="px-4 py-2 text-[10px] font-bold text-gray-400 tracking-widest">Manage appointment</p>
                         
                         <DropdownItem icon={UserRoundPlus} text="Reassign Doctor" onClick={() => console.log("Reassign", id)} />
@@ -176,6 +285,47 @@ function AppointmentRow({ appointment, index }) {
 
 function Appointments() {
     const { appointments, loading, error } = useAppointments();
+    const containerRef = useRef(null);
+    const headerRef = useRef(null);
+    const tableHeaderRef = useRef(null);
+    const noDataRef = useRef(null);
+
+    // GSAP animation for the entire page
+    useGSAP(() => {
+        if (containerRef.current) {
+            // Animate header section
+            gsap.fromTo(headerRef.current,
+                { y: -30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.7, ease: "back.out(1.2)" }
+            );
+
+            // Animate table headers with delay
+            gsap.fromTo(tableHeaderRef.current,
+                { y: -20, opacity: 0 },
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 0.6, 
+                    delay: 0.1,
+                    ease: "power2.out" 
+                }
+            );
+
+            // If no data, animate the message
+            if (appointments.length === 0 && noDataRef.current) {
+                gsap.fromTo(noDataRef.current,
+                    { y: -20, opacity: 0 },
+                    { 
+                        y: 0, 
+                        opacity: 1, 
+                        duration: 0.6, 
+                        delay: 0.3,
+                        ease: "power2.out" 
+                    }
+                );
+            }
+        }
+    }, [appointments.length]);
 
     if (loading) return <div className="p-10 text-center text-gray-500 font-poppins">Loading appointments...</div>;
     if (error) return <div className="p-10 text-center text-red-600 font-poppins">{error}</div>;
@@ -184,8 +334,8 @@ function Appointments() {
 
     return (
         <Layout>
-            <div className="px-8 py-9 font-poppins">
-                <div className="flex items-center justify-between mb-8">
+            <div className="px-8 py-9 font-poppins" ref={containerRef}>
+                <div ref={headerRef} className="flex items-center justify-between mb-8">
                     <h2 className="text-customTealBlue font-bold text-xl">Appointments</h2>
                     <button className="bg-customTealBlue text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-[#006a70] transition-colors">
                         + New Appointment
@@ -193,7 +343,7 @@ function Appointments() {
                 </div>
                 
                 <div className="bg-white">
-                    <div className="flex items-center bg-gray-50/50">
+                    <div ref={tableHeaderRef} className="flex items-center bg-gray-50/50">
                         <div className={`${tableHeaderClass} flex-1 min-w-[150px]`}>Assigned Doctor</div>
                         <div className={`${tableHeaderClass} flex-1 min-w-[150px]`}>Patient</div>
                         <div className={`${tableHeaderClass} flex-1 min-w-[200px]`}>Reason for Visit</div>
@@ -210,7 +360,9 @@ function Appointments() {
                                 <AppointmentRow key={appointment.id} appointment={appointment} index={idx} />
                             ))
                         ) : (
-                            <div className="p-20 text-center text-gray-400 italic">No appointments found.</div>
+                            <div ref={noDataRef} className="p-20 text-center text-gray-400 italic">
+                                No appointments found.
+                            </div>
                         )}
                     </div>
                 </div>

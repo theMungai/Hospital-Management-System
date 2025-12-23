@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import toggleSidebarBtn from '../../../../public/icons/toggle_sidebar.png'
 
 import { LayoutDashboard, Stethoscope, UserRound, CalendarClock, FolderTree, ChartSpline, CreditCard, FileTextIcon, ShieldCheck, Bell, LucideUserRoundCog, LogOut, ChevronDownIcon, ChevronUpIcon, CircleQuestionMark} from "lucide-react";
@@ -8,8 +8,6 @@ function SideMenu({ onDashboardSelect }) {
     const [isDashboardOpen, setIsDashboardOpen] = useState(true);
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
     const [activeItem, setActiveItem] = useState('Admin Dashboard');
-
-    const location = useLocation()
 
     const menuIcons = {
         Dashboards: <LayoutDashboard className="w-5 h-5" />,
@@ -144,7 +142,7 @@ function SideMenu({ onDashboardSelect }) {
 
                 <h3 className="text-sm font-semibold text-gray-400 mb-3">Main Menu</h3>
                 <div className="space-y-1 mb-8">
-                    {mainMenuItems.map((item, index, to) => (
+                    {mainMenuItems.map((item, index) => (
                         <div key={index}>
                             <ul>
                                 <li className="rounded text-darkGray hover:bg-[#007E85]/10  hover:text-customTealBlue active:bg-customTealBlue focus:text-white">
@@ -177,7 +175,7 @@ function SideMenu({ onDashboardSelect }) {
                 <h3 className="text-sm font-semibold text-gray-400 mb-3">Other Menu</h3>
                 <div className="space-y-1 mb-8  ">
                     <ul>
-                        {otherMenuItems.map((item, index, to) => (
+                        {otherMenuItems.map((item, index) => (
                             <li className="rounded text-darkGray hover:bg-[#007E85]/10 hover:text-customTealBlue focus:bg-customTealBlue focus:text-white">
                                 <Link to={item.to}>
                                     <MenuItem  key={index} item={item} />
