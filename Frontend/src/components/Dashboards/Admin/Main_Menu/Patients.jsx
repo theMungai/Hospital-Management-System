@@ -176,6 +176,58 @@ function PatientRow({ patient, index}){
 
 function Patients() {
     const { patients, loading, error} = usePatients(true)
+    const containerRef = useRef(null)
+    const headerRef = useRef(null)
+    const tableHeaderRef = useRef(null)
+    const noDataRef = useRef(null)
+
+    useGSAP(() => {
+        const tl = gsap.timeline();
+
+         if (!containerRef.current) return;
+
+        if (headerRef.current) {
+            gsap.fromTo(headerRef.current,
+                { y: -30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.7, ease: "back.out(1.2)" }
+            );
+        }
+
+        if (tableHeaderRef.current) {
+            gsap.fromTo(tableHeaderRef.current,
+                { y: -20, opacity: 0 },
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 0.6, 
+                    delay: 0.1,
+                    ease: "power2.out" 
+                }
+            );
+        }
+
+        if (patients.length > 0) {
+            tl.fromTo(".patient-row-anim", 
+                { x: -20, opacity: 0 },
+                { 
+                    x: 0, 
+                    opacity: 1, 
+                    stagger: 0.06, 
+                    duration: 0.5, 
+                    ease: "power3.out" 
+                },
+                "-=0.2"
+            );
+        }
+
+        
+        if (patients.length === 0 && noDataRef.current) {
+            tl.fromTo(noDataRef.current,
+                { scale: 0.95, opacity: 0 },
+                { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" }
+            );
+        }
+    },{ dependencies: [patients.length] })
    
     if (loading) {
         return (
@@ -192,8 +244,8 @@ function Patients() {
 
     return (
         <Layout>
-            <div className="px-8 py-9 font-poppins">
-                <div className="flex items-center justify-between mb-8">
+            <div className="px-8 py-9 font-poppins" ref={containerRef}>
+                <div className="flex items-center justify-between mb-8" ref={headerRef}>
                     <h2 className="text-customTealBlue font-bold text-xl">Patients</h2>
                     <button className="bg-customTealBlue text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-[#006a70] transition-colors">
                         + New Patient
@@ -201,7 +253,7 @@ function Patients() {
                 </div>
                 
                 <div className="bg-white">
-                    <div className="flex items-center bg-gray-50/50">
+                    <div className="flex items-center bg-gray-50/50" ref={tableHeaderRef}>
                         <div className={`${tableHeaderClass} flex-1 min-w-[150px]`}>Patient Name</div>
                         <div className={`${tableHeaderClass} flex-1 min-w-[150px]`}>Address</div>
                         <div className={`${tableHeaderClass} flex-1 min-w-[200px]`}>Diagnose</div>
@@ -217,7 +269,7 @@ function Patients() {
                                 <PatientRow key={patient.id} patient={patient} index={idx} />
                             ))
                         ) : (
-                            <div className="p-20 text-center text-gray-400 italic">No patients found.</div>
+                            <div ref={noDataRef} className="p-20 text-center text-gray-400 italic">No patients found.</div>
                         )}
                     </div>
                 </div>
