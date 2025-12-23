@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EllipsisVertical, User, UserRoundPen, Trash } from 'lucide-react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
 import Layout from "../Layout.jsx";
 import { usePatients } from '../../../../hooks/usePatients.js';
@@ -15,6 +17,7 @@ function getInitials(firstName, lastName) {
 function PatientRow({ patient, index}){
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
+    const rowRef = useRef(null)
     const navigate = useNavigate()
 
     const {
@@ -34,6 +37,68 @@ function PatientRow({ patient, index}){
 
 
     const initials = getInitials(patient_first_name, patient_last_name)
+
+    useGSAP(() => {
+        if(rowRef.current){
+            gsap.set(rowRef.current, { y: -20, opacity: 0})
+
+
+            gsap.to(rowRef.current, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                delay: 0.2 + (index * 0.08),
+                ease: "back.out(1.2)"
+            })
+
+
+            const patientImg = rowRef.current.querySelector(".patient-img")
+            const patientName = rowRef.current.querySelector(".patient-name")
+            const patientAddress = rowRef.current.querySelector(".address")
+            const diagnose = rowRef.current.querySelector(".diagnose")
+            const dateOfBirth = rowRef.current.querySelector(".date-of-birth")
+            const gender  = rowRef.current.querySelector(".gender")
+            const email = rowRef.current.querySelector(".email")
+            const phoneNumber = rowRef.current.querySelector(".phone")
+            const actions = rowRef.current.querySelector(".actions")
+
+            if (patientImg) gsap.set(patientImg, { scale: 0 })
+
+            const textElements = [patientName, patientAddress, diagnose, dateOfBirth, gender, email, phoneNumber, actions]
+            gsap.set(textElements, {x: -20, opacity: 0})
+
+            const rowDelay = 0.2 + (index * 0.08)
+
+            gsap.to(patientImg, {
+                scale: 1,
+                duration: 0.4,
+                delay: rowDelay + 0.1,
+                ease: "back.out(1.5)"
+            })
+
+            textElements.forEach((element, i) => {
+                if(element){
+                    gsap.to(element, {
+                        x: 0,
+                        opacity: 1,
+                        duration: 0.5,
+                        delay: rowDelay + 0.2 + (i * 0.05),
+                        ease: "power2.out"
+                    });
+                }
+            })
+
+            if(actions){
+                gsap.to(actions, {
+                    rotation: 0,
+                    duration: 0.4,
+                    delay: rowDelay + 0.6,
+                    ease: "back.out(1.5)"
+                });
+            }
+
+        }
+    },[index])
 
 
     useEffect(() => {
@@ -67,29 +132,29 @@ function PatientRow({ patient, index}){
 
 
     return(
-        <section className={`flex items-center p-3 text-sm hover:bg-customTealBlue/[0.02] relative ${index % 2 === 0 ? 'bg-white' : 'bg-customTealBlue/[0.04]'}`}>
+        <section ref={rowRef} className={`flex items-center p-3 text-sm hover:bg-customTealBlue/[0.02] relative ${index % 2 === 0 ? 'bg-white' : 'bg-customTealBlue/[0.04]'}`}>
              <div className="flex items-center flex-1 min-w-[150px] pr-2">
                 {patient_profile_image ? (
-                    <img src={patient_profile_image} alt="" className="w-8 h-8 rounded-full object-cover mr-2" />
+                    <img src={patient_profile_image} alt="" className="w-8 h-8 rounded-full object-cover mr-2 patient-img" />
                 ) : (
-                    <div className="w-8 h-8 rounded-full bg-customTealBlue flex items-center justify-center text-white font-bold text-xs mr-2">{initials}</div>
+                    <div className="w-8 h-8 rounded-full bg-customTealBlue flex items-center justify-center text-white font-bold text-xs mr-2 patient-img">{initials}</div>
                 )}
                 <div>
-                    <p className="text-base font-semibold text-darkGray">{patient_first_name} {patient_last_name}</p>
+                    <p className="text-base font-semibold text-darkGray patient-name">{patient_first_name} {patient_last_name}</p>
                 </div>
             </div>
 
-            <div className="flex-1 min-w-[200px] text-gray-700 truncate pr-2">{street_address} {city} {country}</div>
-            <div className="w-[15%] text-gray-600 font-medium">{Disease}</div>
-            <div className="w-[10%] text-gray-600 font-medium whitespace-nowrap">{formattedDate}</div>
-            <div className="w-[15%] text-gray-600 font-medium">{gender}</div>
-            <div className="w-[15%] text-gray-600 font-medium">{patient_email}</div>
-            <div className="w-[15%] text-gray-600 font-medium">{patient_phone_number}</div>
+            <div className="flex-1 min-w-[200px] text-gray-700 truncate pr-2 address">{street_address} {city} {country}</div>
+            <div className="w-[15%] text-gray-600 font-medium diagnose">{Disease}</div>
+            <div className="w-[10%] text-gray-600 font-medium whitespace-nowrap date-of-birth">{formattedDate}</div>
+            <div className="w-[15%] text-gray-600 font-medium gender">{gender}</div>
+            <div className="w-[15%] text-gray-600 font-medium email">{patient_email}</div>
+            <div className="w-[15%] text-gray-600 font-medium phone">{patient_phone_number}</div>
 
             <div className='relative' ref={dropdownRef}>
                 <button
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className={`hover:bg-gray-200 p-2 rounded-full transition-colors ${isDropdownOpen ? 'bg-gray-200' : ''}`}
+                    className={`hover:bg-gray-200 p-2 rounded-full transition-colors actions ${isDropdownOpen ? 'bg-gray-200' : ''}`}
                 >
                     <EllipsisVertical className='w-5 h-5 text-gray-600'/>
                 </button>

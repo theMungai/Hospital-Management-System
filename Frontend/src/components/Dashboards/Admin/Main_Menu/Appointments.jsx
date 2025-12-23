@@ -46,22 +46,20 @@ function AppointmentRow({ appointment, index }) {
     const doctorInitials = getInitials(doctor_first_name, doctor_last_name);
     const patientInitials = getInitials(patient_first_name, patient_last_name);
 
-    // GSAP animation for row entry
     useGSAP(() => {
         if (rowRef.current) {
-            // Reset initial state
             gsap.set(rowRef.current, { y: -20, opacity: 0 });
             
-            // Animate row with staggered delay based on index
+
             gsap.to(rowRef.current, {
                 y: 0,
                 opacity: 1,
                 duration: 0.6,
-                delay: 0.2 + (index * 0.08), // 200ms + staggered 80ms per row
+                delay: 0.2 + (index * 0.08),
                 ease: "back.out(1.2)",
             });
 
-            // Animate content within the row with further staggering
+
             const doctorImg = rowRef.current.querySelector('.doctor-img');
             const doctorName = rowRef.current.querySelector('.doctor-name');
             const doctorSpecialty = rowRef.current.querySelector('.doctor-specialty');
@@ -74,14 +72,12 @@ function AppointmentRow({ appointment, index }) {
             const status = rowRef.current.querySelector('.status');
             const actions = rowRef.current.querySelector('.actions');
 
-            // Set initial states
             gsap.set([doctorImg, patientImg], { scale: 0 });
             gsap.set([doctorName, doctorSpecialty, patientName, reason, date, duration, type, status, actions], { 
                 x: -20, 
                 opacity: 0 
             });
 
-            // Staggered animations
             const rowDelay = 0.2 + (index * 0.08);
             
             gsap.to(doctorImg, {
@@ -98,21 +94,20 @@ function AppointmentRow({ appointment, index }) {
                 ease: "back.out(1.5)"
             });
 
-            // Animate text elements with staggered delays
             const textElements = [doctorName, doctorSpecialty, patientName, reason, date, duration, type, status, actions];
-            textElements.forEach((el, i) => {
-                if (el) {
-                    gsap.to(el, {
+            textElements.forEach((element, i) => {
+                if (element) {
+                    gsap.to(element, {
                         x: 0,
                         opacity: 1,
                         duration: 0.5,
-                        delay: rowDelay + 0.2 + (i * 0.05), // 200ms + 50ms per element
+                        delay: rowDelay + 0.2 + (i * 0.05),
                         ease: "power2.out"
                     });
                 }
             });
 
-            // Special animation for actions button
+
             if (actions) {
                 gsap.to(actions, {
                     rotation: 0,
@@ -290,16 +285,13 @@ function Appointments() {
     const tableHeaderRef = useRef(null);
     const noDataRef = useRef(null);
 
-    // GSAP animation for the entire page
     useGSAP(() => {
         if (containerRef.current) {
-            // Animate header section
             gsap.fromTo(headerRef.current,
                 { y: -30, opacity: 0 },
                 { y: 0, opacity: 1, duration: 0.7, ease: "back.out(1.2)" }
             );
 
-            // Animate table headers with delay
             gsap.fromTo(tableHeaderRef.current,
                 { y: -20, opacity: 0 },
                 { 
@@ -311,7 +303,6 @@ function Appointments() {
                 }
             );
 
-            // If no data, animate the message
             if (appointments.length === 0 && noDataRef.current) {
                 gsap.fromTo(noDataRef.current,
                     { y: -20, opacity: 0 },

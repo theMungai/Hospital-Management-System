@@ -41,7 +41,7 @@ function DoctorRow({ doctor, index }){
 
     const initials = getInitials(doctor_first_name, doctor_last_name)
 
-         useGSAP(() => {
+        useGSAP(() => {
         if (!rowRef.current) return;
         
         setIsAnimating(true);
