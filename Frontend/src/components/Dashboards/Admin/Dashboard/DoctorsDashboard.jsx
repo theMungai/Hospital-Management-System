@@ -51,7 +51,7 @@ function DoctorRow({ doctor, index }){
                 {doctor_phone_number}
             </div>
 
-            <div className="w-1/5 flex justify-end items-center">
+            <div className="w-[10%] flex justify-end items-center">
                 <div className="flex items-center gap-2 px-3 py-1 rounded-full transition-all">
                     <div className="relative flex h-2 w-2">
                         {availability_status === 'Available' && (

@@ -112,8 +112,16 @@ function PatientRow({ patient, index}){
 function Patients() {
     const { patients, loading, error} = usePatients(true)
    
-    if (loading) return <div className="p-10 text-center text-gray-500 font-poppins">Loading appointments...</div>;
-    if (error) return <div className="p-10 text-center text-red-600 font-poppins">{error}</div>;
+    if (loading) {
+        return (
+            <div className="bg-white rounded-[6px] px-4 py-8 border-[0.1px] border-[#4F4F4F]/[0.1] text-center text-darkGray">
+                Loading patients... 
+            </div>
+        );
+    }
+
+    if (error) return <div className="bg-white rounded-[6px] px-4 py-8 border-[0.1px] border-[#4F4F4F]/[0.1] text-center text-red-600 font-poppins">{error}</div>;
+
 
     const tableHeaderClass = "text-xs font-bold text-gray-400 p-3 border-b border-gray-100 tracking-wider";
 
@@ -144,7 +152,7 @@ function Patients() {
                                 <PatientRow key={patient.id} patient={patient} index={idx} />
                             ))
                         ) : (
-                            <div className="p-20 text-center text-gray-400 italic">No appointments found.</div>
+                            <div className="p-20 text-center text-gray-400 italic">No patients found.</div>
                         )}
                     </div>
                 </div>
