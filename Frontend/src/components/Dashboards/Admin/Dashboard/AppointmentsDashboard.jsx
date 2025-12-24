@@ -1,5 +1,8 @@
+import { useRef } from 'react';
 import { useAppointments } from '../../../../hooks/useAppointments';
 import { useNavigate } from 'react-router-dom';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 
 function getInitials (firstName, lastName){
@@ -9,6 +12,7 @@ function getInitials (firstName, lastName){
 
 
 function AppointmentRow({ appointment, index }) {
+    const rowRef = useRef(null)
 
     const {
         doctor_first_name,
@@ -21,6 +25,56 @@ function AppointmentRow({ appointment, index }) {
     } = appointment;
     
     const initials = getInitials(doctor_first_name, doctor_last_name);
+
+    useGSAP(() => {
+        if(rowRef.current){
+            gsap.set(rowRef.current, {y: -20, opacity: 0})
+
+            gsap.to(rowRef.current, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                delay: 0.2 + (index * 0.08),
+                ease: "back.out(1.2)"
+            })
+
+
+            const doctorImg = rowRef.current.querySelector(".doctor-img")
+            const doctorName = rowRef.current.querySelector(".doctor-name")
+            const specialty = rowRef.current.querySelector(".specialty")
+            const appointmentReason = rowRef.current.querySelector(".reason")
+            const appoinmentDate = rowRef.current.querySelector(".date")
+            const status = rowRef.current.querySelector(".status")
+
+            if (doctorImg){
+                gsap.set(doctorImg, { scale: 0})
+            }
+
+            const textElements = [doctorName, appointmentReason, appoinmentDate, status, specialty]
+            gsap.set(textElements, { x: -20, opacity: 0 })
+
+            const rowDelay = 0.2 + (index * 0.08)
+
+            gsap.to(doctorImg, {
+                scale: 1,
+                duration: 0.4,
+                delay: rowDelay,
+                ease: "back.out(1.5)"
+            })
+
+            textElements.forEach((element, i) => {
+                if(element){
+                    gsap.to(element, {
+                        x: 0,
+                        opacity: 1,
+                        duration: 0.5,
+                        delay: rowDelay + 0.2 + (i * 0.05),
+                        ease: "power2.out"
+                    })
+                }
+            })
+        }
+    }, [index])
 
     const statusClassMap = {
         Scheduled: 'bg-[#FFA500]/[0.10] text-[#FFA500]/[0.56] border border-[#FFA500]/[0.56]',
@@ -35,7 +89,8 @@ function AppointmentRow({ appointment, index }) {
 
     return (
 
-        <div 
+        <div
+            ref={rowRef} 
             className={`bg-white flex items-center p-3 text-sm border-b border-gray-100 hover:bg-customTealBlue/[0.03] transition-colors cursor-pointer`}
         >
             
@@ -44,29 +99,29 @@ function AppointmentRow({ appointment, index }) {
                     <img
                         src={doctor_profile_image}
                         alt={`${doctor_first_name}`}
-                        className="w-8 h-8 rounded-full object-cover mr-2"
+                        className="w-8 h-8 rounded-full object-cover mr-2 doctor-img"
                     />
                 ) : (
-                    <div className="w-8 h-8 rounded-full bg-customTealBlue flex items-center justify-center text-white font-bold text-xs mr-2">
+                    <div className="w-8 h-8 rounded-full bg-customTealBlue flex items-center justify-center text-white font-bold text-xs mr-2 doctor-img">
                         {initials}
                     </div>
                 )}
                 <div>
-                    <p className="font-normal text-base text-darkGray mb-1">{doctor_first_name} {doctor_last_name}</p>
-                    <p className="text-sm text-gray-500 italic">{specialty}</p>
+                    <p className="font-normal text-base text-darkGray mb-1 doctor-name">{doctor_first_name} {doctor_last_name}</p>
+                    <p className="text-sm text-gray-500 italic specialty">{specialty}</p>
                 </div>
             </div>
 
-            <div className="w-2/5 min-w-[200px] text-gray-700 truncate pr-2">
+            <div className="w-2/5 min-w-[200px] text-gray-700 truncate pr-2 reason">
                 {reason_for_visit}
             </div>
 
-            <div className="w-[15%] text-gray-600 font-medium whitespace-nowrap pr-2">
+            <div className="w-[15%] text-gray-600 font-medium whitespace-nowrap pr-2 date">
                 {formattedDate}
             </div>
 
             <div className="w-1/5 text-left">
-                <span className={`inline-block px-2.5 py-0.5 text-sm font-semibold rounded-lg ${statusBadgeClass}`}>
+                <span className={`inline-block px-2.5 py-0.5 text-sm font-semibold rounded-lg status ${statusBadgeClass}`}>
                     {appointment_status}
                 </span>
             </div>
