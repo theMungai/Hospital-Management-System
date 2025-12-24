@@ -6,6 +6,7 @@ import gsap from 'gsap';
 
 import Layout from "../Layout.jsx";
 import { usePatients } from '../../../../hooks/usePatients.js';
+import LoadingSkeleton from '../../../../utils/loadingSkeletons/mainPageSkeletons.jsx';
 
 
 function getInitials(firstName, lastName) {
@@ -230,11 +231,7 @@ function Patients() {
     },{ dependencies: [patients.length] })
    
     if (loading) {
-        return (
-            <div className="bg-white rounded-[6px] px-4 py-8 border-[0.1px] border-[#4F4F4F]/[0.1] text-center text-darkGray">
-                Loading patients... 
-            </div>
-        );
+        return LoadingSkeleton()
     }
 
     if (error) return <div className="bg-white rounded-[6px] px-4 py-8 border-[0.1px] border-[#4F4F4F]/[0.1] text-center text-red-600 font-poppins">{error}</div>;

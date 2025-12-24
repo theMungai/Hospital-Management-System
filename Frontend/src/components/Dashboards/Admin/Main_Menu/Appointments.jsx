@@ -15,6 +15,7 @@ import {
 
 import { useAppointments } from "../../../../hooks/useAppointments.js";
 import Layout from "../Layout.jsx";
+import LoadingSkeleton from "../../../../utils/loadingSkeletons/mainPageSkeletons.jsx";
 
 function getInitials(firstName, lastName) {
     if (!firstName || !lastName) return "";
@@ -318,7 +319,10 @@ function Appointments() {
         }
     }, [appointments.length]);
 
-    if (loading) return <div className="p-10 text-center text-gray-500 font-poppins">Loading appointments...</div>;
+    if(loading){
+        return LoadingSkeleton()
+    }
+
     if (error) return <div className="p-10 text-center text-red-600 font-poppins">{error}</div>;
 
     const tableHeaderClass = "text-xs font-bold text-gray-400 p-3 border-b border-gray-100 tracking-wider";
