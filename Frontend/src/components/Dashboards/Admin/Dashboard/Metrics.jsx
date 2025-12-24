@@ -3,6 +3,7 @@ import { ChevronRight, Users, Calendar, CreditCard, Stethoscope } from "lucide-r
 import {Link} from "react-router-dom";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import  metricsSkeleton  from '../../../../utils/metricsLoadingSkeleton';
 
 function MetricCard({icon: Icon, title, count, percentStatus, to, index}){
     const isPositive = percentStatus.startsWith('+');
@@ -173,15 +174,7 @@ function Metrics() {
     ]
 
     if (loading) {
-        return (
-            <div className="my-8">
-                <div className="w-full grid grid-cols-4 xs:grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-2 animate-pulse">
-                    {[1,2,3,4].map(i => (
-                        <div key={i} className="bg-gray-200 h-40 rounded-[6px] px-4 py-2"></div>
-                    ))}
-                </div>
-            </div>
-        );
+        return metricsSkeleton()
     }
 
     if (error) return (
