@@ -288,14 +288,14 @@ function Doctors() {
     return (
         <Layout>
             <div className="px-8 py-9 font-poppins" ref={containerRef}>
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center justify-between mb-8" ref={headerRef}>
                     <h2 className="text-customTealBlue font-bold text-xl">Doctors</h2>
                     {/* <button className="bg-customTealBlue text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-[#006a70] transition-colors">
                         + Doctor
                     </button> */}
                 </div>
                 
-                <div className="bg-white">
+                <div className="bg-white" ref={tableHeaderRef}>
                     <div className="flex items-center bg-gray-50/50 border-b border-gray-100">
                     <div className={`${tableHeaderClass} flex-1 min-w-[180px]`}>Doctor</div>
                     <div className={`${tableHeaderClass} w-[15%]`}>Specialty</div>

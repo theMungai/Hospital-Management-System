@@ -133,6 +133,48 @@ function AppointmentRow({ appointment, index }) {
 function AppointmentsDashboard() {
     const { appointments, loading, error } = useAppointments(true)
     const navigate = useNavigate();
+    const containerRef = useRef(null);
+    const headerRef = useRef(null);
+    const tableHeaderRef = useRef(null);
+    const noDataRef = useRef(null);
+
+    useGSAP(() => {
+
+        if (!containerRef.current) return;
+
+        if (headerRef.current) {
+            gsap.fromTo(headerRef.current,
+                { y: -30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.7, ease: "back.out(1.2)" }
+            );
+        }
+
+        if (tableHeaderRef.current) {
+            gsap.fromTo(tableHeaderRef.current,
+                { y: -20, opacity: 0 },
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 0.6, 
+                    delay: 0.1,
+                    ease: "power2.out" 
+                }
+            );
+        }
+
+        if (appointments.length === 0 && noDataRef.current) {
+            gsap.fromTo(noDataRef.current,
+                { y: -20, opacity: 0 },
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 0.6, 
+                    delay: 0.3,
+                    ease: "power2.out" 
+                }
+            );
+        }
+    }, { dependencies: [appointments.length] });
 
     if (loading) {
         return (
@@ -158,9 +200,9 @@ function AppointmentsDashboard() {
     const tableHeaderClass = "text-xs font-bold tracking-wider text-gray-400 p-3 border-b border-gray-100";
 
     return (
-        <div className="bg-white rounded-[10px] overflow-hidden font-poppins">
+        <div className="bg-white rounded-[10px] overflow-hidden font-poppins" ref={containerRef}>
             
-            <section className="flex justify-between items-center px-4 py-3">
+            <section className="flex justify-between items-center px-4 py-3" ref={headerRef}>
                 <h1 className="text-lightGray font-medium text-[18px]">Appointments</h1>
                 <button
                     className='text-customTealBlue font-medium text-sm hover:underline'
@@ -170,7 +212,7 @@ function AppointmentsDashboard() {
                 </button>
             </section>
             
-            <div className="flex items-center bg-gray-50">
+            <div className="flex items-center bg-gray-50" ref={tableHeaderRef}>
                 <div className={`${tableHeaderClass} w-1/4 min-w-[150px]`}>Assigned Doctor</div>
                 <div className={`${tableHeaderClass} w-2/5 min-w-[200px]`}>Reason</div>
                 <div className={`${tableHeaderClass} w-[15%]`}>Date</div>
@@ -178,13 +220,17 @@ function AppointmentsDashboard() {
             </div>
 
             <div className="divide-y divide-gray-100">
-                {limitedAppointments.map((appointment, index) => (
+                {limitedAppointments.length > 0 ? (
+                    limitedAppointments.map((appointment, index) => (
                     <AppointmentRow
                         key={appointment.id}
                         appointment={appointment}
                         index={index}
                     />
-                ))}
+                ))
+                ): (
+                    <div ref={noDataRef} className="p-20 text-center text-gray-400 italic">No appointments found.</div>
+                )}
             </div>
             
         </div>
