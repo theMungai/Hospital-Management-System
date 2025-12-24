@@ -1,5 +1,8 @@
+import { useRef } from 'react';
 import { useDoctors } from '../../../../hooks/useDoctors'
 import { useNavigate } from 'react-router-dom';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 function getInitials(firstName, lastName){
     if(!firstName || !lastName) return ""
@@ -7,6 +10,7 @@ function getInitials(firstName, lastName){
 }
 
 function DoctorRow({ doctor, index }){
+    const rowRef = useRef(null)
     const {
         doctor_first_name,
         doctor_last_name,
@@ -21,37 +25,90 @@ function DoctorRow({ doctor, index }){
 
     const alternatingBg = index % 2 === 0 ? 'bg-white' : 'bg-customTealBlue/[0.02]';
 
+    useGSAP(() => {
+        if(rowRef.current){
+            gsap.set(rowRef.current, { y: -20, opacity: 0})
+
+
+            gsap.to(rowRef.current, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                delay: 0.2 + (index * 0.08),
+                ease: "back.out(1.2)"
+            })
+
+
+            const doctorImg = rowRef.current?.querySelector('.doctor-img');
+            const doctorName = rowRef.current?.querySelector('.doctor-name');
+            const doctorSpecialty = rowRef.current?.querySelector('.specialty');
+            const email = rowRef.current.querySelector(".email")
+            const phoneNumber = rowRef.current.querySelector(".phone")
+            const status = rowRef.current.querySelector(".status")
+
+            if (doctorImg){
+                gsap.set(doctorImg, { scale: 0})
+            }
+
+            const textElements = [doctorName, email, phoneNumber, status, doctorSpecialty]
+            gsap.set(textElements, { x: -20, opacity: 0 })
+
+            const rowDelay = 0.2 + (index * 0.08)
+
+            gsap.to(doctorImg, {
+                scale: 1,
+                duration: 0.4,
+                delay: rowDelay,
+                ease: "back.out(1.5)"
+            })
+
+            textElements.forEach((element, i) => {
+                if(element){
+                    gsap.to(element, {
+                        x: 0,
+                        opacity: 1,
+                        duration: 0.5,
+                        delay: rowDelay + 0.2 + (i * 0.05),
+                        ease: "power2.out"
+                    })
+                }
+            })
+
+        }
+    },[index])
+
     return (
         <div 
+            ref={rowRef}
             className={`${alternatingBg} flex items-center p-3 text-sm border-b border-gray-100 hover:bg-customTealBlue/[0.03] transition-colors cursor-pointer`}
         >
             <div className="flex items-center w-1/4 min-w-[150px] pr-2">
                 {doctor_profile_image ? (
-                    <img src={doctor_profile_image} alt="" className="w-8 h-8 rounded-full object-cover mr-3 shadow-sm" />
+                    <img src={doctor_profile_image} alt="" className="w-8 h-8 rounded-full object-cover mr-3 shadow-sm doctor-img" />
                 ) : (
-                    <div className="w-8 h-8 rounded-full bg-customTealBlue flex items-center justify-center text-white font-bold text-xs mr-3 shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-customTealBlue flex items-center justify-center text-white font-bold text-xs mr-3 shrink-0 doctor-img">
                         {initials}
                     </div>
                 )}
-                <span className="font-semibold text-gray-800 truncate">
+                <span className="font-semibold text-gray-800 truncate doctor-name">
                     {doctor_first_name} {doctor_last_name}
                 </span>
             </div>
 
-            <div className="w-1/5 text-gray-600 truncate">
+            <div className="w-1/5 text-gray-600 truncate specialty">
                 {specialty}
             </div>
 
 
-            <div className="w-[35%] text-gray-500 truncate">
+            <div className="w-[35%] text-gray-500 truncate email">
                 {doctor_email}
             </div>
 
-            <div className="w-[35%] text-gray-500 truncate">
+            <div className="w-[35%] text-gray-500 truncate phone">
                 {doctor_phone_number}
             </div>
 
-            <div className="w-[10%] flex justify-end items-center">
+            <div className="w-[10%] flex justify-end items-center status">
                 <div className="flex items-center gap-2 px-3 py-1 rounded-full transition-all">
                     <div className="relative flex h-2 w-2">
                         {availability_status === 'Available' && (
@@ -79,6 +136,48 @@ function DoctorRow({ doctor, index }){
 function DoctorsDashboard() {
     const { doctors, loading, error } = useDoctors(true)
     const navigate = useNavigate()
+    const containerRef = useRef(null);
+    const headerRef = useRef(null);
+    const tableHeaderRef = useRef(null);
+    const noDataRef = useRef(null);
+
+    useGSAP(() => {
+
+        if (!containerRef.current) return;
+
+        if (headerRef.current) {
+            gsap.fromTo(headerRef.current,
+                { y: -30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.7, ease: "back.out(1.2)" }
+            );
+        }
+
+        if (tableHeaderRef.current) {
+            gsap.fromTo(tableHeaderRef.current,
+                { y: -20, opacity: 0 },
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 0.6, 
+                    delay: 0.1,
+                    ease: "power2.out" 
+                }
+            );
+        }
+
+        if (doctors.length === 0 && noDataRef.current) {
+            gsap.fromTo(noDataRef.current,
+                { y: -20, opacity: 0 },
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 0.6, 
+                    delay: 0.3,
+                    ease: "power2.out" 
+                }
+            );
+        }
+    }, { dependencies: [doctors.length] });
 
     if (loading) {
         return (
@@ -95,8 +194,8 @@ function DoctorsDashboard() {
     const tableHeaderClass = "text-xs font-bold tracking-wider text-gray-400 p-3 border-b border-gray-100";
 
     return (
-        <div className="bg-white rounded-[10px] overflow-hidden font-poppins">
-            <section className="flex justify-between items-center px-4 py-4">
+        <div className="bg-white rounded-[10px] overflow-hidden font-poppins"  ref={containerRef}>
+            <section className="flex justify-between items-center px-4 py-4" ref={headerRef}>
                 <h1 className="text-lightGray font-medium text-[18px]">Doctors</h1>
                 <button
                     className='text-customTealBlue font-medium text-sm hover:underline'
@@ -107,7 +206,7 @@ function DoctorsDashboard() {
             </section>
             
             {/* MATCHED HEADERS */}
-            <div className="flex items-center bg-gray-50">
+            <div className="flex items-center bg-gray-50" ref={headerRef}>
                 <div className={`${tableHeaderClass} w-1/4`}>Doctor</div>
                 <div className={`${tableHeaderClass} w-1/5`}>Specialty</div>
                 <div className={`${tableHeaderClass} w-[35%]`}>Contact Email</div>
