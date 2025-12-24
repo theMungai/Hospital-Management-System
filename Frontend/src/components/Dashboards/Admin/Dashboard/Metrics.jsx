@@ -3,7 +3,7 @@ import { ChevronRight, Users, Calendar, CreditCard, Stethoscope } from "lucide-r
 import {Link} from "react-router-dom";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import  metricsSkeleton  from '../../../../utils/metricsLoadingSkeleton';
+import  metricsSkeleton  from '../../../../utils/loadingSkeletons/metricsLoadingSkeleton';
 
 function MetricCard({icon: Icon, title, count, percentStatus, to, index}){
     const isPositive = percentStatus.startsWith('+');

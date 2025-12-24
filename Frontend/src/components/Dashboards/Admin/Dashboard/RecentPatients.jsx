@@ -3,6 +3,7 @@ import { usePatients } from "../../../../hooks/usePatients";
 import { useNavigate } from "react-router-dom";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import DashboardShimmer from '../../../../utils/loadingSkeletons/dashboardLoadingSkeletons';
 
 
 function getInitials (firstName, lastName){
@@ -168,11 +169,7 @@ function RecentPatients() {
 
 
     if (loading) {
-        return (
-            <div className="bg-white rounded-[6px] px-4 py-8 border-[0.1px] border-[#4F4F4F]/[0.1] text-center text-darkGray">
-                Loading top patients... 
-            </div>
-        );
+        return DashboardShimmer()
     }
 
     if (error) return <div className="bg-white rounded-[6px] px-4 py-8 border-[0.1px] border-[#4F4F4F]/[0.1] text-center text-red-600 font-poppins">{error}</div>;

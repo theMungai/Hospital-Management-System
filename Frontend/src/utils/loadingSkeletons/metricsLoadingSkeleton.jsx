@@ -3,7 +3,7 @@ export default function metricsSkeleton(){
         <div className="my-8">
             <div className="w-full grid grid-cols-4 xs:grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-2">
                 {[1, 2, 3, 4].map(i => (
-                    <div key={i} className="group relative overflow-hidden rounded-[6px] border border-gray-100 bg-white px-4 py-2 shadow-sm">
+                    <div key={i} className="group relative overflow-hidden rounded-[6px]  bg-white px-4 py-2">
                         {/* Background glow effect */}
                         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         
@@ -23,8 +23,8 @@ export default function metricsSkeleton(){
                             
                             {/* Count number with more prominent animation */}
                             <div className="mb-10 space-y-3">
-                                <div className="w-3/4 h-12 bg-gradient-to-r from-gray-300 to-gray-200 rounded animate-pulse"></div>
-                                <div className="w-1/2 h-8 bg-gradient-to-r from-gray-200 to-gray-100 rounded animate-pulse"></div>
+                                <div className="w-3/4 h-12 bg-gradient-to-r from-gray-200 to-gray-100 rounded animate-pulse"></div>
+                                <div className="w-1/2 h-8 bg-gradient-to-r from-gray-100 to-gray-50 rounded animate-pulse"></div>
                             </div>
                             
                             {/* Status badge & subtitle */}
