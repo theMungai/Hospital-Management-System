@@ -16,7 +16,6 @@ function getInitials(firstName, lastName) {
 
 function DoctorRow({ doctor, index }){
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isAnimating, setIsAnimating] = useState(false);
     const dropdownRef = useRef(null);
     const rowRef = useRef(null)
     const navigate = useNavigate()
@@ -41,83 +40,74 @@ function DoctorRow({ doctor, index }){
 
     const initials = getInitials(doctor_first_name, doctor_last_name)
 
-        useGSAP(() => {
-        if (!rowRef.current) return;
-        
-        setIsAnimating(true);
+    useGSAP(() => {
+        if(rowRef.current){
+            gsap.set(rowRef.current, { y: -20, opacity: 0})
 
-        gsap.set(rowRef.current, { y: -20, opacity: 0 });
 
-        gsap.to(rowRef.current, {
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            delay: 0.2 + (index * 0.08),
-            ease: "back.out(1.2)",
-            onComplete: () => {
-                const animateContent = () => {
-                    const doctorImg = rowRef.current?.querySelector('.doctor-img');
-                    const doctorName = rowRef.current?.querySelector('.doctor-name');
-                    const doctorSpecialty = rowRef.current?.querySelector('.specialty');
-                    const doctorGender = rowRef.current?.querySelector('.gender');
-                    const doctorAddress = rowRef.current?.querySelector('.address');
-                    const dateOfBirth = rowRef.current?.querySelector('.date-of-birth');
-                    const doctorPhone = rowRef.current?.querySelector('.phone');
-                    const doctorEmail = rowRef.current?.querySelector('.email');
-                    const doctorStatus = rowRef.current?.querySelector('.status');
-                    const doctorLicence = rowRef.current?.querySelector('.licence');
-                    const actions = rowRef.current?.querySelector('.actions');
+            gsap.to(rowRef.current, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                delay: 0.2 + (index * 0.08),
+                ease: "back.out(1.2)"
+            })
 
-                    if (doctorImg) gsap.set(doctorImg, { scale: 0 });
 
-                    const textElements = [
-                        doctorName, doctorSpecialty, doctorGender, doctorAddress, 
-                        dateOfBirth, doctorPhone, doctorEmail, doctorStatus, 
-                        doctorLicence, actions
-                    ].filter(el => el !== null && el !== undefined);
-                    
-                    textElements.forEach(el => {
-                        gsap.set(el, { x: -20, opacity: 0 });
+            const doctorImg = rowRef.current?.querySelector('.doctor-img');
+            const doctorName = rowRef.current?.querySelector('.doctor-name');
+            const doctorSpecialty = rowRef.current?.querySelector('.specialty');
+            const doctorGender = rowRef.current?.querySelector('.gender');
+            const doctorAddress = rowRef.current?.querySelector('.address');
+            const dateOfBirth = rowRef.current?.querySelector('.date-of-birth');
+            const doctorPhone = rowRef.current?.querySelector('.phone');
+            const doctorEmail = rowRef.current?.querySelector('.email');
+            const doctorStatus = rowRef.current?.querySelector('.status');
+            const doctorLicence = rowRef.current?.querySelector('.licence');
+            const actions = rowRef.current?.querySelector('.actions');
+
+            if (doctorImg) gsap.set(doctorImg, { scale: 0 });
+
+            const textElements = [
+                doctorName, doctorSpecialty, doctorGender, doctorAddress, 
+                dateOfBirth, doctorPhone, doctorEmail, doctorStatus, 
+                doctorLicence, actions
+            ]
+
+            gsap.set(textElements, {x: -20, opacity: 0})
+
+            const rowDelay = 0.2 + (index * 0.08)
+
+            gsap.to(doctorImg, {
+                scale: 1,
+                duration: 0.4,
+                delay: rowDelay + 0.1,
+                ease: "back.out(1.5)"
+            })
+
+            textElements.forEach((element, i) => {
+                if(element){
+                    gsap.to(element, {
+                        x: 0,
+                        opacity: 1,
+                        duration: 0.5,
+                        delay: rowDelay + 0.2 + (i * 0.05),
+                        ease: "power2.out"
                     });
-                    
-                    const contentDelay = 0.2 + (index * 0.08) + 0.1;
+                }
+            })
 
-                    if (doctorImg) {
-                        gsap.to(doctorImg, {
-                            scale: 1,
-                            duration: 0.4,
-                            delay: contentDelay,
-                            ease: "back.out(1.5)"
-                        });
-                    }
-
-                    textElements.forEach((el, i) => {
-                        gsap.to(el, {
-                            x: 0,
-                            opacity: 1,
-                            duration: 0.5,
-                            delay: contentDelay + 0.1 + (i * 0.03),
-                            ease: "power2.out"
-                        });
-                    });
-
-                    if (actions) {
-                        gsap.to(actions, {
-                            rotation: 0,
-                            duration: 0.4,
-                            delay: contentDelay + 0.4,
-                            ease: "back.out(1.5)"
-                        });
-                    }
-                    
-                    setIsAnimating(false);
-                };
-
-                setTimeout(animateContent, 10);
+            if(actions){
+                gsap.to(actions, {
+                    rotation: 0,
+                    duration: 0.4,
+                    delay: rowDelay + 0.6,
+                    ease: "back.out(1.5)"
+                });
             }
-        });
-    }, { dependencies: [index], revertOnUpdate: true });
 
+        }
+    },[index])
 
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -152,7 +142,7 @@ function DoctorRow({ doctor, index }){
       return(
         <section 
             ref={rowRef}
-            className={`flex items-center p-3 text-sm hover:bg-customTealBlue/[0.02] relative ${index % 2 === 0 ? 'bg-white' : 'bg-customTealBlue/[0.04]'} ${isAnimating ? 'pointer-events-none' : ''}`}
+            className={`flex items-center p-3 text-sm hover:bg-customTealBlue/[0.02] relative ${index % 2 === 0 ? 'bg-white' : 'bg-customTealBlue/[0.04]'}`}
         >
             <div className="flex items-center flex-1 min-w-[180px] pr-2">
                 {doctor_profile_image ? (

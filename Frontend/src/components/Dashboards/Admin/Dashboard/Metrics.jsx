@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { ChevronRight, TrendingUp, Users, Calendar, CreditCard, Stethoscope } from "lucide-react"
 import {Link} from "react-router-dom";
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 function MetricCard({icon: Icon, title, count, percentStatus, to}){
     const isPositive = percentStatus.startsWith('+');
