@@ -14,7 +14,7 @@ const AdminDashboard = () => {
     return (
         <Layout>
             <div className="px-8 py-9 font-poppins overflow-y-auto">
-                <h2 className="text-customTealBlue font-bold mb-7 text-lg">Dashboard</h2>
+                <h2 className="text-customTealBlue font-bold mb-7 text-lg">Admin Dashboard</h2>
 
                 <Welcome />
                 <Metrics />
