@@ -13,8 +13,8 @@ import RegisteredSuccessfully from "./utils/Responses/RegisteredSuccessfully.jsx
 import FailedToRegister from "./utils/Responses/FailedToRegister.jsx";
 import VerifyOTP from "./utils/VerifyOTP.jsx";
 import AdminDashboard from "./components/Dashboards/Admin/Dashboard/AdminDashboard.jsx";
-import PatientDashboard from "./components/Dashboards/Patient/PatientDashboard.jsx";
-import DoctorDashboard from "./components/Dashboards/Doctor/DoctorDashboard.jsx";
+import PatientDashboard from "./components/Dashboards/Patient/Dashboard/PatientDashboard.jsx";
+import DoctorDashboard from "./components/Dashboards/Doctor/Dashboard/DoctorDashboard.jsx";
 import Appointments from "./components/Dashboards/Admin/Main_Menu/Appointments.jsx";
 import Doctors from "./components/Dashboards/Admin/Main_Menu/Doctors.jsx";
 import Patients from "./components/Dashboards/Admin/Main_Menu/Patients.jsx";
@@ -46,7 +46,7 @@ function App() {
           <Route path='/Register-patient' element={<SignUpPage />}/>
           <Route path='/Register-doctor' element={<RegisterDoctor />}/>
           <Route path='/log-in' element= {<SignInPage/>}/>
-            <Route path={'/verify-otp'}  element={<VerifyOTP/>} />
+          <Route path={'/verify-otp'}  element={<VerifyOTP/>} />
           <Route path='/terms-and-conditions' element={<TermsAndConditions />}/>
           <Route path={'/registration-complete'} element={<RegisteredSuccessfully/>} />
           <Route path={'/registration-failed'} element={<FailedToRegister />} />
