@@ -6,6 +6,7 @@ function Login() {
   const [formData, setFormData] = useState({email: "", password: "",});
   const [error, setError] = useState("");
   const [ showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
@@ -24,6 +25,8 @@ function Login() {
             return;
         }
 
+        setLoading(true)
+
         try {
             const res = await fetch("http://localhost:8000/login", {
                 method: "POST",
@@ -38,7 +41,6 @@ function Login() {
                 return;
             }
 
-            // SAVE login token (needed for OTP verification)
             localStorage.setItem("token", data.access_token);
 
             // SAVE user info
@@ -110,9 +112,17 @@ function Login() {
 
           <button
             type="submit"
-            className="w-full bg-customTealBlue text-white py-2 rounded transition"
+            className="w-full bg-customTealBlue text-white py-2 rounded transition hover:bg-opacity-90 disabled:opacity-70 disabled:cursor-not-allowed"
+            disabled={loading}
           >
-            Login
+            {loading ? (
+              <span className="flex items-center justify-center">
+                <span className="animate-spin inline-block h-4 w-4 border-[2px] border-white border-t-transparent rounded-full mr-2"></span>
+                Logging in...
+              </span>
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
 
