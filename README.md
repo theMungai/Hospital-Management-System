@@ -47,27 +47,28 @@ Built with **ReactJS** and **Vite** for fast development, styled using **Tailwin
 
 ```text
 Health-Management-System/
-├── public/                          # Public assets served by frontend
-│   ├── icons/                       # Icon files used in the Frontend interface
-│   ├── images/                      # Images used in the application's UI
-├── src/                             # React frontend source code
-│   ├── assets/                      
-│   ├── components/
-│   │   ├── common/                  # Navbar, Footer, Buttons
-│   │   ├── landing/                 # Hero, Features, etc.
-│   │   ├── admin/                   # Admin dashboard components
-│   │   └── blog/                    # Blog-related components
-│   ├── pages/                       # Pages like Login, Register, Home, etc.
-│   ├── routes/                      # React Router route definitions
-│   ├── hooks/                       # Custom React hooks
-│   ├── utils/                       # Utility/helper functions
-│   ├── App.jsx                      # Root component
-│   ├── main.jsx                     # Vite entry point
-│   └── index.css                    # Global styles
+├── Frontend/
+│   ├── public/                          # Public assets served by frontend
+│   │   └── icons/                       # Icon files used in the Frontend interface
+│   │   └── images/                      # Images used in the application's UI
+│   ├── src/                             # React frontend source code
+│   │   └── assets/                      
+│   │   └── components/
+│   │   │   └── common/                  # Navbar, Footer, Buttons
+│   │   │   └── landing/                 # Hero, Features, etc.
+│   │   │   └── admin/                   # Admin dashboard components
+│   │   │   └── blog/                    # Blog-related components
+│   │   └── pages/                       # Pages like Login, Register, Home, etc.
+│   │   └── routes/                      # React Router route definitions
+│   │   └── hooks/                       # Custom React hooks
+│   │   └── utils/                       # Utility/helper functions
+│   │   └── App.jsx                      # Root component
+│   │   └── main.jsx                     # Vite entry point
+│   │   └── index.css                    # Global styles
 │   └── tailwind.config.js           # Configure and customize Tailwind CSS
 │   └── vercel.json                  # Configure how an app is deployed on Vercel
 │   └── vite.config.js               # Configure a Vite project
-├── backend/
+├── Backend/
 │   ├── App/                         # Fastapi app package
 │   │   ├── __init__.py              # Fastapi app factory
 │   │   ├── config.py                # App configuration (env, DB, etc.)
