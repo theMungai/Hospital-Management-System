@@ -143,7 +143,7 @@ npm run dev
 
 ### Frontend (React + Vite)
 ```bash
-cd frontend
+cd Frontend
 npm install
 npm run dev
 ```
